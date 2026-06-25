@@ -189,3 +189,30 @@
   );
   animation: yrcShimmer 2.5s ease-in-out infinite;
 }
+
+/* Red line vertical shimmer */
+@keyframes yrcLineShimmer {
+  0% { transform: translateY(100%); opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateY(-100%); opacity: 0; }
+}
+.yrc-line-shimmer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: yrcLineShimmer 4s ease-in-out infinite;
+}
+
+/* Floating particles */
+@keyframes yrcFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-25px); }
+}
