@@ -121,20 +121,8 @@ export function Hero() {
               initial={{ opacity: 0, x: 60, scale: 1.05 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ duration: 1, ease: EASE, delay: 0.3 }}
-              className="relative h-full w-full overflow-hidden rounded-2xl bg-gray-200 lg:rounded-none"
-              style={{
-                clipPath:
-                  typeof window !== "undefined" && window.innerWidth >= 1024
-                    ? "polygon(8% 0%, 100% 0%, 100% 100%, 0% 100%)"
-                    : undefined,
-              }}
-            >
-              <div
-                className="h-full w-full bg-gray-200 hidden lg:block"
-                style={{ clipPath: "polygon(8% 0%, 100% 0%, 100% 100%, 0% 100%)" }}
-              />
-              <div className="h-full w-full bg-gray-200 lg:hidden rounded-2xl" />
-            </motion.div>
+              className="yrc-hero-image relative h-full w-full bg-gray-200 rounded-2xl lg:rounded-none"
+            />
           </div>
         </div>
       </div>
