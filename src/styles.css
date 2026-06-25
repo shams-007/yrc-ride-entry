@@ -19,6 +19,13 @@
  */
 
 @theme inline {
+  --color-yrc-bg: #f8f9ff;
+  --color-yrc-navy: #003087;
+  --color-yrc-accent: #0047cc;
+  --color-yrc-red: #e60012;
+  --color-yrc-text: #0d0d0d;
+  --font-display: "Bebas Neue", sans-serif;
+  --font-sans: "Inter", sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
