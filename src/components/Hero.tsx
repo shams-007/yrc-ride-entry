@@ -12,11 +12,66 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative w-full"
-      style={{ backgroundColor: "#f8f9ff", minHeight: "100vh" }}
+      className="relative w-full overflow-hidden"
+      style={{
+        background:
+          "linear-gradient(135deg, #f0f4ff 0%, #f8f9ff 50%, #eef2ff 100%)",
+        minHeight: "100vh",
+      }}
     >
       {/* subtle dot grid texture */}
       <div className="yrc-hero-dots pointer-events-none absolute inset-0" aria-hidden />
+
+      {/* large soft radial glows */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute"
+        style={{
+          top: "-200px",
+          right: "-150px",
+          width: "600px",
+          height: "600px",
+          background:
+            "radial-gradient(circle, rgba(0,48,135,0.06) 0%, rgba(0,48,135,0) 70%)",
+          filter: "blur(120px)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute"
+        style={{
+          bottom: "-100px",
+          left: "-100px",
+          width: "300px",
+          height: "300px",
+          background:
+            "radial-gradient(circle, rgba(0,71,204,0.04) 0%, rgba(0,71,204,0) 70%)",
+          filter: "blur(120px)",
+        }}
+      />
+
+      {/* floating ambient particles */}
+      {[
+        { size: 6, top: "18%", left: "12%", duration: 6 },
+        { size: 4, top: "65%", left: "42%", duration: 9 },
+        { size: 5, top: "30%", left: "78%", duration: 12 },
+      ].map((p, i) => (
+        <motion.span
+          key={i}
+          aria-hidden
+          className="pointer-events-none absolute rounded-full"
+          style={{
+            width: p.size,
+            height: p.size,
+            top: p.top,
+            left: p.left,
+            backgroundColor: "rgba(0,48,135,0.25)",
+          }}
+          animate={{ y: [0, -25, 0] }}
+          transition={{ duration: p.duration, repeat: Infinity, ease: "easeInOut" }}
+        />
+      ))}
+
       <div className="mx-auto grid min-h-screen w-full max-w-7xl grid-cols-1 items-center gap-12 px-6 pt-24 pb-16 lg:grid-cols-[55fr_45fr] lg:gap-10 lg:px-10 lg:pt-16">
         {/* LEFT */}
         <div className="relative order-2 lg:order-1">
@@ -26,8 +81,10 @@ export function Hero() {
             animate={{ scaleY: 1 }}
             transition={{ duration: 0.8, ease: EASE, delay: 0.2 }}
             style={{ transformOrigin: "top" }}
-            className="absolute left-0 top-0 h-full w-[3px] bg-[#e60012]"
-          />
+            className="absolute left-0 top-0 h-full w-[3px] overflow-hidden bg-[#e60012]"
+          >
+            <span className="yrc-line-shimmer" aria-hidden />
+          </motion.div>
 
           <div className="pl-6">
             <motion.span
