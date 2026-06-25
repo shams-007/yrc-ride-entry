@@ -77,14 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "yrc" },
+      { name: "description", content: "YRC.BD Welcome is a React application showcasing the Yamaha Riders Club Bangladesh's navbar and hero section." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "yrc" },
+      { property: "og:description", content: "YRC.BD Welcome is a React application showcasing the Yamaha Riders Club Bangladesh's navbar and hero section." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "yrc" },
+      { name: "twitter:description", content: "YRC.BD Welcome is a React application showcasing the Yamaha Riders Club Bangladesh's navbar and hero section." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ee5dc24c-09e3-45dd-8f19-d83a9c6a94d0/id-preview-8789030f--8699a24b-5f70-4086-b247-eeeef03ee298.lovable.app-1782417061082.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ee5dc24c-09e3-45dd-8f19-d83a9c6a94d0/id-preview-8789030f--8699a24b-5f70-4086-b247-eeeef03ee298.lovable.app-1782417061082.png" },
     ],
     links: [
       {
