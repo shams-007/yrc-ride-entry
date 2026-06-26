@@ -81,7 +81,7 @@ export function Hero() {
             animate={{ scaleY: 1 }}
             transition={{ duration: 0.8, ease: EASE, delay: 0.2 }}
             style={{ transformOrigin: "top" }}
-            className="absolute left-0 top-0 h-full w-[3px] overflow-hidden bg-[#e60012]"
+            className="absolute left-0 top-0 h-full w-[3px] overflow-hidden bg-[#e60012] lg:left-16"
           >
             <span className="yrc-line-shimmer" aria-hidden />
           </motion.div>
