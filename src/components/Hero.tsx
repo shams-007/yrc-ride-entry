@@ -72,9 +72,9 @@ export function Hero() {
         />
       ))}
 
-      <div className="mx-auto grid min-h-screen w-full max-w-7xl grid-cols-1 items-center gap-12 px-6 py-0 lg:grid-cols-[55fr_45fr] lg:gap-10 lg:px-10">
+      <div className="mx-auto grid min-h-screen w-full max-w-7xl grid-cols-1 items-center gap-12 px-6 py-0 lg:grid-rows-1 lg:items-stretch lg:grid-cols-[55fr_45fr] lg:gap-10 lg:px-10">
         {/* LEFT */}
-        <div className="relative order-2 lg:order-1">
+        <div className="relative order-2 flex h-full flex-col justify-center lg:order-1 lg:pl-16">
           {/* red vertical line */}
           <motion.div
             initial={{ scaleY: 0 }}
@@ -144,7 +144,7 @@ export function Hero() {
         </div>
 
         {/* RIGHT */}
-        <div className="relative order-1 flex h-full w-full items-stretch justify-center self-stretch lg:order-2">
+        <div className="relative order-1 flex w-full items-stretch justify-center self-stretch lg:order-2 lg:h-full">
           {/* soft navy radial glow behind whole column (no clip-path) */}
           <div
             aria-hidden
@@ -155,7 +155,7 @@ export function Hero() {
               filter: "blur(80px)",
             }}
           />
-          <div className="relative h-full min-h-[420px] w-full self-stretch">
+          <div className="relative h-full min-h-[420px] w-full self-stretch lg:min-h-0">
             {/* rotating ring */}
             <motion.svg
               aria-hidden
