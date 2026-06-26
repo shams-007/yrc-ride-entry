@@ -72,7 +72,7 @@ export function Hero() {
         />
       ))}
 
-      <div className="mx-auto grid min-h-screen w-full max-w-7xl grid-cols-1 items-center gap-12 px-6 pt-24 pb-16 lg:grid-cols-[55fr_45fr] lg:gap-10 lg:px-10 lg:pt-16">
+      <div className="mx-auto grid min-h-screen w-full max-w-7xl grid-cols-1 items-center gap-12 px-6 py-0 lg:grid-cols-[55fr_45fr] lg:gap-10 lg:px-10">
         {/* LEFT */}
         <div className="relative order-2 lg:order-1">
           {/* red vertical line */}
@@ -86,7 +86,7 @@ export function Hero() {
             <span className="yrc-line-shimmer" aria-hidden />
           </motion.div>
 
-          <div className="pl-6">
+          <div className="pl-6 pt-0">
             <motion.span
               {...fadeUp(0.1)}
               className="inline-flex w-fit items-center gap-2 rounded-full bg-[#e60012] px-4 py-1.5 text-[12px] font-medium text-white"
@@ -95,7 +95,7 @@ export function Hero() {
             </motion.span>
 
             <h1
-              className="mt-6 font-display text-[56px] leading-[0.95] tracking-wide lg:text-[96px]"
+              className="mt-4 font-display text-[56px] leading-[0.95] tracking-wide lg:text-[96px]"
               style={{ color: "#003087" }}
             >
               <motion.span {...fadeUp(0.2)} className="block">
@@ -115,7 +115,7 @@ export function Hero() {
 
             <motion.p
               {...fadeUp(0.7)}
-              className="mt-6 max-w-xl font-sans text-[18px] leading-relaxed"
+              className="mt-5 max-w-xl font-sans text-[18px] leading-relaxed"
               style={{ color: "#555" }}
             >
               472,000+ riders. 47 branches. One family. #Yes_Yamaha
@@ -144,7 +144,7 @@ export function Hero() {
         </div>
 
         {/* RIGHT */}
-        <div className="relative order-1 flex items-center justify-center lg:order-2">
+        <div className="relative order-1 flex h-full w-full items-stretch justify-center self-stretch lg:order-2">
           {/* soft navy radial glow behind whole column (no clip-path) */}
           <div
             aria-hidden
@@ -155,7 +155,7 @@ export function Hero() {
               filter: "blur(80px)",
             }}
           />
-          <div className="relative w-full max-w-[560px]" style={{ aspectRatio: "560 / 480" }}>
+          <div className="relative h-full min-h-[420px] w-full self-stretch">
             {/* rotating ring */}
             <motion.svg
               aria-hidden
