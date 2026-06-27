@@ -69,7 +69,7 @@ export function Stats() {
         </motion.div>
 
         <div
-          className="mx-auto mt-12 grid max-w-7xl grid-cols-2 gap-8 lg:grid-cols-4 lg:gap-6"
+          className="mx-auto mt-12 grid max-w-7xl grid-cols-2 gap-8 lg:grid-cols-4 lg:gap-12"
         >
           {STATS.map((s, i) => (
             <motion.div
@@ -105,9 +105,10 @@ export function Stats() {
                 <div
                   className="mt-2 font-sans"
                   style={{
-                    fontSize: 12,
+                    fontSize: 13,
+                    fontWeight: 500,
                     letterSpacing: "0.15em",
-                    color: "#666",
+                    color: "#444",
                     textTransform: "uppercase",
                   }}
                 >
