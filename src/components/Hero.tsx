@@ -105,8 +105,8 @@ export function Hero() {
             </motion.span>
 
             <h1
-              className="mt-4 font-display text-[56px] leading-[0.95] tracking-wide lg:text-[96px]"
-              style={{ color: "#003087" }}
+              className="mt-4 font-display text-[56px] tracking-wide lg:text-[96px]"
+              style={{ color: "#003087", lineHeight: 1.05 }}
             >
               <motion.span {...fadeUp(0.2)} className="block">
                 BORN TO RIDE.
@@ -125,7 +125,7 @@ export function Hero() {
 
             <motion.p
               {...fadeUp(0.7)}
-              className="mt-5 max-w-xl font-sans text-[18px] leading-relaxed"
+              className="mt-5 mb-8 max-w-xl font-sans text-[18px] leading-relaxed"
               style={{ color: "#555" }}
             >
               472,000+ riders. 47 branches. One family. #Yes_Yamaha
@@ -146,6 +146,7 @@ export function Hero() {
               <a
                 href="#facebook"
                 className="inline-flex items-center justify-center rounded-full border-2 border-[#003087] px-8 py-3 font-sans text-base font-semibold text-[#003087] transition-transform hover:scale-[1.03]"
+                style={{ backgroundColor: "rgba(0,48,135,0.05)" }}
               >
                 Join Facebook Group
               </a>
