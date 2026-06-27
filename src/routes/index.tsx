@@ -5,6 +5,10 @@ import { Stats } from "@/components/Stats";
 import { About } from "@/components/About";
 import { Events } from "@/components/Events";
 import { Branches } from "@/components/Branches";
+import { RoadSafety } from "@/components/RoadSafety";
+import { Gallery } from "@/components/Gallery";
+import { CTABanner } from "@/components/CTABanner";
+import { Footer } from "@/components/Footer";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -27,6 +31,10 @@ function Index() {
       <About />
       <Events />
       <Branches />
+      <RoadSafety />
+      <Gallery />
+      <CTABanner />
+      <Footer />
     </div>
   );
 }
