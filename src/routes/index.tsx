@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
+import { Stats } from "@/components/Stats";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -19,6 +20,7 @@ function Index() {
     <div className="min-h-screen font-sans" style={{ backgroundColor: "#f8f9ff", color: "#0d0d0d" }}>
       <Navbar />
       <Hero />
+      <Stats />
     </div>
   );
 }

@@ -52,9 +52,9 @@ export function Hero() {
 
       {/* floating ambient particles */}
       {[
-        { size: 6, top: "18%", left: "12%", duration: 6 },
-        { size: 4, top: "65%", left: "42%", duration: 9 },
-        { size: 5, top: "30%", left: "78%", duration: 12 },
+        { size: 6, top: "18%", left: "60%", duration: 6 },
+        { size: 4, top: "65%", left: "72%", duration: 9 },
+        { size: 5, top: "30%", left: "85%", duration: 12 },
       ].map((p, i) => (
         <motion.span
           key={i}
@@ -73,6 +73,16 @@ export function Hero() {
       ))}
 
       <div className="mx-auto grid min-h-screen w-full max-w-7xl grid-cols-1 items-center gap-12 px-6 py-0 lg:grid-rows-1 lg:items-stretch lg:grid-cols-[55fr_45fr] lg:gap-10 lg:px-10">
+        {/* dashed divider between columns */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute top-0 hidden h-full lg:block"
+          style={{
+            left: "54%",
+            width: "1px",
+            borderLeft: "1px dashed rgba(0,48,135,0.15)",
+          }}
+        />
         {/* LEFT */}
         <div className="relative order-2 flex h-full flex-col justify-center lg:order-1 lg:pl-16">
           {/* red vertical line */}
@@ -144,7 +154,7 @@ export function Hero() {
         </div>
 
         {/* RIGHT */}
-        <div className="relative order-1 flex w-full items-stretch justify-center self-stretch lg:order-2 lg:h-full">
+        <div className="relative order-1 flex w-full items-stretch justify-center self-stretch lg:order-2 lg:h-full lg:items-center">
           {/* soft navy radial glow behind whole column (no clip-path) */}
           <div
             aria-hidden
@@ -155,7 +165,7 @@ export function Hero() {
               filter: "blur(80px)",
             }}
           />
-          <div className="relative h-full min-h-[420px] w-full self-stretch lg:min-h-0">
+          <div className="relative h-full min-h-[420px] w-full self-stretch lg:h-auto lg:min-h-0 lg:max-h-[520px] lg:self-center" style={{ aspectRatio: "560 / 480" }}>
             {/* rotating ring */}
             <motion.svg
               aria-hidden
