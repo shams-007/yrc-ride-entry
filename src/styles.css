@@ -227,3 +227,23 @@
 .group:hover .yrc-stat-border {
   opacity: 1 !important;
 }
+
+/* Event cards */
+.yrc-event-card {
+  transition: transform 250ms ease, box-shadow 250ms ease;
+  transform-style: preserve-3d;
+}
+.yrc-event-card:hover > div {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 48, 135, 0.15) !important;
+  transition: transform 250ms ease, box-shadow 250ms ease;
+}
+
+/* Branch cards */
+.yrc-branch-card {
+  transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+}
+.yrc-branch-card:hover {
+  transform: translateY(-4px);
+  border-left-color: #e60012 !important;
+}
