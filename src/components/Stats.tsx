@@ -62,22 +62,20 @@ export function Stats() {
           </p>
           <h2
             className="mt-3 font-display"
-            style={{ color: "#003087", fontSize: "clamp(40px, 6vw, 56px)", lineHeight: 1 }}
+            style={{ color: "#003087", fontSize: "clamp(36px, 6vw, 56px)", lineHeight: 1 }}
           >
             THE POWER OF COMMUNITY
           </h2>
         </motion.div>
 
-        <div
-          className="mx-auto mt-12 grid max-w-7xl grid-cols-2 gap-8 lg:grid-cols-4 lg:gap-12"
-        >
+        <div className="yrc-stats-grid mx-auto mt-12 grid max-w-7xl grid-cols-2 gap-8 lg:grid-cols-4 lg:gap-12">
           {STATS.map((s, i) => (
             <motion.div
               key={s.label}
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, ease: EASE, delay: i * 0.15 }}
-              className="group relative flex items-center"
+              className="yrc-stat-block group relative flex items-center overflow-hidden"
             >
               <span
                 className="yrc-stat-border"
@@ -86,7 +84,6 @@ export function Stats() {
                   left: 0,
                   top: 0,
                   bottom: 0,
-                  width: 3,
                   backgroundColor: "#e60012",
                   animationDelay: `${i * 0.5}s`,
                 }}
@@ -96,16 +93,15 @@ export function Stats() {
                 style={{ transformOrigin: "left center" }}
               >
                 <div
-                  className="font-display"
-                  style={{ color: "#003087", fontSize: 80, lineHeight: 1 }}
+                  className="yrc-stat-number font-display"
+                  style={{ color: "#003087", lineHeight: 1 }}
                 >
                   <CountUp target={s.value} run={inView} />
                   {s.suffix}
                 </div>
                 <div
-                  className="mt-2 font-sans"
+                  className="yrc-stat-label mt-2 font-sans"
                   style={{
-                    fontSize: 13,
                     fontWeight: 500,
                     letterSpacing: "0.15em",
                     color: "#444",

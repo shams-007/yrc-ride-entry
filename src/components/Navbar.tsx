@@ -100,15 +100,19 @@ export function Navbar() {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -20, opacity: 0 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:hidden w-full overflow-hidden bg-[#003087]"
+            className="lg:hidden w-full overflow-hidden"
+            style={{ background: "linear-gradient(180deg, #003087 0%, #002070 100%)" }}
           >
-            <nav className="flex flex-col items-center gap-6 px-6 py-10">
-              {links.map((l) => (
+            <nav className="flex flex-col items-stretch gap-0 px-6 py-6">
+              {links.map((l, i) => (
                 <a
                   key={l.label}
                   href={l.href}
                   onClick={(e) => handleNavClick(e, l.href)}
-                  className="font-display text-[32px] tracking-wide text-white"
+                  className="yrc-mobile-link font-display text-[28px] tracking-wide text-white"
+                  style={{
+                    borderTop: i === 0 ? "none" : "1px solid rgba(255,255,255,0.1)",
+                  }}
                 >
                   {l.label}
                 </a>
@@ -116,7 +120,7 @@ export function Navbar() {
               <a
                 href="#join"
                 onClick={() => setOpen(false)}
-                className="mt-2 inline-flex items-center justify-center rounded-full bg-[#e60012] px-10 py-3 text-base font-semibold tracking-wide text-white"
+                className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-[#e60012] px-10 py-4 text-base font-semibold tracking-wide text-white"
               >
                 JOIN YRC
               </a>

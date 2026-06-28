@@ -9,18 +9,47 @@ const fadeUp = (delay: number) => ({
 });
 
 export function Hero() {
+  const speedLines = [
+    { top: "12%", width: 140, height: 1, duration: 1.8, delay: 0 },
+    { top: "22%", width: 220, height: 2, duration: 2.2, delay: 0.6 },
+    { top: "34%", width: 90, height: 1, duration: 2.6, delay: 1.2 },
+    { top: "46%", width: 180, height: 2, duration: 3, delay: 0.3 },
+    { top: "58%", width: 120, height: 1, duration: 2.4, delay: 1.6 },
+    { top: "68%", width: 200, height: 1, duration: 1.6, delay: 0.9 },
+    { top: "78%", width: 160, height: 2, duration: 2.8, delay: 0.2 },
+    { top: "88%", width: 110, height: 1, duration: 2, delay: 1.4 },
+  ];
   return (
     <section
       id="home"
-      className="relative w-full overflow-hidden"
+      className="relative w-full overflow-hidden lg:min-h-screen"
       style={{
         background:
           "linear-gradient(135deg, #f0f4ff 0%, #f8f9ff 50%, #eef2ff 100%)",
-        minHeight: "100vh",
       }}
     >
       {/* subtle dot grid texture */}
       <div className="yrc-hero-dots pointer-events-none absolute inset-0" aria-hidden />
+
+      {/* animated speed lines */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden" style={{ zIndex: 0 }}>
+        {speedLines.map((l, i) => (
+          <span
+            key={i}
+            className="yrc-speed-line"
+            style={{
+              position: "absolute",
+              top: l.top,
+              left: 0,
+              width: l.width,
+              height: l.height,
+              backgroundColor: "rgba(0,48,135,0.06)",
+              transform: "rotate(2deg)",
+              animation: `yrcSpeedLine ${l.duration}s linear ${l.delay}s infinite`,
+            }}
+          />
+        ))}
+      </div>
 
       {/* large soft radial glows */}
       <div
@@ -72,7 +101,7 @@ export function Hero() {
         />
       ))}
 
-      <div className="mx-auto grid min-h-screen w-full max-w-7xl grid-cols-1 items-center gap-12 px-6 py-0 lg:grid-rows-1 lg:items-stretch lg:grid-cols-[55fr_45fr] lg:gap-10 lg:px-10">
+      <div className="relative z-[1] mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-6 px-6 py-0 lg:min-h-screen lg:grid-rows-1 lg:items-stretch lg:grid-cols-[55fr_45fr] lg:gap-10 lg:px-10">
         {/* dashed divider between columns */}
         <div
           aria-hidden
@@ -97,6 +126,7 @@ export function Hero() {
           </motion.div>
 
           <div className="pl-6 pt-0">
+            <span aria-hidden className="mb-4 block h-[2px] w-20 bg-[#e60012] lg:hidden" />
             <motion.span
               {...fadeUp(0.1)}
               className="inline-flex w-fit items-center gap-2 rounded-full bg-[#e60012] px-4 py-1.5 text-[12px] font-medium text-white"
@@ -105,7 +135,7 @@ export function Hero() {
             </motion.span>
 
             <h1
-              className="mt-4 font-display text-[56px] tracking-wide lg:text-[96px]"
+              className="mt-4 font-display text-[52px] tracking-wide lg:text-[96px]"
               style={{ color: "#003087", lineHeight: 1.05 }}
             >
               <motion.span {...fadeUp(0.2)} className="block">
@@ -166,7 +196,7 @@ export function Hero() {
               filter: "blur(80px)",
             }}
           />
-          <div className="relative h-full min-h-[420px] w-full self-stretch lg:h-auto lg:min-h-0 lg:max-h-[520px] lg:self-center" style={{ aspectRatio: "560 / 480" }}>
+          <div className="relative h-full max-h-[280px] min-h-[240px] w-full self-stretch lg:h-auto lg:max-h-[520px] lg:min-h-0 lg:self-center" style={{ aspectRatio: "560 / 480" }}>
             {/* rotating ring */}
             <motion.svg
               aria-hidden
