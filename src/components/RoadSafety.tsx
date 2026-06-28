@@ -53,7 +53,7 @@ export function RoadSafety() {
             </div>
             <div
               className="mt-2 font-sans"
-              style={{ fontSize: 13, letterSpacing: "0.15em", color: "rgba(255,255,255,0.8)", textTransform: "uppercase" }}
+              style={{ fontSize: 14, fontWeight: 600, letterSpacing: "0.15em", color: "rgba(255,255,255,0.85)", textTransform: "uppercase" }}
             >
               {s.label}
             </div>

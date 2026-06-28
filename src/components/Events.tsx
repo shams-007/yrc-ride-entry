@@ -59,7 +59,7 @@ export function Events() {
             <div className="overflow-hidden rounded-2xl bg-white" style={{ boxShadow: "0 4px 24px rgba(0,48,135,0.08)" }}>
               <div className="relative flex items-center justify-center" style={{ height: 220, backgroundColor: "#003087" }}>
                 <span
-                  className="absolute left-4 top-4 rounded-full bg-[#e60012] px-3 py-1 font-sans text-white"
+                  className="absolute left-4 top-4 rounded-full bg-[#e60012] px-4 py-1.5 font-sans text-white"
                   style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.05em" }}
                 >
                   {e.date}

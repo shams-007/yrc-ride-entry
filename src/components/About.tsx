@@ -50,7 +50,7 @@ export function About() {
           <h2 className="mt-3 font-display" style={{ color: "#003087", fontSize: "clamp(40px, 5vw, 56px)", lineHeight: 1.05 }}>
             THE HEART OF YAMAHA BIKING
           </h2>
-          <p className="mt-6 font-sans" style={{ fontSize: 16, lineHeight: 1.7, color: "#444" }}>
+          <p className="mt-6 font-sans" style={{ fontSize: 16, lineHeight: 1.7, color: "#444", maxWidth: "65ch" }}>
             Born from organic social media roots, Yamaha Riders Club Bangladesh is more than just a club — it's the best and biggest biking community in Bangladesh. From Chittagong to Dhaka, we are a family of 472,000+ members across 47 branches, fueled by the official support of ACI Motors. We ride for the thrill, but we work for the community.
           </p>
           <div className="mt-8 flex flex-col gap-4">
