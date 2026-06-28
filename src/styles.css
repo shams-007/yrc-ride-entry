@@ -308,3 +308,44 @@ html {
   transform: translateY(-6px);
   box-shadow: 0 14px 40px rgba(0, 48, 135, 0.14);
 }
+
+/* Hero animated speed lines */
+@keyframes yrcSpeedLine {
+  0% { transform: translateX(-100%) rotate(2deg); }
+  100% { transform: translateX(200%) rotate(2deg); }
+}
+
+/* Mobile nav link hover/active */
+.yrc-mobile-link {
+  display: block;
+  width: 100%;
+  padding: 16px 12px;
+  border-left: 3px solid transparent;
+  transition: color 200ms ease, border-color 200ms ease, background-color 200ms ease;
+}
+.yrc-mobile-link:hover,
+.yrc-mobile-link:active,
+.yrc-mobile-link:focus {
+  color: #e60012 !important;
+  border-left-color: #e60012;
+  background-color: rgba(255,255,255,0.03);
+}
+
+/* Stats sizing */
+.yrc-stat-number { font-size: 80px; }
+.yrc-stat-label { font-size: 13px; }
+.yrc-stat-border { width: 3px; }
+
+@media (max-width: 1023px) {
+  .yrc-stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .yrc-stat-number { font-size: 48px; }
+  .yrc-stat-label {
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  .yrc-stat-border { width: 2px; }
+}
