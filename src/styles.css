@@ -4,6 +4,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
+html {
+  scroll-behavior: smooth;
+}
+
 /*
  * Design system definition.
  *
@@ -294,4 +298,13 @@
 }
 .yrc-footer-link:hover::after {
   transform: scaleX(1);
+}
+
+/* Membership cards */
+.yrc-membership-card {
+  transition: transform 250ms ease, box-shadow 250ms ease;
+}
+.yrc-membership-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 40px rgba(0, 48, 135, 0.14);
 }

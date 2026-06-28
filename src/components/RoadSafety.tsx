@@ -11,7 +11,7 @@ const STATS = [
 export function RoadSafety() {
   return (
     <section
-      id="safety"
+      id="road-safety"
       className="w-full px-6 lg:px-10"
       style={{ backgroundColor: "#003087", paddingTop: 100, paddingBottom: 100 }}
     >

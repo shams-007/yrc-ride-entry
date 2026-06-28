@@ -15,6 +15,22 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
+  const smoothScrollTo = (href: string) => {
+    if (!href.startsWith("#")) return;
+    const el = document.getElementById(href.slice(1));
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY - 64;
+    window.scrollTo({ top, behavior: "smooth" });
+  };
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (!href.startsWith("#")) return;
+    e.preventDefault();
+    setOpen(false);
+    smoothScrollTo(href);
+    history.replaceState(null, "", href);
+  };
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
     onScroll();
@@ -49,6 +65,7 @@ export function Navbar() {
             <a
               key={l.label}
               href={l.href}
+              onClick={(e) => handleNavClick(e, l.href)}
               className="group relative font-sans text-[14px] tracking-[0.12em] uppercase text-[#0d0d0d]"
             >
               {l.label}
@@ -90,7 +107,7 @@ export function Navbar() {
                 <a
                   key={l.label}
                   href={l.href}
-                  onClick={() => setOpen(false)}
+                  onClick={(e) => handleNavClick(e, l.href)}
                   className="font-display text-[32px] tracking-wide text-white"
                 >
                   {l.label}

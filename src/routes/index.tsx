@@ -7,6 +7,7 @@ import { Events } from "@/components/Events";
 import { Branches } from "@/components/Branches";
 import { RoadSafety } from "@/components/RoadSafety";
 import { Gallery } from "@/components/Gallery";
+import { Membership } from "@/components/Membership";
 import { CTABanner } from "@/components/CTABanner";
 import { Footer } from "@/components/Footer";
 
@@ -33,6 +34,7 @@ function Index() {
       <Branches />
       <RoadSafety />
       <Gallery />
+      <Membership />
       <CTABanner />
       <Footer />
     </div>
