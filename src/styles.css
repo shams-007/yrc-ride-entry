@@ -315,6 +315,15 @@ html {
   100% { transform: translateX(200%) rotate(2deg); }
 }
 
+/* Motorcycle easter egg */
+@keyframes yrcDrive {
+  0% { transform: translateX(-150px); }
+  100% { transform: translateX(calc(100vw + 150px)); }
+}
+.yrc-motorcycle {
+  animation: yrcDrive 12s linear infinite;
+}
+
 /* Mobile nav link hover/active */
 .yrc-mobile-link {
   display: block;
