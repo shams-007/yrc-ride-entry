@@ -10,14 +10,14 @@ const fadeUp = (delay: number) => ({
 
 export function Hero() {
   const speedLines = [
-    { top: "12%", width: 140, height: 1, duration: 1.8, delay: 0 },
-    { top: "22%", width: 220, height: 2, duration: 2.2, delay: 0.6 },
-    { top: "34%", width: 90, height: 1, duration: 2.6, delay: 1.2 },
-    { top: "46%", width: 180, height: 2, duration: 3, delay: 0.3 },
-    { top: "58%", width: 120, height: 1, duration: 2.4, delay: 1.6 },
-    { top: "68%", width: 200, height: 1, duration: 1.6, delay: 0.9 },
-    { top: "78%", width: 160, height: 2, duration: 2.8, delay: 0.2 },
-    { top: "88%", width: 110, height: 1, duration: 2, delay: 1.4 },
+    { top: "12%", width: 160, height: 2, duration: 1.8, delay: 0 },
+    { top: "22%", width: 240, height: 3, duration: 2.2, delay: 0.6 },
+    { top: "34%", width: 110, height: 2, duration: 2.6, delay: 1.2 },
+    { top: "46%", width: 200, height: 3, duration: 3, delay: 0.3 },
+    { top: "58%", width: 140, height: 2, duration: 2.4, delay: 1.6 },
+    { top: "68%", width: 220, height: 2, duration: 1.6, delay: 0.9 },
+    { top: "78%", width: 180, height: 3, duration: 2.8, delay: 0.2 },
+    { top: "88%", width: 130, height: 2, duration: 2, delay: 1.4 },
   ];
   return (
     <section
@@ -43,12 +43,40 @@ export function Hero() {
               left: 0,
               width: l.width,
               height: l.height,
-              backgroundColor: "rgba(0,48,135,0.06)",
+              background: "linear-gradient(90deg, transparent, rgba(0,31,94,0.18), transparent)",
               transform: "rotate(2deg)",
               animation: `yrcSpeedLine ${l.duration}s linear ${l.delay}s infinite`,
             }}
           />
         ))}
+      </div>
+
+      {/* motorcycle easter egg */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-0 hidden lg:block"
+        style={{ bottom: "40px", zIndex: 1, width: "120px" }}
+      >
+        <svg
+          className="yrc-motorcycle"
+          viewBox="0 0 120 60"
+          width="120"
+          height="60"
+          fill="none"
+          stroke="#003087"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          style={{ opacity: 0.15 }}
+        >
+          <circle cx="22" cy="40" r="13" />
+          <circle cx="92" cy="40" r="13" />
+          <path d="M22 40 L45 40 L55 28 L75 28 L85 40 L92 40" />
+          <path d="M55 28 L48 18 L35 18" />
+          <path d="M35 18 L30 28 L45 40" />
+          <path d="M75 28 L70 18 L95 15 L100 25" />
+          <path d="M22 40 L12 40" />
+        </svg>
       </div>
 
       {/* large soft radial glows */}
