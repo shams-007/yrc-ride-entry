@@ -4,7 +4,7 @@ export function PressStrip() {
     <section className="w-full bg-white px-6 lg:px-10" style={{ paddingTop: 40, paddingBottom: 40 }}>
       <div
         className="mx-auto max-w-7xl"
-        style={{ borderTop: "1px solid rgba(0,48,135,0.1)", borderBottom: "1px solid rgba(0,48,135,0.1)", paddingTop: 32, paddingBottom: 32 }}
+        style={{ borderTop: "1px solid rgba(0,48,135,0.08)", borderBottom: "1px solid rgba(0,48,135,0.08)", paddingTop: 32, paddingBottom: 32 }}
       >
         <p
           className="text-center font-sans"

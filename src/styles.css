@@ -368,3 +368,9 @@ html {
   transform: translateY(-6px);
   box-shadow: 0 14px 40px rgba(0,48,135,0.14);
 }
+
+/* Branches subtle dot-grid pattern */
+.yrc-branches-grid {
+  background-image: radial-gradient(circle, rgba(0,48,135,0.08) 1.5px, transparent 1.5px);
+  background-size: 32px 32px;
+}
