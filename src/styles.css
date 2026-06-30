@@ -358,3 +358,13 @@ html {
   }
   .yrc-stat-border { width: 2px; }
 }
+
+.yrc-press-item:hover { color: #003087 !important; }
+
+.yrc-testimonial-card {
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+.yrc-testimonial-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 40px rgba(0,48,135,0.14);
+}
