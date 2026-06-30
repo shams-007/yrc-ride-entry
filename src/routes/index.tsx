@@ -10,6 +10,10 @@ import { Gallery } from "@/components/Gallery";
 import { Membership } from "@/components/Membership";
 import { CTABanner } from "@/components/CTABanner";
 import { Footer } from "@/components/Footer";
+import { PressStrip } from "@/components/PressStrip";
+import { Testimonials } from "@/components/Testimonials";
+import { Conclave } from "@/components/Conclave";
+import { FAQ } from "@/components/FAQ";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -28,12 +32,16 @@ function Index() {
     <div className="min-h-screen font-sans" style={{ backgroundColor: "#f8f9ff", color: "#0d0d0d" }}>
       <Navbar />
       <Hero />
+      <PressStrip />
       <Stats />
       <About />
+      <Testimonials />
       <Events />
       <Branches />
+      <Conclave />
       <RoadSafety />
       <Gallery />
+      <FAQ />
       <Membership />
       <CTABanner />
       <Footer />
