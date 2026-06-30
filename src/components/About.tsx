@@ -10,7 +10,7 @@ const POINTS = [
 
 export function About() {
   return (
-    <section id="about" className="w-full bg-white px-6 lg:px-10" style={{ paddingTop: 100, paddingBottom: 100 }}>
+    <section id="about" className="w-full bg-[#fbfbfd] px-6 lg:px-10" style={{ paddingTop: 100, paddingBottom: 100 }}>
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-2">
         <motion.div
           initial={{ opacity: 0, x: -60 }}

@@ -25,7 +25,7 @@ const ITEMS = [
 
 export function Testimonials() {
   return (
-    <section className="w-full px-6 lg:px-10" style={{ backgroundColor: "#f8f9ff", paddingTop: 100, paddingBottom: 100 }}>
+    <section className="w-full px-6 lg:px-10" style={{ backgroundColor: "#eef2ff", paddingTop: 100, paddingBottom: 100 }}>
       <div className="mx-auto max-w-7xl text-center">
         <p className="font-sans" style={{ fontSize: 13, letterSpacing: "0.15em", color: "#0047cc", textTransform: "uppercase" }}>
           Member Voices
