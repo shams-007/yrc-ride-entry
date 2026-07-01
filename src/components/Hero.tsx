@@ -28,6 +28,15 @@ export function Hero() {
           "linear-gradient(135deg, #f0f4ff 0%, #f8f9ff 50%, #eef2ff 100%)",
       }}
     >
+      {/* placeholder to keep style prop on section deduped */}
+      {false && <span />}
+      {/* NOTE: minHeight auto on mobile; lg keeps full-screen */}
+      {/*
+      style={{
+        background:
+          "linear-gradient(135deg, #f0f4ff 0%, #f8f9ff 50%, #eef2ff 100%)",
+      }}
+      */}
       {/* subtle dot grid texture */}
       <div className="yrc-hero-dots pointer-events-none absolute inset-0" aria-hidden />
 
