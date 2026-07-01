@@ -32,17 +32,29 @@ function Index() {
     <div className="min-h-screen font-sans" style={{ backgroundColor: "#f8f9ff", color: "#0d0d0d" }}>
       <Navbar />
       <Hero />
+      <hr className="yrc-divider" />
       <PressStrip />
+      <hr className="yrc-divider" />
       <Stats />
+      <hr className="yrc-divider" />
       <About />
+      <hr className="yrc-divider" />
       <Testimonials />
+      <hr className="yrc-divider" />
       <Events />
+      <hr className="yrc-divider" />
       <Branches />
+      <hr className="yrc-divider" />
       <Conclave />
+      <hr className="yrc-divider" />
       <RoadSafety />
+      <hr className="yrc-divider" />
       <Gallery />
+      <hr className="yrc-divider" />
       <FAQ />
+      <hr className="yrc-divider" />
       <Membership />
+      <hr className="yrc-divider" />
       <CTABanner />
       <Footer />
     </div>
