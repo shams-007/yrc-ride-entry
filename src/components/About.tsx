@@ -47,7 +47,7 @@ export function About() {
           >
             Since 2018
           </p>
-          <h2 className="mt-3 font-display" style={{ color: "#003087", fontSize: "clamp(40px, 5vw, 56px)", lineHeight: 1.05 }}>
+          <h2 className="yrc-heading mt-3 font-display" style={{ color: "#003087", fontSize: "clamp(40px, 5vw, 56px)", lineHeight: 1.05 }}>
             THE HEART OF YAMAHA BIKING
           </h2>
           <p className="mt-6 font-sans" style={{ fontSize: 16, lineHeight: 1.7, color: "#444", maxWidth: "65ch" }}>

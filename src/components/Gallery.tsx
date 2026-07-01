@@ -11,7 +11,7 @@ export function Gallery() {
         <p className="font-sans" style={{ fontSize: 13, letterSpacing: "0.15em", color: "#0047cc", textTransform: "uppercase" }}>
           The Community
         </p>
-        <h2 className="mt-3 font-display" style={{ color: "#003087", fontSize: "clamp(36px, 5vw, 56px)", lineHeight: 1.05 }}>
+        <h2 className="yrc-heading mt-3 font-display" style={{ color: "#003087", fontSize: "clamp(36px, 5vw, 56px)", lineHeight: 1.05 }}>
           RIDE TOGETHER
         </h2>
       </div>
