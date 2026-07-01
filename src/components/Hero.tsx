@@ -141,7 +141,7 @@ export function Hero() {
           }}
         />
         {/* LEFT */}
-        <div className="relative order-2 flex h-full flex-col justify-center lg:order-1 lg:pl-16">
+        <div className="relative order-2 flex h-full flex-col justify-center pt-6 lg:order-1 lg:pl-16 lg:pt-0">
           {/* red vertical line */}
           <motion.div
             initial={{ scaleY: 0 }}
