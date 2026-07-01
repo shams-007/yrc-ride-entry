@@ -85,7 +85,7 @@ export function RoadSafety() {
 
       <div className="mx-auto mt-12 flex max-w-5xl justify-center">
         <a
-          href="#safety-more"
+          href="/road-safety"
           className="inline-flex items-center justify-center rounded-full border-2 border-white px-8 py-3 font-sans text-sm font-semibold text-white transition-colors hover:bg-white hover:text-[#003087]"
         >
           LEARN ABOUT OUR SAFETY WORK
