@@ -56,7 +56,9 @@ export function Conclave() {
             ))}
           </div>
           <a
-            href="#conclave-2026"
+            href="https://www.facebook.com/YamahaRidersClubBD"
+            target="_blank"
+            rel="noopener noreferrer"
             className="mt-8 inline-flex items-center justify-center rounded-full px-8 py-3 font-sans text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
             style={{ backgroundColor: "#e60012" }}
           >
