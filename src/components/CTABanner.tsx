@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { AppBadges } from "./AppBadges";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -34,19 +35,26 @@ export function CTABanner() {
         </p>
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a
-            href="#app"
+            href="https://play.google.com/store/apps/details?id=com.ridersclubyrcbd.app"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center rounded-full px-10 py-4 font-sans text-sm font-semibold text-white transition-transform hover:scale-[1.03]"
             style={{ backgroundColor: "#e60012" }}
           >
             DOWNLOAD YRC APP
           </a>
           <a
-            href="#facebook"
+            href="https://www.facebook.com/groups/YamahaRidersClubBD"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center rounded-full border-2 px-10 py-4 font-sans text-sm font-semibold transition-transform hover:scale-[1.03]"
             style={{ borderColor: "#003087", color: "#003087", backgroundColor: "rgba(0,48,135,0.05)" }}
           >
             JOIN FACEBOOK GROUP
           </a>
+        </div>
+        <div className="mt-4 flex justify-center">
+          <AppBadges />
         </div>
       </motion.div>
     </section>
