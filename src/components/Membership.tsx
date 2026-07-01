@@ -57,7 +57,7 @@ export function Membership() {
           Join the Family
         </p>
         <h2
-          className="mt-3 font-display"
+          className="yrc-heading mt-3 font-display"
           style={{ color: "#003087", fontSize: "clamp(40px, 5.5vw, 56px)", lineHeight: 1.05 }}
         >
           BECOME A YRC MEMBER

@@ -61,7 +61,7 @@ export function Stats() {
             By The Numbers
           </p>
           <h2
-            className="mt-3 font-display"
+            className="yrc-heading mt-3 font-display"
             style={{ color: "#003087", fontSize: "clamp(36px, 6vw, 56px)", lineHeight: 1 }}
           >
             THE POWER OF COMMUNITY
