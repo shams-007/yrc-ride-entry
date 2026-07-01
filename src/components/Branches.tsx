@@ -47,7 +47,7 @@ export function Branches() {
             className="yrc-branch-card rounded-xl bg-white"
             style={{
               padding: 32,
-              boxShadow: "0 4px 20px rgba(0,48,135,0.07)",
+              boxShadow: "0 4px 20px rgba(0,48,135,0.1)",
               borderLeft: "4px solid #003087",
             }}
           >

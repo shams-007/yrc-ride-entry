@@ -56,7 +56,7 @@ export function Events() {
       <div className="mx-auto mt-14 grid max-w-7xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         {EVENTS.map((e, i) => (
           <TiltCard key={e.name} delay={i * 0.15}>
-            <div className="overflow-hidden rounded-2xl bg-white" style={{ boxShadow: "0 4px 24px rgba(0,48,135,0.08)" }}>
+            <div className="overflow-hidden rounded-2xl bg-white" style={{ boxShadow: "0 4px 20px rgba(0,48,135,0.1)" }}>
               <div className="relative flex items-center justify-center" style={{ height: 220, backgroundColor: "#003087" }}>
                 <span
                   className="absolute left-4 top-4 rounded-full bg-[#e60012] px-4 py-1.5 font-sans text-white"

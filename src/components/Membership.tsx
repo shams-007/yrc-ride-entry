@@ -76,7 +76,7 @@ export function Membership() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, ease: EASE, delay: i * 0.15 }}
             className="yrc-membership-card flex flex-col items-start rounded-2xl bg-white p-8"
-            style={{ boxShadow: "0 4px 24px rgba(0,48,135,0.08)" }}
+            style={{ boxShadow: "0 4px 20px rgba(0,48,135,0.1)" }}
           >
             <div style={{ fontSize: 40 }}>{c.icon}</div>
             <h3 className="mt-4 font-display" style={{ color: "#003087", fontSize: 28, lineHeight: 1.1 }}>

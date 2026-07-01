@@ -51,7 +51,7 @@ export function Testimonials() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, ease: EASE, delay: i * 0.15 }}
             className="yrc-testimonial-card relative rounded-2xl bg-white"
-            style={{ padding: 32, boxShadow: "0 4px 24px rgba(0,48,135,0.08)" }}
+            style={{ padding: 32, boxShadow: "0 4px 20px rgba(0,48,135,0.1)" }}
           >
             <div
               className="font-display"
