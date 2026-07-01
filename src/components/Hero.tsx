@@ -224,7 +224,7 @@ export function Hero() {
               filter: "blur(80px)",
             }}
           />
-          <div className="relative h-full max-h-[280px] min-h-[240px] w-full self-stretch lg:h-auto lg:max-h-[520px] lg:min-h-0 lg:self-center" style={{ aspectRatio: "560 / 480" }}>
+          <div className="relative h-full max-h-[240px] min-h-[200px] w-full self-stretch lg:h-auto lg:max-h-[520px] lg:min-h-0 lg:self-center" style={{ aspectRatio: "560 / 480" }}>
             {/* rotating ring */}
             <motion.svg
               aria-hidden
