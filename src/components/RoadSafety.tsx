@@ -28,7 +28,7 @@ export function RoadSafety() {
         >
           Our Mission
         </p>
-        <h2 className="mt-3 font-display text-white" style={{ fontSize: "clamp(40px, 6vw, 64px)", lineHeight: 1.05 }}>
+        <h2 className="yrc-heading mt-3 font-display text-white" style={{ fontSize: "clamp(40px, 6vw, 64px)", lineHeight: 1.05 }}>
           SAVING LIVES, ONE SPEED BREAKER AT A TIME
         </h2>
         <p

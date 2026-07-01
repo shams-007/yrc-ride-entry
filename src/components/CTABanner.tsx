@@ -27,7 +27,7 @@ export function CTABanner() {
         transition={{ duration: 0.8, ease: EASE }}
         className="relative mx-auto max-w-3xl text-center"
       >
-        <h2 className="font-display" style={{ color: "#003087", fontSize: "clamp(40px, 6vw, 64px)", lineHeight: 1.05 }}>
+        <h2 className="yrc-heading font-display" style={{ color: "#003087", fontSize: "clamp(40px, 6vw, 64px)", lineHeight: 1.05 }}>
           READY TO RIDE WITH US?
         </h2>
         <p className="mx-auto mt-5 font-sans" style={{ fontSize: 18, color: "#666", lineHeight: 1.6 }}>
