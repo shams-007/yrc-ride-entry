@@ -14,13 +14,18 @@ export function FAQ() {
   const [open, setOpen] = useState<number>(0);
 
   return (
-    <section className="w-full bg-[#fbfbfd] px-6 lg:px-10" style={{ paddingTop: 100, paddingBottom: 100 }}>
+    <section id="faq" className="w-full bg-[#fbfbfd] px-6 lg:px-10" style={{ paddingTop: 100, paddingBottom: 100 }}>
       <div className="mx-auto max-w-[800px]">
-        <div className="text-center">
+        <div className="relative inline-block pl-6 text-left">
+          <span
+            aria-hidden
+            className="absolute left-0"
+            style={{ top: 8, width: 3, height: 60, backgroundColor: "#e60012" }}
+          />
           <p className="font-sans" style={{ fontSize: 13, letterSpacing: "0.15em", color: "#0047cc", textTransform: "uppercase" }}>
             Got Questions
           </p>
-          <h2 className="mt-3 font-display" style={{ color: "#003087", fontSize: "clamp(40px, 5vw, 56px)", lineHeight: 1.05 }}>
+          <h2 className="yrc-heading mt-3 font-display" style={{ color: "#003087", fontSize: "clamp(40px, 5vw, 56px)", lineHeight: 1.05 }}>
             FREQUENTLY ASKED
           </h2>
         </div>

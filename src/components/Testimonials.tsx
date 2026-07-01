@@ -25,12 +25,19 @@ const ITEMS = [
 
 export function Testimonials() {
   return (
-    <section className="w-full px-6 lg:px-10" style={{ backgroundColor: "#eef2ff", paddingTop: 100, paddingBottom: 100 }}>
-      <div className="mx-auto max-w-7xl text-center">
+    <section className="relative w-full overflow-hidden px-6 lg:px-10" style={{ backgroundColor: "#eef2ff", paddingTop: 100, paddingBottom: 100 }}>
+      <span
+        aria-hidden
+        className="pointer-events-none absolute font-display select-none"
+        style={{ top: 20, left: "50%", transform: "translateX(-50%)", fontSize: 200, color: "rgba(0,48,135,0.03)", lineHeight: 1 }}
+      >
+        “
+      </span>
+      <div className="relative mx-auto max-w-7xl text-center">
         <p className="font-sans" style={{ fontSize: 13, letterSpacing: "0.15em", color: "#0047cc", textTransform: "uppercase" }}>
           Member Voices
         </p>
-        <h2 className="mt-3 font-display" style={{ color: "#003087", fontSize: "clamp(40px, 5vw, 56px)", lineHeight: 1.05 }}>
+        <h2 className="yrc-heading mt-3 font-display" style={{ color: "#003087", fontSize: "clamp(40px, 5vw, 56px)", lineHeight: 1.05 }}>
           WHAT RIDERS SAY
         </h2>
       </div>
@@ -44,7 +51,7 @@ export function Testimonials() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, ease: EASE, delay: i * 0.15 }}
             className="yrc-testimonial-card relative rounded-2xl bg-white"
-            style={{ padding: 32, boxShadow: "0 4px 24px rgba(0,48,135,0.08)" }}
+            style={{ padding: 32, boxShadow: "0 4px 20px rgba(0,48,135,0.1)" }}
           >
             <div
               className="font-display"

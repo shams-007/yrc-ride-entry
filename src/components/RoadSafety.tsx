@@ -28,7 +28,7 @@ export function RoadSafety() {
         >
           Our Mission
         </p>
-        <h2 className="mt-3 font-display text-white" style={{ fontSize: "clamp(40px, 6vw, 64px)", lineHeight: 1.05 }}>
+        <h2 className="yrc-heading mt-3 font-display text-white" style={{ fontSize: "clamp(40px, 6vw, 64px)", lineHeight: 1.05 }}>
           SAVING LIVES, ONE SPEED BREAKER AT A TIME
         </h2>
         <p
@@ -85,7 +85,7 @@ export function RoadSafety() {
 
       <div className="mx-auto mt-12 flex max-w-5xl justify-center">
         <a
-          href="#safety-more"
+          href="/road-safety"
           className="inline-flex items-center justify-center rounded-full border-2 border-white px-8 py-3 font-sans text-sm font-semibold text-white transition-colors hover:bg-white hover:text-[#003087]"
         >
           LEARN ABOUT OUR SAFETY WORK

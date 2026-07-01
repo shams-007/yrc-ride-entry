@@ -1,21 +1,38 @@
 import { motion } from "framer-motion";
+import { AppBadges } from "./AppBadges";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-const CARDS = [
+type CardVariant = "outline" | "filled";
+type Card = {
+  icon: string;
+  title: string;
+  body: string;
+  cta: string;
+  href: string;
+  external?: boolean;
+  variant: CardVariant;
+  withBadges?: boolean;
+};
+const CARDS: Card[] = [
   {
     icon: "🏍",
     title: "SHOWROOM MEMBERSHIP",
     body: "Visit any authorized ACI Motors Yamaha showroom nationwide. Show your Yamaha ownership documents and register on the spot.",
     cta: "FIND A SHOWROOM",
-    variant: "outline" as const,
+    href: "https://www.facebook.com/YamahaRidersClubBD",
+    external: true,
+    variant: "outline",
   },
   {
     icon: "📱",
     title: "APP MEMBERSHIP",
     body: "Download the YRC BD App, create your profile, and connect with your nearest branch coordinator to activate your membership.",
     cta: "DOWNLOAD APP",
-    variant: "filled" as const,
+    href: "https://play.google.com/store/apps/details?id=com.ridersclubyrcbd.app",
+    external: true,
+    variant: "filled",
+    withBadges: true,
   },
 ];
 
@@ -40,7 +57,7 @@ export function Membership() {
           Join the Family
         </p>
         <h2
-          className="mt-3 font-display"
+          className="yrc-heading mt-3 font-display"
           style={{ color: "#003087", fontSize: "clamp(40px, 5.5vw, 56px)", lineHeight: 1.05 }}
         >
           BECOME A YRC MEMBER
@@ -59,7 +76,7 @@ export function Membership() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, ease: EASE, delay: i * 0.15 }}
             className="yrc-membership-card flex flex-col items-start rounded-2xl bg-white p-8"
-            style={{ boxShadow: "0 4px 24px rgba(0,48,135,0.08)" }}
+            style={{ boxShadow: "0 4px 20px rgba(0,48,135,0.1)" }}
           >
             <div style={{ fontSize: 40 }}>{c.icon}</div>
             <h3 className="mt-4 font-display" style={{ color: "#003087", fontSize: 28, lineHeight: 1.1 }}>
@@ -69,7 +86,8 @@ export function Membership() {
               {c.body}
             </p>
             <a
-              href="#join"
+              href={c.href}
+              {...(c.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               className={
                 c.variant === "filled"
                   ? "mt-6 inline-flex items-center justify-center rounded-full bg-[#e60012] px-6 py-2.5 font-sans text-sm font-semibold text-white transition-transform hover:scale-105"
@@ -78,6 +96,7 @@ export function Membership() {
             >
               {c.cta}
             </a>
+            {c.withBadges && <AppBadges />}
           </motion.div>
         ))}
       </div>

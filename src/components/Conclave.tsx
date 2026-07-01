@@ -34,7 +34,7 @@ export function Conclave() {
           <p className="font-sans" style={{ fontSize: 12, letterSpacing: "0.2em", color: "#0047cc", textTransform: "uppercase" }}>
             Flagship Event
           </p>
-          <h2 className="mt-3 font-display" style={{ color: "#003087", fontSize: "clamp(40px, 5vw, 56px)", lineHeight: 1.05 }}>
+          <h2 className="yrc-heading mt-3 font-display" style={{ color: "#003087", fontSize: "clamp(40px, 5vw, 56px)", lineHeight: 1.05 }}>
             YRC ANNUAL CONCLAVE
           </h2>
           <p className="mt-6 font-sans" style={{ fontSize: 16, color: "#666", lineHeight: 1.7, maxWidth: "65ch" }}>
@@ -56,7 +56,9 @@ export function Conclave() {
             ))}
           </div>
           <a
-            href="#conclave-2026"
+            href="https://www.facebook.com/YamahaRidersClubBD"
+            target="_blank"
+            rel="noopener noreferrer"
             className="mt-8 inline-flex items-center justify-center rounded-full px-8 py-3 font-sans text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
             style={{ backgroundColor: "#e60012" }}
           >

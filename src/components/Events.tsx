@@ -48,7 +48,7 @@ export function Events() {
         <p className="font-sans" style={{ fontSize: 13, letterSpacing: "0.15em", color: "#0047cc", textTransform: "uppercase" }}>
           What's Happening
         </p>
-        <h2 className="mt-3 font-display" style={{ color: "#003087", fontSize: "clamp(40px, 6vw, 56px)", lineHeight: 1.05 }}>
+        <h2 className="yrc-heading mt-3 font-display" style={{ color: "#003087", fontSize: "clamp(40px, 6vw, 56px)", lineHeight: 1.05 }}>
           UPCOMING RIDES & EVENTS
         </h2>
       </div>
@@ -56,7 +56,7 @@ export function Events() {
       <div className="mx-auto mt-14 grid max-w-7xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         {EVENTS.map((e, i) => (
           <TiltCard key={e.name} delay={i * 0.15}>
-            <div className="overflow-hidden rounded-2xl bg-white" style={{ boxShadow: "0 4px 24px rgba(0,48,135,0.08)" }}>
+            <div className="overflow-hidden rounded-2xl bg-white" style={{ boxShadow: "0 4px 20px rgba(0,48,135,0.1)" }}>
               <div className="relative flex items-center justify-center" style={{ height: 220, backgroundColor: "#003087" }}>
                 <span
                   className="absolute left-4 top-4 rounded-full bg-[#e60012] px-4 py-1.5 font-sans text-white"
@@ -75,12 +75,14 @@ export function Events() {
                 <p className="mt-2 font-sans" style={{ fontSize: 14, color: "#666" }}>
                   {e.loc}
                 </p>
-                <button
-                  type="button"
-                  className="mt-4 w-full rounded-full border-2 border-[#003087] py-2.5 font-sans text-sm font-semibold text-[#003087] transition-colors hover:bg-[#003087] hover:text-white"
+                <a
+                  href="https://www.facebook.com/groups/YamahaRidersClubBD"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 block w-full rounded-full border-2 border-[#003087] py-2.5 text-center font-sans text-sm font-semibold text-[#003087] transition-colors hover:bg-[#003087] hover:text-white"
                 >
                   RSVP
-                </button>
+                </a>
               </div>
             </div>
           </TiltCard>
@@ -89,7 +91,7 @@ export function Events() {
 
       <div className="mx-auto mt-12 flex max-w-7xl justify-center">
         <a
-          href="#all-events"
+          href="/events"
           className="inline-flex items-center justify-center rounded-full border-2 border-[#003087] px-8 py-3 font-sans text-sm font-semibold text-[#003087] transition-colors hover:bg-[#003087] hover:text-white"
         >
           VIEW ALL EVENTS

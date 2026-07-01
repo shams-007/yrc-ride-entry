@@ -10,12 +10,25 @@ const BRANCHES = [
 
 export function Branches() {
   return (
-    <section id="branches" className="yrc-branches-grid w-full bg-white px-6 lg:px-10" style={{ paddingTop: 100, paddingBottom: 100 }}>
-      <div className="mx-auto max-w-7xl text-center">
+    <section id="branches" className="yrc-branches-grid relative w-full overflow-hidden bg-white px-6 lg:px-10" style={{ paddingTop: 100, paddingBottom: 100 }}>
+      <div
+        aria-hidden
+        className="pointer-events-none absolute"
+        style={{
+          top: 40,
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: 500,
+          height: 500,
+          background: "radial-gradient(circle, rgba(0,48,135,0.04) 0%, rgba(0,48,135,0) 70%)",
+          filter: "blur(100px)",
+        }}
+      />
+      <div className="relative mx-auto max-w-7xl text-center">
         <p className="font-sans" style={{ fontSize: 13, letterSpacing: "0.15em", color: "#0047cc", textTransform: "uppercase" }}>
           Nationwide Network
         </p>
-        <h2 className="mt-3 font-display" style={{ color: "#003087", fontSize: "clamp(40px, 6vw, 56px)", lineHeight: 1.05 }}>
+        <h2 className="yrc-heading mt-3 font-display" style={{ color: "#003087", fontSize: "clamp(40px, 6vw, 56px)", lineHeight: 1.05 }}>
           47 BRANCHES NATIONWIDE
         </h2>
         <p className="mx-auto mt-4 max-w-2xl font-sans" style={{ fontSize: 16, color: "#666", lineHeight: 1.6 }}>
@@ -34,7 +47,7 @@ export function Branches() {
             className="yrc-branch-card rounded-xl bg-white"
             style={{
               padding: 32,
-              boxShadow: "0 4px 20px rgba(0,48,135,0.07)",
+              boxShadow: "0 4px 20px rgba(0,48,135,0.1)",
               borderLeft: "4px solid #003087",
             }}
           >

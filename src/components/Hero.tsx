@@ -141,7 +141,7 @@ export function Hero() {
           }}
         />
         {/* LEFT */}
-        <div className="relative order-2 flex h-full flex-col justify-center lg:order-1 lg:pl-16">
+        <div className="relative order-2 flex h-full flex-col justify-center pt-6 lg:order-1 lg:pl-16 lg:pt-0">
           {/* red vertical line */}
           <motion.div
             initial={{ scaleY: 0 }}
@@ -202,7 +202,9 @@ export function Hero() {
                 View Events
               </a>
               <a
-                href="#facebook"
+                href="https://www.facebook.com/groups/YamahaRidersClubBD"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-full border-2 border-[#003087] px-8 py-3 font-sans text-base font-semibold text-[#003087] transition-transform hover:scale-[1.03]"
                 style={{ backgroundColor: "rgba(0,48,135,0.05)" }}
               >
@@ -224,7 +226,7 @@ export function Hero() {
               filter: "blur(80px)",
             }}
           />
-          <div className="relative h-full max-h-[280px] min-h-[240px] w-full self-stretch lg:h-auto lg:max-h-[520px] lg:min-h-0 lg:self-center" style={{ aspectRatio: "560 / 480" }}>
+          <div className="relative h-full max-h-[240px] min-h-[200px] w-full self-stretch lg:h-auto lg:max-h-[520px] lg:min-h-0 lg:self-center" style={{ aspectRatio: "560 / 480" }}>
             {/* rotating ring */}
             <motion.svg
               aria-hidden
