@@ -1,21 +1,38 @@
 import { motion } from "framer-motion";
+import { AppBadges } from "./AppBadges";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-const CARDS = [
+type CardVariant = "outline" | "filled";
+type Card = {
+  icon: string;
+  title: string;
+  body: string;
+  cta: string;
+  href: string;
+  external?: boolean;
+  variant: CardVariant;
+  withBadges?: boolean;
+};
+const CARDS: Card[] = [
   {
     icon: "🏍",
     title: "SHOWROOM MEMBERSHIP",
     body: "Visit any authorized ACI Motors Yamaha showroom nationwide. Show your Yamaha ownership documents and register on the spot.",
     cta: "FIND A SHOWROOM",
-    variant: "outline" as const,
+    href: "https://www.facebook.com/YamahaRidersClubBD",
+    external: true,
+    variant: "outline",
   },
   {
     icon: "📱",
     title: "APP MEMBERSHIP",
     body: "Download the YRC BD App, create your profile, and connect with your nearest branch coordinator to activate your membership.",
     cta: "DOWNLOAD APP",
-    variant: "filled" as const,
+    href: "https://play.google.com/store/apps/details?id=com.ridersclubyrcbd.app",
+    external: true,
+    variant: "filled",
+    withBadges: true,
   },
 ];
 
@@ -69,7 +86,8 @@ export function Membership() {
               {c.body}
             </p>
             <a
-              href="#join"
+              href={c.href}
+              {...(c.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               className={
                 c.variant === "filled"
                   ? "mt-6 inline-flex items-center justify-center rounded-full bg-[#e60012] px-6 py-2.5 font-sans text-sm font-semibold text-white transition-transform hover:scale-105"
@@ -78,6 +96,7 @@ export function Membership() {
             >
               {c.cta}
             </a>
+            {c.withBadges && <AppBadges />}
           </motion.div>
         ))}
       </div>
