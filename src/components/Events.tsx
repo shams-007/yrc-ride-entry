@@ -75,12 +75,14 @@ export function Events() {
                 <p className="mt-2 font-sans" style={{ fontSize: 14, color: "#666" }}>
                   {e.loc}
                 </p>
-                <button
-                  type="button"
-                  className="mt-4 w-full rounded-full border-2 border-[#003087] py-2.5 font-sans text-sm font-semibold text-[#003087] transition-colors hover:bg-[#003087] hover:text-white"
+                <a
+                  href="https://www.facebook.com/groups/YamahaRidersClubBD"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 block w-full rounded-full border-2 border-[#003087] py-2.5 text-center font-sans text-sm font-semibold text-[#003087] transition-colors hover:bg-[#003087] hover:text-white"
                 >
                   RSVP
-                </button>
+                </a>
               </div>
             </div>
           </TiltCard>
@@ -89,7 +91,7 @@ export function Events() {
 
       <div className="mx-auto mt-12 flex max-w-7xl justify-center">
         <a
-          href="#all-events"
+          href="/events"
           className="inline-flex items-center justify-center rounded-full border-2 border-[#003087] px-8 py-3 font-sans text-sm font-semibold text-[#003087] transition-colors hover:bg-[#003087] hover:text-white"
         >
           VIEW ALL EVENTS
