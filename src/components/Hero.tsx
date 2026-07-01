@@ -202,7 +202,9 @@ export function Hero() {
                 View Events
               </a>
               <a
-                href="#facebook"
+                href="https://www.facebook.com/groups/YamahaRidersClubBD"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-full border-2 border-[#003087] px-8 py-3 font-sans text-base font-semibold text-[#003087] transition-transform hover:scale-[1.03]"
                 style={{ backgroundColor: "rgba(0,48,135,0.05)" }}
               >
