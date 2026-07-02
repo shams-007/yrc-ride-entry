@@ -14,7 +14,7 @@ function StatNumber({ value, suffix }: { value: number; suffix: string }) {
 }
 
 export function Stats() {
-  const ref = useSectionReveal();
+  const ref = useSectionReveal<HTMLElement>();
 
   return (
     <>
