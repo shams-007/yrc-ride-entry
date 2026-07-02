@@ -5,8 +5,8 @@ import anime from "animejs";
  * Reveals children with class `yrc-reveal` inside container on scroll into view.
  * Applies translateY:50->0, opacity:0->1, stagger 100ms.
  */
-export function useSectionReveal(threshold = 0.2) {
-  const ref = useRef<HTMLDivElement>(null);
+export function useSectionReveal<T extends HTMLElement = HTMLDivElement>(threshold = 0.2) {
+  const ref = useRef<T>(null);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
