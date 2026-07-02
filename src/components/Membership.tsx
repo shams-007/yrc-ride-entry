@@ -92,10 +92,7 @@ export function Membership() {
           done = true;
           anime({
             targets: cards,
-            translateX: [
-              (_el: HTMLElement, i: number) => (i === 0 ? -60 : 60),
-              0,
-            ],
+            translateX: (_el: HTMLElement, i: number) => [i === 0 ? -60 : 60, 0],
             opacity: [0, 1],
             duration: 700,
             easing: "easeOutQuart",
