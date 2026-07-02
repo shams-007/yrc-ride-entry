@@ -1,9 +1,37 @@
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import anime from "animejs";
 import { AppBadges } from "./AppBadges";
 
-const EASE = [0.16, 1, 0.3, 1] as const;
+const HEADING = "READY TO RIDE WITH US?";
 
 export function CTABanner() {
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  useEffect(() => {
+    const h = headingRef.current;
+    if (!h) return;
+    const letters = h.querySelectorAll<HTMLElement>(".yrc-letter");
+    letters.forEach((l) => { l.style.opacity = "0"; l.style.transform = "translateY(30px)"; });
+    let done = false;
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting && !done) {
+          done = true;
+          anime({
+            targets: Array.from(letters),
+            translateY: [30, 0],
+            opacity: [0, 1],
+            duration: 400,
+            easing: "easeOutQuart",
+            delay: anime.stagger(25),
+          });
+          io.disconnect();
+        }
+      }
+    }, { threshold: 0.2 });
+    io.observe(h);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <section
       id="join"
@@ -20,15 +48,17 @@ export function CTABanner() {
           filter: "blur(150px)",
         }}
       />
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.8, ease: EASE }}
-        className="relative mx-auto max-w-3xl text-center"
-      >
-        <h2 className="yrc-heading font-display" style={{ color: "#003087", fontSize: "clamp(40px, 6vw, 64px)", lineHeight: 1.05 }}>
-          READY TO RIDE WITH US?
+      <div className="relative mx-auto max-w-3xl text-center">
+        <h2 ref={headingRef} className="yrc-heading font-display" style={{ color: "#003087", fontSize: "clamp(40px, 6vw, 64px)", lineHeight: 1.05 }} aria-label={HEADING}>
+          {HEADING.split("").map((ch, i) =>
+            ch === " " ? (
+              <span key={i}>&nbsp;</span>
+            ) : (
+              <span key={i} className="yrc-letter" style={{ display: "inline-block" }}>
+                {ch}
+              </span>
+            ),
+          )}
         </h2>
         <p className="mx-auto mt-5 font-sans" style={{ fontSize: 18, color: "#666", lineHeight: 1.6 }}>
           Join 472,000+ riders across Bangladesh. Download the YRC app or connect with us on Facebook.
@@ -56,7 +86,7 @@ export function CTABanner() {
         <div className="mt-4 flex justify-center">
           <AppBadges />
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
