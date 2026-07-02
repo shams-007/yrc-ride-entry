@@ -11,28 +11,23 @@ const BRANCHES = [
 
 function BranchCard({ b, i }: { b: (typeof BRANCHES)[number]; i: number }) {
   const { ref, innerRef, tiltProps } = useTilt(8);
-  const onEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+  const onEnter = () => {
     tiltProps.onMouseEnter();
     const el = ref.current;
     if (!el) return;
-    anime.remove(el);
     anime({
       targets: el,
       borderLeftColor: "#e60012",
-      translateY: -4,
       duration: 200,
       easing: "easeOutQuad",
     });
-    void e;
   };
   const onLeave = () => {
     const el = ref.current;
     if (el) {
-      anime.remove(el);
       anime({
         targets: el,
         borderLeftColor: "#003087",
-        translateY: 0,
         duration: 200,
         easing: "easeOutQuad",
       });
