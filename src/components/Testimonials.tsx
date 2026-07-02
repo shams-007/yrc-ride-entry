@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
-
-const EASE = [0.16, 1, 0.3, 1] as const;
+import { useEffect, useRef } from "react";
+import anime from "animejs";
+import { useSectionReveal } from "@/hooks/useSectionReveal";
 
 const ITEMS = [
   {
@@ -24,8 +24,43 @@ const ITEMS = [
 ];
 
 export function Testimonials() {
+  const sectionRef = useSectionReveal<HTMLElement>();
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const grid = gridRef.current;
+    if (!grid) return;
+    const cards = grid.querySelectorAll<HTMLElement>(".yrc-testimonial-card");
+    cards.forEach((c) => {
+      c.style.opacity = "0";
+      c.style.transform = "translateY(40px)";
+    });
+    let done = false;
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting && !done) {
+            done = true;
+            anime({
+              targets: Array.from(cards),
+              translateY: [40, 0],
+              opacity: [0, 1],
+              duration: 700,
+              easing: "easeOutQuart",
+              delay: anime.stagger(150),
+            });
+            io.disconnect();
+          }
+        }
+      },
+      { threshold: 0.2 },
+    );
+    io.observe(grid);
+    return () => io.disconnect();
+  }, []);
+
   return (
-    <section className="relative w-full overflow-hidden px-6 lg:px-10" style={{ backgroundColor: "#eef2ff", paddingTop: 100, paddingBottom: 100 }}>
+    <section ref={sectionRef} className="relative w-full overflow-hidden px-6 lg:px-10" style={{ backgroundColor: "#eef2ff", paddingTop: 100, paddingBottom: 100 }}>
       <span
         aria-hidden
         className="pointer-events-none absolute font-display select-none"
@@ -34,22 +69,18 @@ export function Testimonials() {
         “
       </span>
       <div className="relative mx-auto max-w-7xl text-center">
-        <p className="font-sans" style={{ fontSize: 13, letterSpacing: "0.15em", color: "#0047cc", textTransform: "uppercase" }}>
+        <p className="yrc-reveal font-sans" style={{ fontSize: 13, letterSpacing: "0.15em", color: "#0047cc", textTransform: "uppercase" }}>
           Member Voices
         </p>
-        <h2 className="yrc-heading mt-3 font-display" style={{ color: "#003087", fontSize: "clamp(40px, 5vw, 56px)", lineHeight: 1.05 }}>
+        <h2 className="yrc-heading yrc-reveal mt-3 font-display" style={{ color: "#003087", fontSize: "clamp(40px, 5vw, 56px)", lineHeight: 1.05 }}>
           WHAT RIDERS SAY
         </h2>
       </div>
 
-      <div className="mx-auto mt-14 grid max-w-7xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {ITEMS.map((t, i) => (
-          <motion.div
+      <div ref={gridRef} className="mx-auto mt-14 grid max-w-7xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {ITEMS.map((t) => (
+          <div
             key={t.name}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, ease: EASE, delay: i * 0.15 }}
             className="yrc-testimonial-card relative rounded-2xl bg-white"
             style={{ padding: 32, boxShadow: "0 4px 20px rgba(0,48,135,0.1)" }}
           >
@@ -78,7 +109,7 @@ export function Testimonials() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
     </section>

@@ -1,34 +1,34 @@
-import { motion } from "framer-motion";
+import { useCountUp } from "@/hooks/useCountUp";
+import { useSectionReveal } from "@/hooks/useSectionReveal";
 
-const EASE = [0.16, 1, 0.3, 1] as const;
-
-const STATS = [
-  { num: "200", label: "Speed Breakers" },
-  { num: "17", label: "Locations" },
-  { num: "10+", label: "Campaigns" },
+const STATS: Array<{ value: number; suffix: string; label: string }> = [
+  { value: 200, suffix: "", label: "Speed Breakers" },
+  { value: 17, suffix: "", label: "Locations" },
+  { value: 10, suffix: "+", label: "Campaigns" },
 ];
 
+function SafetyNumber({ value, suffix }: { value: number; suffix: string }) {
+  const ref = useCountUp(value, { duration: 1800, suffix });
+  return <span ref={ref}>0{suffix}</span>;
+}
+
 export function RoadSafety() {
+  const ref = useSectionReveal<HTMLElement>();
   return (
     <section
+      ref={ref}
       id="road-safety"
       className="w-full px-6 lg:px-10"
       style={{ backgroundColor: "#003087", paddingTop: 100, paddingBottom: 100 }}
     >
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.8, ease: EASE }}
-        className="mx-auto max-w-4xl text-center"
-      >
+      <div className="mx-auto max-w-4xl text-center">
         <p
-          className="font-sans"
+          className="yrc-reveal font-sans"
           style={{ fontSize: 13, letterSpacing: "0.2em", color: "rgba(255,255,255,0.6)", textTransform: "uppercase" }}
         >
           Our Mission
         </p>
-        <h2 className="yrc-heading mt-3 font-display text-white" style={{ fontSize: "clamp(40px, 6vw, 64px)", lineHeight: 1.05 }}>
+        <h2 className="yrc-heading yrc-reveal mt-3 font-display text-white" style={{ fontSize: "clamp(40px, 6vw, 64px)", lineHeight: 1.05 }}>
           SAVING LIVES, ONE SPEED BREAKER AT A TIME
         </h2>
         <p
@@ -37,19 +37,13 @@ export function RoadSafety() {
         >
           We started with a simple belief — riders should look out for riders. Today our teams across 17 locations actively lead road safety campaigns, painting speed breakers and conducting group ride training.
         </p>
-      </motion.div>
+      </div>
 
       <div className="mx-auto mt-14 grid max-w-4xl grid-cols-3 gap-6 text-center">
-        {STATS.map((s, i) => (
-          <motion.div
-            key={s.label}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, ease: EASE, delay: i * 0.15 }}
-          >
+        {STATS.map((s) => (
+          <div key={s.label}>
             <div className="font-display text-white" style={{ fontSize: "clamp(48px, 7vw, 72px)", lineHeight: 1 }}>
-              {s.num}
+              <SafetyNumber value={s.value} suffix={s.suffix} />
             </div>
             <div
               className="mt-2 font-sans"
@@ -57,18 +51,14 @@ export function RoadSafety() {
             >
               {s.label}
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
 
       <div className="mx-auto mt-14 grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2">
         {[0, 1].map((i) => (
-          <motion.div
+          <div
             key={i}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.7, ease: EASE, delay: i * 0.15 }}
             className="flex items-center justify-center rounded-xl"
             style={{
               height: 280,
@@ -79,7 +69,7 @@ export function RoadSafety() {
             <span className="font-display tracking-widest text-white" style={{ fontSize: 18, opacity: 0.7 }}>
               PHOTO
             </span>
-          </motion.div>
+          </div>
         ))}
       </div>
 

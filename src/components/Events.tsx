@@ -1,7 +1,7 @@
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import type { MouseEvent } from "react";
-
-const EASE = [0.16, 1, 0.3, 1] as const;
+import { useEffect, useRef } from "react";
+import anime from "animejs";
+import { useSectionReveal } from "@/hooks/useSectionReveal";
+import { useTilt } from "@/hooks/useTilt";
 
 const EVENTS = [
   { date: "DEC 15, 2025", name: "TOUR DE CHITTAGONG", loc: "📍 Pahartali, Chittagong" },
@@ -9,53 +9,63 @@ const EVENTS = [
   { date: "FEB 2, 2026", name: "DHAKA CONCLAVE 2026", loc: "📍 Dhaka Central" },
 ];
 
-function TiltCard({ delay, children }: { delay: number; children: React.ReactNode }) {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const rx = useSpring(useTransform(y, [-0.5, 0.5], [8, -8]), { stiffness: 200, damping: 20 });
-  const ry = useSpring(useTransform(x, [-0.5, 0.5], [-8, 8]), { stiffness: 200, damping: 20 });
-
-  const onMove = (e: MouseEvent<HTMLDivElement>) => {
-    const r = e.currentTarget.getBoundingClientRect();
-    x.set((e.clientX - r.left) / r.width - 0.5);
-    y.set((e.clientY - r.top) / r.height - 0.5);
-  };
-  const onLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
-
+function TiltCard({ children }: { children: React.ReactNode }) {
+  const { ref, innerRef, tiltProps } = useTilt(8);
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.7, ease: EASE, delay }}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-      style={{ rotateX: rx, rotateY: ry, transformPerspective: 800 }}
+    <div
+      ref={ref}
+      {...tiltProps}
       className="yrc-event-card"
+      style={{ transformStyle: "preserve-3d", opacity: 0 }}
     >
-      {children}
-    </motion.div>
+      <div ref={innerRef}>{children}</div>
+    </div>
   );
 }
 
 export function Events() {
+  const sectionRef = useSectionReveal<HTMLElement>();
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const grid = gridRef.current;
+    if (!grid) return;
+    const cards = Array.from(grid.querySelectorAll<HTMLElement>(".yrc-event-card"));
+    let done = false;
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting && !done) {
+          done = true;
+          anime({
+            targets: cards,
+            translateY: [40, 0],
+            opacity: [0, 1],
+            duration: 700,
+            easing: "easeOutQuart",
+            delay: anime.stagger(150),
+          });
+          io.disconnect();
+        }
+      }
+    }, { threshold: 0.2 });
+    io.observe(grid);
+    return () => io.disconnect();
+  }, []);
+
   return (
-    <section id="events" className="w-full bg-[#fbfbfd] px-6 lg:px-10" style={{ paddingTop: 100, paddingBottom: 100 }}>
+    <section ref={sectionRef} id="events" className="w-full bg-[#fbfbfd] px-6 lg:px-10" style={{ paddingTop: 100, paddingBottom: 100 }}>
       <div className="mx-auto max-w-7xl text-center">
-        <p className="font-sans" style={{ fontSize: 13, letterSpacing: "0.15em", color: "#0047cc", textTransform: "uppercase" }}>
+        <p className="yrc-reveal font-sans" style={{ fontSize: 13, letterSpacing: "0.15em", color: "#0047cc", textTransform: "uppercase" }}>
           What's Happening
         </p>
-        <h2 className="yrc-heading mt-3 font-display" style={{ color: "#003087", fontSize: "clamp(40px, 6vw, 56px)", lineHeight: 1.05 }}>
+        <h2 className="yrc-heading yrc-reveal mt-3 font-display" style={{ color: "#003087", fontSize: "clamp(40px, 6vw, 56px)", lineHeight: 1.05 }}>
           UPCOMING RIDES & EVENTS
         </h2>
       </div>
 
-      <div className="mx-auto mt-14 grid max-w-7xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {EVENTS.map((e, i) => (
-          <TiltCard key={e.name} delay={i * 0.15}>
+      <div ref={gridRef} className="mx-auto mt-14 grid max-w-7xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {EVENTS.map((e) => (
+          <TiltCard key={e.name}>
             <div className="overflow-hidden rounded-2xl bg-white" style={{ boxShadow: "0 4px 20px rgba(0,48,135,0.1)" }}>
               <div className="relative flex items-center justify-center" style={{ height: 220, backgroundColor: "#003087" }}>
                 <span

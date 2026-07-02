@@ -1,5 +1,34 @@
+import { useEffect, useRef } from "react";
+import anime from "animejs";
+
 export function PressStrip() {
   const items = ["THE DAILY STAR", "BIKEBD", "DHAKA TRIBUNE"];
+  const rowRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const row = rowRef.current;
+    if (!row) return;
+    const els = row.querySelectorAll<HTMLElement>(".yrc-press-item");
+    els.forEach((e) => { e.style.opacity = "0"; e.style.transform = "translateY(20px)"; });
+    let done = false;
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting && !done) {
+          done = true;
+          anime({
+            targets: Array.from(els),
+            translateY: [20, 0],
+            opacity: [0, 1],
+            duration: 500,
+            easing: "easeOutQuart",
+            delay: anime.stagger(200),
+          });
+          io.disconnect();
+        }
+      }
+    }, { threshold: 0.2 });
+    io.observe(row);
+    return () => io.disconnect();
+  }, []);
   return (
     <section className="w-full bg-white px-6 lg:px-10" style={{ paddingTop: 40, paddingBottom: 40 }}>
       <div
@@ -12,7 +41,7 @@ export function PressStrip() {
         >
           As Featured In
         </p>
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-10 lg:gap-20">
+        <div ref={rowRef} className="mt-6 flex flex-wrap items-center justify-center gap-10 lg:gap-20">
           {items.map((name) => (
             <span
               key={name}
