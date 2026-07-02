@@ -1,40 +1,36 @@
-import { motion } from "framer-motion";
+import { useCountUp } from "@/hooks/useCountUp";
+import { useSectionReveal } from "@/hooks/useSectionReveal";
 
-const EASE = [0.16, 1, 0.3, 1] as const;
-
-const STATS = [
-  { num: "5000+", label: "Attendees" },
-  { num: "47", label: "Branches United" },
-  { num: "3", label: "Days of Celebration" },
+const STATS: Array<{ value: number; suffix: string; label: string }> = [
+  { value: 5000, suffix: "+", label: "Attendees" },
+  { value: 47, suffix: "", label: "Branches United" },
+  { value: 3, suffix: "", label: "Days of Celebration" },
 ];
 
+function ConclaveNumber({ value, suffix }: { value: number; suffix: string }) {
+  const ref = useCountUp(value, { duration: 2000, suffix });
+  return <span ref={ref}>0{suffix}</span>;
+}
+
 export function Conclave() {
+  const ref = useSectionReveal<HTMLElement>();
   return (
-    <section className="w-full bg-[#eef2ff] px-6 lg:px-10" style={{ paddingTop: 100, paddingBottom: 100 }}>
+    <section ref={ref} className="w-full bg-[#eef2ff] px-6 lg:px-10" style={{ paddingTop: 100, paddingBottom: 100 }}>
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-2">
-        <motion.div
-          initial={{ opacity: 0, x: -60 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.8, ease: EASE }}
+        <div
           className="flex w-full items-center justify-center rounded-2xl"
           style={{ backgroundColor: "#003087", height: 480, boxShadow: "0 20px 60px rgba(0,48,135,0.2)" }}
         >
           <span className="font-display tracking-widest text-white" style={{ fontSize: 20, opacity: 0.7 }}>
             CONCLAVE PHOTO
           </span>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, x: 60 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.8, ease: EASE, delay: 0.15 }}
-        >
-          <p className="font-sans" style={{ fontSize: 12, letterSpacing: "0.2em", color: "#0047cc", textTransform: "uppercase" }}>
+        <div>
+          <p className="yrc-reveal font-sans" style={{ fontSize: 12, letterSpacing: "0.2em", color: "#0047cc", textTransform: "uppercase" }}>
             Flagship Event
           </p>
-          <h2 className="yrc-heading mt-3 font-display" style={{ color: "#003087", fontSize: "clamp(40px, 5vw, 56px)", lineHeight: 1.05 }}>
+          <h2 className="yrc-heading yrc-reveal mt-3 font-display" style={{ color: "#003087", fontSize: "clamp(40px, 5vw, 56px)", lineHeight: 1.05 }}>
             YRC ANNUAL CONCLAVE
           </h2>
           <p className="mt-6 font-sans" style={{ fontSize: 16, color: "#666", lineHeight: 1.7, maxWidth: "65ch" }}>
@@ -44,7 +40,7 @@ export function Conclave() {
             {STATS.map((s) => (
               <div key={s.label}>
                 <div className="font-display" style={{ color: "#003087", fontSize: 40, lineHeight: 1 }}>
-                  {s.num}
+                  <ConclaveNumber value={s.value} suffix={s.suffix} />
                 </div>
                 <div
                   className="mt-1 font-sans"
@@ -64,7 +60,7 @@ export function Conclave() {
           >
             VIEW CONCLAVE 2026 HIGHLIGHTS
           </a>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
