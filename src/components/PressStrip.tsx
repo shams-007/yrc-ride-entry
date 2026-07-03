@@ -8,7 +8,7 @@ export function PressStrip() {
     const row = rowRef.current;
     if (!row) return;
     const els = row.querySelectorAll<HTMLElement>(".yrc-press-item");
-    els.forEach((e) => { e.style.opacity = "0"; e.style.transform = "translateY(20px)"; });
+    els.forEach((e) => { e.style.opacity = "0"; e.style.transform = "translateY(40px)"; });
     let done = false;
     const io = new IntersectionObserver((entries) => {
       for (const e of entries) {
@@ -16,9 +16,9 @@ export function PressStrip() {
           done = true;
           anime({
             targets: Array.from(els),
-            translateY: [20, 0],
+            translateY: [40, 0],
             opacity: [0, 1],
-            duration: 500,
+            duration: 600,
             easing: "easeOutQuart",
             delay: anime.stagger(200),
           });
