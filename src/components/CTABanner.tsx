@@ -10,7 +10,7 @@ export function CTABanner() {
     const h = headingRef.current;
     if (!h) return;
     const letters = h.querySelectorAll<HTMLElement>(".yrc-letter");
-    letters.forEach((l) => { l.style.opacity = "0"; l.style.transform = "translateY(30px)"; });
+    letters.forEach((l) => { l.style.opacity = "0"; l.style.transform = "translateY(50px)"; });
     let done = false;
     const io = new IntersectionObserver((entries) => {
       for (const e of entries) {
@@ -18,11 +18,11 @@ export function CTABanner() {
           done = true;
           anime({
             targets: Array.from(letters),
-            translateY: [30, 0],
+            translateY: [50, 0],
             opacity: [0, 1],
-            duration: 400,
+            duration: 500,
             easing: "easeOutQuart",
-            delay: anime.stagger(25),
+            delay: anime.stagger(40),
           });
           io.disconnect();
         }
