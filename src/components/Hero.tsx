@@ -57,26 +57,46 @@ export function Hero() {
         className="pointer-events-none absolute left-0 hidden lg:block"
         style={{ bottom: "40px", zIndex: 1, width: "120px" }}
       >
-        <svg
-          className="yrc-motorcycle"
-          viewBox="0 0 120 60"
-          width="120"
-          height="60"
-          fill="none"
-          stroke="#003087"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          style={{ opacity: 0.15 }}
-        >
-          <circle cx="22" cy="40" r="13" />
-          <circle cx="92" cy="40" r="13" />
-          <path d="M22 40 L45 40 L55 28 L75 28 L85 40 L92 40" />
-          <path d="M55 28 L48 18 L35 18" />
-          <path d="M35 18 L30 28 L45 40" />
-          <path d="M75 28 L70 18 L95 15 L100 25" />
-          <path d="M22 40 L12 40" />
-        </svg>
+        <div className="yrc-motorcycle relative" style={{ width: 120, height: 60 }}>
+          {/* exhaust puffs trailing behind the bike */}
+          {[
+            { size: 8, delay: 0, offset: 0 },
+            { size: 10, delay: 0.3, offset: 4 },
+            { size: 6, delay: 0.6, offset: 8 },
+            { size: 9, delay: 0.9, offset: 12 },
+          ].map((p, i) => (
+            <span
+              key={i}
+              className="yrc-puff"
+              style={{
+                width: p.size,
+                height: p.size,
+                left: -6 - p.offset,
+                bottom: 20,
+                animationDelay: `${p.delay}s`,
+              }}
+            />
+          ))}
+          <svg
+            viewBox="0 0 120 60"
+            width="120"
+            height="60"
+            fill="none"
+            stroke="#003087"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            style={{ opacity: 0.25 }}
+          >
+            <circle cx="22" cy="40" r="13" />
+            <circle cx="92" cy="40" r="13" />
+            <path d="M22 40 L45 40 L55 28 L75 28 L85 40 L92 40" />
+            <path d="M55 28 L48 18 L35 18" />
+            <path d="M35 18 L30 28 L45 40" />
+            <path d="M75 28 L70 18 L95 15 L100 25" />
+            <path d="M22 40 L12 40" />
+          </svg>
+        </div>
       </div>
 
       {/* large soft radial glows */}
