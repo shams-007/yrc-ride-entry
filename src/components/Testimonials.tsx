@@ -33,7 +33,7 @@ export function Testimonials() {
     const cards = grid.querySelectorAll<HTMLElement>(".yrc-testimonial-card");
     cards.forEach((c) => {
       c.style.opacity = "0";
-      c.style.transform = "translateY(40px)";
+      c.style.transform = "translateY(70px)";
     });
     let done = false;
     const io = new IntersectionObserver(
@@ -43,11 +43,11 @@ export function Testimonials() {
             done = true;
             anime({
               targets: Array.from(cards),
-              translateY: [40, 0],
+              translateY: [70, 0],
               opacity: [0, 1],
-              duration: 700,
+              duration: 900,
               easing: "easeOutQuart",
-              delay: anime.stagger(150),
+              delay: anime.stagger(180),
             });
             io.disconnect();
           }
