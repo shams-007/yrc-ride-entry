@@ -10,7 +10,7 @@ const BRANCHES = [
 ];
 
 function BranchCard({ b, i }: { b: (typeof BRANCHES)[number]; i: number }) {
-  const { ref, innerRef, tiltProps } = useTilt(8);
+  const { ref, innerRef, tiltProps } = useTilt(15);
   const onEnter = () => {
     tiltProps.onMouseEnter();
     const el = ref.current;
@@ -18,7 +18,12 @@ function BranchCard({ b, i }: { b: (typeof BRANCHES)[number]; i: number }) {
     anime({
       targets: el,
       borderLeftColor: "#e60012",
-      duration: 200,
+      translateY: -8,
+      boxShadow: [
+        "0 4px 20px rgba(0,48,135,0.1)",
+        "0 8px 30px rgba(230,0,18,0.3), 0 0 20px rgba(230,0,18,0.3)",
+      ],
+      duration: 250,
       easing: "easeOutQuad",
     });
   };
@@ -28,7 +33,12 @@ function BranchCard({ b, i }: { b: (typeof BRANCHES)[number]; i: number }) {
       anime({
         targets: el,
         borderLeftColor: "#003087",
-        duration: 200,
+        translateY: 0,
+        boxShadow: [
+          "0 8px 30px rgba(230,0,18,0.3), 0 0 20px rgba(230,0,18,0.3)",
+          "0 4px 20px rgba(0,48,135,0.1)",
+        ],
+        duration: 250,
         easing: "easeOutQuad",
       });
     }
