@@ -27,7 +27,19 @@ export function useCountUp(target: number, opts?: { duration?: number; suffix?: 
               update: () => {
                 if (el) el.textContent = obj.v.toLocaleString() + suffix;
               },
+              complete: () => {
+                if (!el) return;
+                anime({
+                  targets: el,
+                  scale: [1, 1.05, 1],
+                  duration: 400,
+                  easing: "easeOutQuad",
+                });
+              },
             });
+            if (el) {
+              (el.style as CSSStyleDeclaration).display = el.style.display || "inline-block";
+            }
             io.disconnect();
           }
         }
