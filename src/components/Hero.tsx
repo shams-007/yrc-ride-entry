@@ -57,6 +57,30 @@ export function Hero() {
         className="pointer-events-none absolute left-0 hidden lg:block"
         style={{ bottom: "40px", zIndex: 1, width: "120px" }}
       >
+        {/* exhaust puffs trailing behind */}
+        <div
+          className="pointer-events-none absolute"
+          style={{ left: -8, bottom: 18, width: 40, height: 40 }}
+        >
+          {[
+            { size: 8, delay: 0 },
+            { size: 10, delay: 0.3 },
+            { size: 6, delay: 0.6 },
+            { size: 9, delay: 0.9 },
+          ].map((p, i) => (
+            <span
+              key={i}
+              className="yrc-puff yrc-motorcycle"
+              style={{
+                width: p.size,
+                height: p.size,
+                left: i * 3,
+                bottom: 0,
+                animationDelay: `${p.delay}s`,
+              }}
+            />
+          ))}
+        </div>
         <svg
           className="yrc-motorcycle"
           viewBox="0 0 120 60"
@@ -67,7 +91,7 @@ export function Hero() {
           strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"
-          style={{ opacity: 0.15 }}
+          style={{ opacity: 0.25 }}
         >
           <circle cx="22" cy="40" r="13" />
           <circle cx="92" cy="40" r="13" />
