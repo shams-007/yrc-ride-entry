@@ -54,11 +54,12 @@ export function Hero() {
       {/* motorcycle easter egg */}
       <div
         aria-hidden
-        className="pointer-events-none absolute left-0 hidden lg:block"
-        style={{ bottom: "40px", zIndex: 1, width: "120px" }}
+        className="pointer-events-none absolute left-0 bottom-5 w-[24px] lg:bottom-10 lg:w-[120px]"
+        style={{ zIndex: 1 }}
       >
-        <div className="yrc-motorcycle relative" style={{ width: 120, height: 60 }}>
-          {/* exhaust puffs trailing behind the bike */}
+        <div className="yrc-motorcycle relative h-[12px] w-[24px] lg:h-[60px] lg:w-[120px]">
+          {/* exhaust puffs trailing behind the bike (desktop only) */}
+          <div className="hidden lg:block">
           {[
             { size: 8, delay: 0, offset: 0 },
             { size: 10, delay: 0.3, offset: 4 },
@@ -77,10 +78,12 @@ export function Hero() {
               }}
             />
           ))}
+          </div>
           <svg
             viewBox="0 0 120 60"
-            width="120"
-            height="60"
+            width="100%"
+            height="100%"
+            preserveAspectRatio="xMidYMid meet"
             fill="none"
             stroke="#003087"
             strokeWidth="2.5"

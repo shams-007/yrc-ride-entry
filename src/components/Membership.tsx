@@ -38,7 +38,7 @@ const CARDS: Card[] = [
 ];
 
 function MembershipCard({ c, index }: { c: Card; index: number }) {
-  const { ref, innerRef, tiltProps } = useTilt(8);
+  const { ref, innerRef, tiltProps } = useTilt(15);
   return (
     <div
       ref={ref}

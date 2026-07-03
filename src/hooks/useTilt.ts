@@ -1,7 +1,7 @@
 import { useRef, useCallback } from "react";
 import anime from "animejs";
 
-export function useTilt(max = 8) {
+export function useTilt(max = 15) {
   const ref = useRef<HTMLDivElement>(null);
   const innerRef = useRef<HTMLDivElement>(null);
 
@@ -15,7 +15,7 @@ export function useTilt(max = 8) {
     const rotateX = -py * max * 2;
     el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     if (innerRef.current) {
-      innerRef.current.style.transform = `translateX(${-px * max * 0.3 * 2}px) translateY(${-py * max * 0.3 * 2}px)`;
+      innerRef.current.style.transform = `translateX(${-px * max * 0.5 * 2}px) translateY(${-py * max * 0.5 * 2}px)`;
     }
   }, [max]);
 

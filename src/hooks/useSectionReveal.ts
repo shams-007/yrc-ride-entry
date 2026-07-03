@@ -14,7 +14,7 @@ export function useSectionReveal<T extends HTMLElement = HTMLDivElement>(thresho
     if (!targets.length) return;
     targets.forEach((t) => {
       t.style.opacity = "0";
-      t.style.transform = "translateY(50px)";
+      t.style.transform = "translateY(80px)";
     });
     let done = false;
     const io = new IntersectionObserver(
@@ -24,9 +24,9 @@ export function useSectionReveal<T extends HTMLElement = HTMLDivElement>(thresho
             done = true;
             anime({
               targets: Array.from(targets),
-              translateY: [50, 0],
+              translateY: [80, 0],
               opacity: [0, 1],
-              duration: 600,
+              duration: 700,
               easing: "easeOutQuart",
               delay: anime.stagger(100),
             });

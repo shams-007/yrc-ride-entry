@@ -10,7 +10,7 @@ const EVENTS = [
 ];
 
 function TiltCard({ children }: { children: React.ReactNode }) {
-  const { ref, innerRef, tiltProps } = useTilt(8);
+  const { ref, innerRef, tiltProps } = useTilt(15);
   return (
     <div
       ref={ref}
