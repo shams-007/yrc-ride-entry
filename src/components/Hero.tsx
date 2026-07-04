@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { BangladeshMap } from "./BangladeshMap";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -274,35 +275,9 @@ export function Hero() {
               initial={{ opacity: 0, x: 60, scale: 1.05 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ duration: 1, ease: EASE, delay: 0.3 }}
-              className="yrc-hero-image relative h-full w-full overflow-hidden rounded-2xl lg:rounded-none"
-              style={{ backgroundColor: "#003087" }}
+              className="relative h-full w-full"
             >
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
-                <svg
-                  aria-hidden
-                  width="64"
-                  height="64"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#ffffff"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <circle cx="5.5" cy="16.5" r="3.5" />
-                  <circle cx="18.5" cy="16.5" r="3.5" />
-                  <path d="M5.5 16.5h6l3-6h-4" />
-                  <path d="M14.5 10.5l4 6" />
-                  <path d="M11 7h3" />
-                </svg>
-                <span
-                  className="font-display tracking-widest text-white"
-                  style={{ fontSize: "24px", opacity: 0.6 }}
-                >
-                  PHOTO COMING SOON
-                </span>
-              </div>
-              <div className="yrc-shimmer" aria-hidden />
+              <BangladeshMap />
             </motion.div>
           </div>
         </div>
