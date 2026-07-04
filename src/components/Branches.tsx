@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { useRef } from "react";
 import anime from "animejs";
 import { useSectionReveal } from "@/hooks/useSectionReveal";
@@ -121,6 +122,15 @@ export function Branches() {
         {BRANCHES.map((b, i) => (
           <BranchCard key={b.name} b={b} i={i} />
         ))}
+      </div>
+
+      <div className="mx-auto mt-12 max-w-7xl text-center">
+        <Link
+          to="/branches"
+          className="inline-flex items-center justify-center rounded-full bg-[#003087] px-8 py-3 font-sans text-base font-semibold text-white transition-transform hover:scale-[1.03]"
+        >
+          View All Branches →
+        </Link>
       </div>
     </section>
   );
