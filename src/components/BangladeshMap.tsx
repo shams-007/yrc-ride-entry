@@ -1,40 +1,8 @@
 import { useState } from "react";
 
-// Standard upright outline of Bangladesh matching the silhouette exactly
+// The exact standard low-resolution SVG outline of Bangladesh
 const BD_OUTLINE =
-  "M 210 30 " +
-  "C 195 40, 180 50, 175 60 " +
-  "C 165 70, 155 85, 150 100 " +
-  "C 135 125, 115 150, 100 180 " +
-  "C 90 200, 80 215, 80 225 " + // Western Rajshahi bulge
-  "C 82 235, 95 245, 110 255 " +
-  "C 115 270, 120 285, 122 300 " +
-  "C 125 320, 130 340, 135 360 " + // Satkhira southwest border
-  "C 150 365, 160 362, 170 365 " + // Sundarbans coast
-  "C 180 368, 190 360, 200 365 " +
-  "C 210 368, 220 362, 230 365 " +
-  "C 245 368, 255 362, 260 370 " + // Meghna Estuary
-  "C 275 380, 290 395, 305 410 " + // Chittagong coast
-  "C 315 425, 320 440, 325 455 " + // Cox's Bazar beaches
-  "C 328 462, 330 465, 330 465 " + // Teknaf peninsula southernmost tip
-  "C 328 450, 325 430, 322 410 " +
-  "C 320 390, 322 370, 325 350 " +
-  "C 330 330, 335 310, 340 290 " + // Chittagong Hill Tracts east border
-  "C 335 270, 320 255, 310 245 " +
-  "C 305 235, 300 220, 298 210 " + // Indentation at Comilla
-  "C 310 200, 325 190, 340 180 " +
-  "C 350 175, 355 165, 350 155 " + // Sylhet eastern bulge
-  "C 340 145, 325 145, 310 145 " + // Horizontally flat Sylhet north border
-  "C 290 145, 270 145, 255 145 " + // Horizontally flat Mymensingh north border
-  "C 240 140, 225 135, 210 130 " +
-  "C 195 110, 185 85, 175 70 " +
-  "C 165 55, 160 45, 160 40 Z " + // Reconnect back to Panchagarh
-  // Smooth Hatiya Island
-  "M 270 385 C 275 390, 273 398, 267 398 C 263 393, 265 386, 270 385 Z " +
-  // Smooth Bhola Island
-  "M 248 375 C 253 385, 251 398, 245 398 C 241 388, 243 378, 248 375 Z " +
-  // Smooth Sandwip Island
-  "M 285 365 C 288 370, 286 376, 282 376 C 279 370, 281 366, 285 365 Z";
+  "m 1486.5,431.9 l-4.5,-10.1 -1.5,0.1 -0.2,4 -3.5,-3.3 1.1,-3.6 2.4,-0.4 1.6,-5.3 -3.4,-1.1 -5,0.1 -5.4,-0.9 -1.2,-4.4 -2.7,-0.4 -4.8,-2.7 -1.2,4.3 4.6,3.4 -3.1,2.4 -0.8,2.3 3.7,1.7 -0.4,3.8 2.6,4.8 1.6,5.2 2.2,0.6 1.7,0.7 0.6,-1.2 2.5,1.3 1.3,-3.5 -0.9,-2.6 5.1,0.2 2.8,3.7 1.5,3.1 0.8,3.2 2,3.3 -1.1,-5.1 2.1,1 -0.5,-4.6 z";
 
 type MainBranch = {
   id: "dhaka" | "chittagong" | "sylhet";
@@ -44,27 +12,27 @@ type MainBranch = {
   cy: number;
 };
 
-// Realigned dots to match the upright map space
+// Branch coordinates mapped to your exact 1450-1500 / 400-450 grid
 const MAIN: MainBranch[] = [
-  { id: "dhaka", name: "🏍 DHAKA CENTRAL", coord: "Managed by Aminul Islam", cx: 215, cy: 247 },
-  { id: "chittagong", name: "🏍 CHITTAGONG HUB", coord: "Led by Mohammad Sajid", cx: 305, cy: 370 },
-  { id: "sylhet", name: "🏍 SYLHET REGIONAL", coord: "Coordinated by Farhana Akter", cx: 310, cy: 135 },
+  { id: "dhaka", name: "🏍 DHAKA CENTRAL", coord: "Managed by Aminul Islam", cx: 1478, cy: 423 },
+  { id: "chittagong", name: "🏍 CHITTAGONG HUB", coord: "Led by Mohammad Sajid", cx: 1490, cy: 434 },
+  { id: "sylhet", name: "🏍 SYLHET REGIONAL", coord: "Coordinated by Farhana Akter", cx: 1492, cy: 415 },
 ];
 
 const DECOR = [
-  { name: "Rajshahi", cx: 110, cy: 200, delay: 0 },
-  { name: "Khulna", cx: 160, cy: 330, delay: 0.3 },
-  { name: "Barisal", cx: 220, cy: 335, delay: 0.6 },
-  { name: "Rangpur", cx: 155, cy: 90, delay: 0.9 },
-  { name: "Mymensingh", cx: 220, cy: 125, delay: 1.2 },
-  { name: "Comilla", cx: 275, cy: 250, delay: 1.5 },
-  { name: "Cox's Bazar", cx: 320, cy: 420, delay: 1.8 },
-  { name: "Jessore", cx: 135, cy: 290, delay: 0.15 },
+  { name: "Rajshahi", cx: 1462, cy: 418, delay: 0 },
+  { name: "Khulna", cx: 1470, cy: 432, delay: 0.3 },
+  { name: "Barisal", cx: 1478, cy: 433, delay: 0.6 },
+  { name: "Rangpur", cx: 1468, cy: 408, delay: 0.9 },
+  { name: "Mymensingh", cx: 1478, cy: 415, delay: 1.2 },
+  { name: "Comilla", cx: 1486, cy: 426, delay: 1.5 },
+  { name: "Cox's Bazar", cx: 1492, cy: 442, delay: 1.8 },
+  { name: "Jessore", cx: 1466, cy: 428, delay: 0.15 },
 ];
 
-// Re-aligned animated trail
+// Aligned trail in the new grid
 const BIKE_PATH =
-  "M215,247 Q280,310 305,370 Q340,250 310,135 Q250,180 215,247";
+  "M1478,423 Q1485,430 1490,434 Q1494,422 1492,415 Q1485,419 1478,423";
 
 export function BangladeshMap({
   height,
@@ -79,7 +47,7 @@ export function BangladeshMap({
     <div
       className="relative w-full h-full overflow-visible"
       style={{
-        background: "transparent", // Clean seamless background float
+        background: "transparent", // Clean borderless float
         height: height,
       }}
     >
@@ -122,8 +90,9 @@ export function BangladeshMap({
 
       <div className="relative flex h-full w-full flex-col">
         <div className="relative flex-1">
+          {/* Matches the custom viewBox provided by the Wikipedia SVG map */}
           <svg
-            viewBox="0 0 450 480"
+            viewBox="1450 400 50 50"
             width="100%"
             height="100%"
             preserveAspectRatio="xMidYMid meet"
@@ -132,7 +101,7 @@ export function BangladeshMap({
             <defs>
               <path id="yrc-bike-motion-path" d={BIKE_PATH} />
               <filter id="yrc-blue-glow" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation="3" result="blur" />
+                <feGaussianBlur stdDeviation="0.4" result="blur" />
                 <feMerge>
                   <feMergeNode in="blur" />
                   <feMergeNode in="SourceGraphic" />
@@ -140,17 +109,17 @@ export function BangladeshMap({
               </filter>
             </defs>
 
-            {/* Premium, geographically accurate outline in Yamaha Blue */}
+            {/* Exactly render your precise SVG path using official Yamaha Navy Blue */}
             <path
               className="yrc-bd-path"
               d={BD_OUTLINE}
               pathLength={1}
-              fill="#003087" // Yamaha Navy Blue Website Theme Color
-              stroke="#0047cc" // Glowing Accent Blue
-              strokeWidth={1.75}
+              fill="#003087" // Official Yamaha website theme color
+              stroke="#0047cc" // Glowing Yamaha Accent Blue border
+              strokeWidth={0.25} // Proportionately sized for the 50x50 view
               strokeLinejoin="round"
               style={{
-                filter: "drop-shadow(0 0 8px rgba(0, 71, 204, 0.55))"
+                filter: "drop-shadow(0 0 1.5px rgba(0, 71, 204, 0.75))"
               }}
             />
 
@@ -161,7 +130,7 @@ export function BangladeshMap({
               fill="none"
               stroke="#0047cc"
               strokeOpacity={0.5}
-              strokeWidth={1.5}
+              strokeWidth={0.15}
             />
 
             {/* Decorative blue dots */}
@@ -179,17 +148,17 @@ export function BangladeshMap({
                 <circle
                   cx={d.cx}
                   cy={d.cy}
-                  r={3.5}
+                  r={0.4}
                   fill="#0047cc"
-                  style={{ filter: "drop-shadow(0 0 5px rgba(0,71,204,0.7))" }}
+                  style={{ filter: "drop-shadow(0 0 1px rgba(0,71,204,0.7))" }}
                 />
               </g>
             ))}
 
             {/* Motorcycle traveling the trail */}
             <g className="yrc-bd-bike" style={{ opacity: 0.75 }}>
-              <g transform="translate(-7,-7)">
-                <svg x="0" y="0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <g transform="translate(-0.7,-0.7)">
+                <svg x="0" y="0" width="1.4" height="1.4" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <circle cx="5.5" cy="16.5" r="3.5" />
                   <circle cx="18.5" cy="16.5" r="3.5" />
                   <path d="M5.5 16.5h6l3-6h-4" />
@@ -201,7 +170,7 @@ export function BangladeshMap({
               </g>
             </g>
 
-            {/* Main red branch dots (rendered last so on top) */}
+            {/* Main red branch dots */}
             {MAIN.map((m, i) => (
               <g
                 key={m.id}
@@ -219,19 +188,19 @@ export function BangladeshMap({
                 <circle
                   cx={m.cx}
                   cy={m.cy}
-                  r={5.5}
+                  r={0.6}
                   fill="#e60012"
                   stroke="#ffffff"
-                  strokeWidth={1.5}
-                  style={{ filter: "drop-shadow(0 0 8px rgba(230,0,18,0.9))" }}
+                  strokeWidth={0.15}
+                  style={{ filter: "drop-shadow(0 0 1px rgba(230,0,18,0.9))" }}
                 />
                 {/* Larger invisible hit area */}
-                <circle cx={m.cx} cy={m.cy} r={14} fill="transparent" />
+                <circle cx={m.cx} cy={m.cy} r={1.5} fill="transparent" />
               </g>
             ))}
           </svg>
 
-          {/* Tooltips — positioned in map percentage space */}
+          {/* Tooltips — positioned dynamically based on 1450-1500 / 400-450 grid percentages */}
           {MAIN.map((m) => {
             const active = hover === m.id;
             return (
@@ -240,8 +209,8 @@ export function BangladeshMap({
                 aria-hidden={!active}
                 className="pointer-events-none absolute"
                 style={{
-                  left: `${(m.cx / 400) * 100}%`,
-                  top: `${(m.cy / 500) * 100}%`,
+                  left: `${((m.cx - 1450) / 50) * 100}%`,
+                  top: `${((m.cy - 400) / 50) * 100}%`,
                   transform: `translate(-50%, calc(-100% - 14px)) translateY(${active ? 0 : 5}px)`,
                   opacity: active ? 1 : 0,
                   transition: "opacity 200ms ease, transform 200ms ease",
