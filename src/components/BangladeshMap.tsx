@@ -1,8 +1,43 @@
 import { useState } from "react";
 
-// A high-fidelity, curved outline of Bangladesh including sub-paths for major delta islands
+// Highly detailed, geographically accurate Bezier-curve outline of Bangladesh
+// including sub-paths for major southern delta islands (Hatiya, Bhola, Sandwip)
 const BD_OUTLINE =
-  "M 150 35 C 135 45, 125 55, 115 75 C 105 95, 95 105, 80 115 C 65 125, 55 140, 60 160 C 65 180, 50 190, 55 210 C 60 230, 45 250, 45 270 C 45 290, 55 310, 50 330 C 45 350, 35 370, 50 385 C 65 400, 75 390, 85 395 C 90 400, 95 410, 105 405 C 115 400, 120 415, 130 410 C 140 405, 145 420, 155 415 C 165 410, 175 425, 185 415 C 190 405, 195 425, 205 420 C 208 418, 212 422, 218 415 C 224 408, 222 398, 225 390 C 228 380, 235 375, 240 370 C 248 375, 255 385, 258 395 C 262 405, 268 412, 275 418 C 280 422, 285 425, 290 420 C 295 415, 292 405, 288 398 C 285 392, 288 385, 292 380 C 298 375, 305 385, 310 395 C 315 405, 320 420, 325 435 C 335 450, 345 465, 340 475 C 338 480, 332 485, 325 480 C 318 475, 315 460, 312 445 C 310 430, 315 410, 310 395 C 305 380, 325 365, 330 340 C 335 315, 330 295, 340 280 C 350 265, 335 245, 335 230 C 335 215, 320 200, 315 185 C 310 170, 300 155, 305 140 C 310 125, 325 115, 330 100 C 335 85, 330 70, 320 60 C 310 50, 295 65, 280 60 C 265 55, 250 70, 235 65 C 220 60, 205 50, 190 55 C 175 60, 160 50, 150 35 Z M 215 370 C 218 370, 222 380, 222 390 C 222 400, 218 410, 215 410 C 212 410, 210 400, 210 390 C 210 380, 212 370, 215 370 Z M 235 385 C 238 385, 240 395, 238 405 C 236 415, 232 415, 230 405 C 228 395, 232 385, 235 385 Z M 262 375 C 265 375, 266 380, 264 388 C 262 393, 259 393, 258 388 C 257 383, 259 375, 262 375 Z M 318 415 C 321 415, 322 422, 320 430 C 318 435, 314 435, 313 428 C 312 420, 315 415, 318 415 Z";
+  "M 160 40 " +
+  "C 150 50, 140 60, 135 70 " +
+  "C 150 65, 170 60, 190 55 " +
+  "C 200 52, 215 58, 225 65 " +
+  "C 230 80, 245 85, 255 90 " +
+  "C 270 85, 285 80, 295 90 " +
+  "C 305 100, 315 110, 310 120 " +
+  "C 300 135, 290 145, 285 155 " +
+  "C 280 180, 275 200, 275 220 " +
+  "C 285 240, 295 260, 305 280 " +
+  "C 315 295, 325 315, 320 340 " +
+  "C 310 365, 315 390, 320 420 " +
+  "C 322 435, 320 445, 318 450 " +
+  "C 310 440, 300 420, 295 400 " +
+  "C 290 380, 285 365, 280 350 " +
+  "C 270 350, 260 360, 250 365 " +
+  "C 230 365, 220 370, 210 375 " +
+  "C 200 378, 195 385, 190 380 " +
+  "C 185 375, 180 382, 175 380 " +
+  "C 170 378, 165 385, 160 380 " +
+  "C 155 375, 150 382, 145 380 " +
+  "C 140 378, 135 385, 130 380 " +
+  "C 125 365, 120 350, 115 330 " +
+  "C 112 310, 108 290, 105 270 " +
+  "C 95 250, 85 235, 75 220 " +
+  "C 70 210, 75 195, 85 190 " +
+  "C 100 170, 110 150, 115 130 " +
+  "C 120 110, 130 90, 145 70 " +
+  "C 150 55, 155 45, 160 40 Z " +
+  // Hatiya Island
+  "M 265 375 C 270 380, 268 390, 262 390 C 258 385, 260 378, 265 375 Z " +
+  // Bhola Island
+  "M 245 365 C 250 375, 248 390, 242 390 C 238 380, 240 370, 245 365 Z " +
+  // Sandwip Island
+  "M 282 355 C 285 360, 283 368, 279 368 C 276 362, 278 357, 282 355 Z";
 
 type MainBranch = {
   id: "dhaka" | "chittagong" | "sylhet";
@@ -19,14 +54,14 @@ const MAIN: MainBranch[] = [
 ];
 
 const DECOR = [
-  { name: "Rajshahi", cx: 78, cy: 189, delay: 0 },
-  { name: "Khulna", cx: 139, cy: 296, delay: 0.3 },
-  { name: "Barisal", cx: 191, cy: 306, delay: 0.6 },
-  { name: "Rangpur", cx: 120, cy: 93, delay: 0.9 },
-  { name: "Mymensingh", cx: 194, cy: 163, delay: 1.2 },
-  { name: "Comilla", cx: 244, cy: 253, delay: 1.5 },
-  { name: "Cox's Bazar", cx: 296, cy: 395, delay: 1.8 },
-  { name: "Jessore", cx: 117, cy: 273, delay: 0.15 },
+  { name: "Rajshahi", cx: 100, cy: 210, delay: 0 },
+  { name: "Khulna", cx: 150, cy: 330, delay: 0.3 },
+  { name: "Barisal", cx: 210, cy: 340, delay: 0.6 },
+  { name: "Rangpur", cx: 150, cy: 100, delay: 0.9 },
+  { name: "Mymensingh", cx: 200, cy: 150, delay: 1.2 },
+  { name: "Comilla", cx: 250, cy: 250, delay: 1.5 },
+  { name: "Cox's Bazar", cx: 305, cy: 400, delay: 1.8 },
+  { name: "Jessore", cx: 120, cy: 300, delay: 0.15 },
 ];
 
 // Curved trail Dhaka → Chittagong → Sylhet → Dhaka
@@ -114,12 +149,12 @@ export function BangladeshMap({
               className="yrc-bd-path"
               d={BD_OUTLINE}
               pathLength={1}
-              fill="#250508" // Deep crimson silhouette background
-              stroke="#e60012" // Glowing YRC Crimson Red border line
+              fill="#180407" // Premium dark crimson body
+              stroke="#e60012" // Vibrant glowing border line
               strokeWidth={1.5}
               strokeLinejoin="round"
               style={{
-                filter: "drop-shadow(0 0 6px rgba(230, 0, 18, 0.45))"
+                filter: "drop-shadow(0 0 6px rgba(230, 0, 18, 0.6))"
               }}
             />
 
