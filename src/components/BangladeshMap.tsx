@@ -1,7 +1,8 @@
 import { useState } from "react";
 
+// A high-fidelity, curved outline of Bangladesh including sub-paths for major delta islands
 const BD_OUTLINE =
-  "M100,55 L180,45 L220,55 L260,80 L290,70 L340,85 L330,120 L300,140 L315,180 L340,210 L320,240 L340,280 L335,320 L320,340 L335,380 L320,420 L305,460 L285,470 L240,445 L200,455 L160,435 L120,425 L90,405 L55,380 L40,340 L55,300 L45,255 L60,220 L45,185 L65,150 L55,120 L80,90 Z";
+  "M 150 35 C 135 45, 125 55, 115 75 C 105 95, 95 105, 80 115 C 65 125, 55 140, 60 160 C 65 180, 50 190, 55 210 C 60 230, 45 250, 45 270 C 45 290, 55 310, 50 330 C 45 350, 35 370, 50 385 C 65 400, 75 390, 85 395 C 90 400, 95 410, 105 405 C 115 400, 120 415, 130 410 C 140 405, 145 420, 155 415 C 165 410, 175 425, 185 415 C 190 405, 195 425, 205 420 C 208 418, 212 422, 218 415 C 224 408, 222 398, 225 390 C 228 380, 235 375, 240 370 C 248 375, 255 385, 258 395 C 262 405, 268 412, 275 418 C 280 422, 285 425, 290 420 C 295 415, 292 405, 288 398 C 285 392, 288 385, 292 380 C 298 375, 305 385, 310 395 C 315 405, 320 420, 325 435 C 335 450, 345 465, 340 475 C 338 480, 332 485, 325 480 C 318 475, 315 460, 312 445 C 310 430, 315 410, 310 395 C 305 380, 325 365, 330 340 C 335 315, 330 295, 340 280 C 350 265, 335 245, 335 230 C 335 215, 320 200, 315 185 C 310 170, 300 155, 305 140 C 310 125, 325 115, 330 100 C 335 85, 330 70, 320 60 C 310 50, 295 65, 280 60 C 265 55, 250 70, 235 65 C 220 60, 205 50, 190 55 C 175 60, 160 50, 150 35 Z M 215 370 C 218 370, 222 380, 222 390 C 222 400, 218 410, 215 410 C 212 410, 210 400, 210 390 C 210 380, 212 370, 215 370 Z M 235 385 C 238 385, 240 395, 238 405 C 236 415, 232 415, 230 405 C 228 395, 232 385, 235 385 Z M 262 375 C 265 375, 266 380, 264 388 C 262 393, 259 393, 258 388 C 257 383, 259 375, 262 375 Z M 318 415 C 321 415, 322 422, 320 430 C 318 435, 314 435, 313 428 C 312 420, 315 415, 318 415 Z";
 
 type MainBranch = {
   id: "dhaka" | "chittagong" | "sylhet";
@@ -108,15 +109,18 @@ export function BangladeshMap({
               </filter>
             </defs>
 
-            {/* Country outline */}
+            {/* Country outline with updated detailed path and premium glowing border style */}
             <path
               className="yrc-bd-path"
               d={BD_OUTLINE}
               pathLength={1}
-              fill="#041225"
-              stroke="#003087"
-              strokeWidth={2}
+              fill="#250508" // Deep crimson silhouette background
+              stroke="#e60012" // Glowing YRC Crimson Red border line
+              strokeWidth={1.5}
               strokeLinejoin="round"
+              style={{
+                filter: "drop-shadow(0 0 6px rgba(230, 0, 18, 0.45))"
+              }}
             />
 
             {/* Trail connecting three main cities */}
@@ -124,8 +128,8 @@ export function BangladeshMap({
               className="yrc-bd-trail"
               d={BIKE_PATH}
               fill="none"
-              stroke="#003087"
-              strokeOpacity={0.2}
+              stroke="#0047cc"
+              strokeOpacity={0.4}
               strokeWidth={1.5}
             />
 
