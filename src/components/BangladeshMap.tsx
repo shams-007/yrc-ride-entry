@@ -1,44 +1,34 @@
 import { useState } from "react";
 
-// Geographically precise, unrotated, smooth outline of Bangladesh
-// based on official Wikipedia divisions map with no tilt or blocky lines
+// Standard upright outline of Bangladesh matching the silhouette exactly
 const BD_OUTLINE =
-  "M 342 438 " +
-  "C 335 445, 328 448, 322 450 " +
-  "C 307 443, 292 435, 277 428 " +
-  "C 272 420, 268 412, 263 406 " +
-  "C 252 398, 242 390, 231 382 " +
-  "C 221 373, 211 365, 201 357 " +
-  "C 197 341, 194 325, 191 309 " + // Coastline
-  "C 185 315, 179 322, 173 328 " + // Sundarbans coastline
-  "C 163 327, 154 326, 145 325 " + // Sundarbans delta
-  "C 139 311, 133 298, 127 285 " +
-  "C 116 270, 105 256, 95 242 " +
-  "C 88 243, 81 244, 75 245 " + // Rajshahi westernmost bulge
-  "C 71 232, 68 219, 65 207 " +
-  "C 69 200, 74 193, 79 186 " +
-  "C 81 172, 84 158, 87 145 " + // Dinajpur western border
-  "C 101 128, 115 111, 129 94 " +
-  "C 131 85, 134 76, 137 67 " + // Panchagarh west border
-  "C 127 67, 117 67, 107 67 " + // Panchagarh tip western corner
-  "C 109 55, 111 40, 113 30 " + // Panchagarh extreme northern tip (12 o'clock)
-  "C 120 40, 130 50, 137 56 " + // Panchagarh eastern slope
-  "C 160 80, 180 100, 203 132 " + // Mymensingh/Rangpur boundary
-  "C 215 130, 225 128, 238 129 " + // Sylhet northwest border
-  "C 225 110, 215 100, 209 88 " +
-  "C 212 82, 215 76, 217 72 " +
-  "C 225 78, 235 84, 242 88 " + // Sylhet northern border
-  "C 250 105, 255 125, 258 140 " + // Sylhet easternmost bulge
-  "C 275 155, 290 170, 300 183 " + // Comilla indentation
-  "C 315 185, 330 188, 340 191 " + // Tripura boundary bulge
-  "C 342 185, 344 178, 346 172 " +
-  "C 342 165, 340 158, 338 153 " +
-  "C 344 149, 350 145, 356 142 " + // Chittagong Hill tracts east bulge
-  "C 362 153, 368 165, 374 177 " +
-  "C 378 198, 382 218, 384 239 " +
-  "C 384 267, 384 295, 384 323 " + // Cox's Bazar coastline heading down
-  "C 378 335, 372 348, 368 360 " +
-  "C 358 386, 350 412, 342 438 Z " +
+  "M 210 30 " +
+  "C 195 40, 180 50, 175 60 " +
+  "C 165 70, 155 85, 150 100 " +
+  "C 135 125, 115 150, 100 180 " +
+  "C 90 200, 80 215, 80 225 " + // Western Rajshahi bulge
+  "C 82 235, 95 245, 110 255 " +
+  "C 115 270, 120 285, 122 300 " +
+  "C 125 320, 130 340, 135 360 " + // Satkhira southwest border
+  "C 150 365, 160 362, 170 365 " + // Sundarbans coast
+  "C 180 368, 190 360, 200 365 " +
+  "C 210 368, 220 362, 230 365 " +
+  "C 245 368, 255 362, 260 370 " + // Meghna Estuary
+  "C 275 380, 290 395, 305 410 " + // Chittagong coast
+  "C 315 425, 320 440, 325 455 " + // Cox's Bazar beaches
+  "C 328 462, 330 465, 330 465 " + // Teknaf peninsula southernmost tip
+  "C 328 450, 325 430, 322 410 " +
+  "C 320 390, 322 370, 325 350 " +
+  "C 330 330, 335 310, 340 290 " + // Chittagong Hill Tracts east border
+  "C 335 270, 320 255, 310 245 " +
+  "C 305 235, 300 220, 298 210 " + // Indentation at Comilla
+  "C 310 200, 325 190, 340 180 " +
+  "C 350 175, 355 165, 350 155 " + // Sylhet eastern bulge
+  "C 340 145, 325 145, 310 145 " + // Horizontally flat Sylhet north border
+  "C 290 145, 270 145, 255 145 " + // Horizontally flat Mymensingh north border
+  "C 240 140, 225 135, 210 130 " +
+  "C 195 110, 185 85, 175 70 " +
+  "C 165 55, 160 45, 160 40 Z " + // Reconnect back to Panchagarh
   // Smooth Hatiya Island
   "M 270 385 C 275 390, 273 398, 267 398 C 263 393, 265 386, 270 385 Z " +
   // Smooth Bhola Island
@@ -54,7 +44,7 @@ type MainBranch = {
   cy: number;
 };
 
-// Branch pins aligned precisely with the updated, unrotated layout
+// Realigned dots to match the upright map space
 const MAIN: MainBranch[] = [
   { id: "dhaka", name: "🏍 DHAKA CENTRAL", coord: "Managed by Aminul Islam", cx: 215, cy: 247 },
   { id: "chittagong", name: "🏍 CHITTAGONG HUB", coord: "Led by Mohammad Sajid", cx: 305, cy: 370 },
@@ -72,7 +62,7 @@ const DECOR = [
   { name: "Jessore", cx: 135, cy: 290, delay: 0.15 },
 ];
 
-// Re-anchored trail Dhaka → Chittagong → Sylhet → Dhaka.
+// Re-aligned animated trail
 const BIKE_PATH =
   "M215,247 Q280,310 305,370 Q340,250 310,135 Q250,180 215,247";
 
@@ -89,7 +79,7 @@ export function BangladeshMap({
     <div
       className="relative w-full h-full overflow-visible"
       style={{
-        background: "transparent", // Clean borderless layout
+        background: "transparent", // Clean seamless background float
         height: height,
       }}
     >
@@ -150,13 +140,13 @@ export function BangladeshMap({
               </filter>
             </defs>
 
-            {/* Smooth, accurate Wikipedia-derived outline in official Yamaha Navy Blue */}
+            {/* Premium, geographically accurate outline in Yamaha Blue */}
             <path
               className="yrc-bd-path"
               d={BD_OUTLINE}
               pathLength={1}
-              fill="#003087" // Authentic Yamaha Navy Blue website theme color
-              stroke="#0047cc" // Glowing Yamaha Accent Blue border
+              fill="#003087" // Yamaha Navy Blue Website Theme Color
+              stroke="#0047cc" // Glowing Accent Blue
               strokeWidth={1.75}
               strokeLinejoin="round"
               style={{
