@@ -1,42 +1,43 @@
 import { useState } from "react";
 
-// Geographically corrected, upright, high-fidelity outline of Bangladesh
-// based on your silhouette with the northern borders horizontally aligned (no tilt)
-const BD_OUTLINE = 
-  "M 175 40 " + // Panchagarh (Northern Tip)
-  "C 165 45, 150 55, 140 65 " + // Dinajpur western curve
-  "C 120 70, 110 80, 105 100 " + // Dinajpur westernmost block
-  "C 107 120, 110 135, 112 150 " + 
-  "C 100 170, 85 190, 80 210 " + // Rajshahi western bulge
-  "C 82 225, 90 235, 100 245 " + 
-  "C 105 260, 110 275, 112 290 " + // Kushtia / Jessore border
-  "C 115 310, 120 325, 125 340 " + // Satkhira border
-  "C 130 355, 135 365, 140 370 " + // Sundarbans coast start
-  "C 150 372, 160 370, 170 370 " + // Sundarbans channels (horizontal)
-  "C 180 370, 190 372, 200 370 " +
-  "C 210 368, 220 365, 230 360 " + // Patuakhali / Barisal coast
-  "C 240 358, 250 355, 260 365 " + // Meghna Estuary mouth
-  "C 270 370, 280 380, 290 395 " + // Chittagong coastline heading southeast
-  "C 300 410, 310 425, 320 445 " + // Cox's Bazar coastline
-  "C 325 452, 328 455, 330 455 " + // Southern Teknaf Peninsula tip
-  "C 328 440, 325 420, 322 400 " + 
-  "C 320 380, 322 360, 325 340 " + // Chittagong coastal range
-  "C 330 320, 335 300, 340 280 " + // Chittagong Hill Tracts east bulge
-  "C 345 260, 342 240, 338 220 " + 
-  "C 325 210, 310 200, 298 190 " + // Tripura/Comilla indentation
-  "C 295 175, 295 160, 298 145 " + 
-  "C 310 135, 325 125, 340 115 " + // Sylhet southern corner
-  "C 350 110, 355 100, 350 90 " + // Sylhet easternmost bulge
-  "C 340 85, 325 85, 310 85 " + // Flat Sylhet Northern Border (realigned to fix tilt)
-  "C 290 85, 270 85, 255 85 " + // Flat Mymensingh Northern Border
-  "C 240 80, 225 75, 210 70 " + // Kurigram border corner
-  "C 195 60, 185 50, 175 40 Z " + // Reconnect beautifully to Panchagarh
-  // Hatiya Island
-  "M 270 385 C 275 390, 273 398, 267 398 C 263 393, 265 386, 270 385 Z " +
-  // Bhola Island
-  "M 248 375 C 253 385, 251 398, 245 398 C 241 388, 243 378, 248 375 Z " +
-  // Sandwip Island
-  "M 285 365 C 288 370, 286 376, 282 376 C 279 370, 281 366, 285 365 Z";
+// Geographically accurate linear coordinate map of Bangladesh (Zero Bezier bloating)
+const BD_OUTLINE =
+  "M 390 390 " +
+  "l -56.25 -126.25 " +
+  "l -18.75 1.25 " +
+  "l -2.5 50 " +
+  "l -43.75 -41.25 " +
+  "l 13.75 -45 " +
+  "l 30 -5 " +
+  "l 20 -66.25 " +
+  "l -42.5 -13.75 " +
+  "l -62.5 1.25 " +
+  "l -67.5 -11.25 " +
+  "l -15 -55 " +
+  "l -33.75 -5 " +
+  "l -60 -33.75 " +
+  "l -15 53.75 " +
+  "l 57.5 42.5 " +
+  "l -38.75 30 " +
+  "l -10 28.75 " +
+  "l 46.25 21.25 " +
+  "l -5 47.5 " +
+  "l 32.5 60 " +
+  "l 20 65 " +
+  "l 27.5 7.5 " +
+  "l 21.25 8.75 " +
+  "l 7.5 -15 " +
+  "l 31.25 16.25 " +
+  "l 16.25 -43.75 " +
+  "l -11.25 -32.5 " +
+  "l 63.75 2.5 " +
+  "l 35 46.25 " +
+  "l 18.75 38.75 " +
+  "l 10 40 " +
+  "l 25 41.25 " +
+  "l -13.75 -63.75 " +
+  "l 26.25 12.5 " +
+  "l -6.25 -57.5 Z";
 
 type MainBranch = {
   id: "dhaka" | "chittagong" | "sylhet";
@@ -78,9 +79,9 @@ export function BangladeshMap({
 
   return (
     <div
-      className="relative w-full h-full overflow-visible"
+      className="relative w-full h-full overflow-visible animate-fade-in"
       style={{
-        background: "transparent", // No background, completely transparent
+        background: "transparent", // Background completely transparent
         height: height,
       }}
     >
@@ -141,17 +142,17 @@ export function BangladeshMap({
               </filter>
             </defs>
 
-            {/* Geographically accurate, unrotated map shape using official Yamaha Navy Blue */}
+            {/* Geographically precise linear outline styled in authentic Yamaha Navy Blue */}
             <path
               className="yrc-bd-path"
               d={BD_OUTLINE}
               pathLength={1}
-              fill="#003087" // Authentic Yamaha Blue
+              fill="#003087" // Official Yamaha website theme color
               stroke="#0047cc" // Glowing Yamaha Accent Blue
               strokeWidth={1.75}
               strokeLinejoin="round"
               style={{
-                filter: "drop-shadow(0 0 8px rgba(0, 71, 204, 0.75))"
+                filter: "drop-shadow(0 0 8px rgba(0, 71, 204, 0.6))"
               }}
             />
 
