@@ -91,7 +91,7 @@ export function BangladeshMap({
       <div className="relative flex h-full w-full flex-col">
         <div className="relative flex-1">
           <svg
-            viewBox="0 0 400 500"
+            viewBox="0 0 450 480"
             width="100%"
             height="100%"
             preserveAspectRatio="xMidYMid meet"
