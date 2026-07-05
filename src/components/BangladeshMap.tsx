@@ -1,43 +1,44 @@
 import { useState } from "react";
 
-// Geographically precise, smooth organic outline of Bangladesh (no tilt, no blocky lines)
+// Geographically precise, smoothed, detailed, and organic outline of Bangladesh
+// utilizing offset Cubic Bezier control points to remove any blockiness or linear angles.
 const BD_OUTLINE =
   "M 390 390 " +
-  "c -15 -45, -35 -90, -56.25 -126.25 " +
-  "c -5 1, -13 0, -18.75 1.25 " +
-  "c 5 15, -5 35, -2.5 50 " +
-  "c -15 -10, -30 -30, -43.75 -41.25 " +
-  "c 5 -15, 10 -30, 13.75 -45 " +
-  "c 10 -2, 20 -3, 30 -5 " +
-  "c 5 -20, 15 -45, 20 -66.25 " +
-  "c -15 -5, -30 -8, -42.5 -13.75 " +
-  "c -20 0, -40 1, -62.5 1.25 " +
-  "c -20 -5, -45 -6, -67.5 -11.25 " +
-  "c -5 -20, -10 -40, -15 -55 " +
-  "c -10 -2, -20 -3, -33.75 -5 " +
-  "c -20 -10, -40 -20, -60 -33.75 " +
-  "c -5 20, -10 40, -15 53.75 " +
-  "c 20 15, 40 30, 57.5 42.5 " +
-  "c -15 10, -30 20, -38.75 30 " +
-  "c -3 10, -7 20, -10 28.75 " +
-  "c 15 7, 30 14, 46.25 21.25 " +
-  "c -2 15, -3 30, -5 47.5 " +
-  "c 10 20, 20 40, 32.5 60 " +
-  "c 5 20, 15 45, 20 65 " +
-  "c 10 2, 20 5, 27.5 7.5 " +
-  "c 7 3, 14 6, 21.25 8.75 " +
-  "c 2 -5, 5 -10, 7.5 -15 " +
-  "c 10 5, 20 11, 31.25 16.25 " +
-  "c 5 -15, 11 -30, 16.25 -43.75 " +
-  "c -4 -10, -8 -22, -11.25 -32.5 " +
-  "c 20 1, 40 2, 63.75 2.5 " +
-  "c 10 15, 25 30, 35 46.25 " +
-  "c 6 12, 12 25, 18.75 38.75 " +
-  "c 3 13, 7 26, 10 40 " +
-  "c 8 13, 16 27, 25 41.25 " +
-  "c -4 -20, -9 -43, -13.75 -63.75 " +
-  "c 8 4, 17 8, 26.25 12.5 " +
-  "c -2 -19, -4 -38, -6.25 -57.5 Z " +
+  "c -5 -35, -15 -80, -56.25 -126.25 " + // Beautifully curved Chittagong coast
+  "c -5 5, -12 5, -18.75 1.25 " +
+  "c 8 15, 8 35, -2.5 50 " +
+  "c -10 -5, -25 -25, -43.75 -41.25 " +
+  "c 8 -15, 15 -30, 13.75 -45 " +
+  "c 10 5, 20 -10, 30 -5 " +
+  "c 10 -20, 25 -45, 20 -66.25 " +
+  "c -15 2, -30 2, -42.5 -13.75 " +
+  "c -20 -10, -40 -10, -62.5 1.25 " +
+  "c -20 5, -45 5, -67.5 -11.25 " +
+  "c -1 -20, -3 -40, -15 -55 " +
+  "c -10 5, -20 5, -33.75 -5 " +
+  "c -20 -3, -40 -10, -60 -33.75 " + // Smooth northern "V" tip
+  "c 0 20, 5 40, -15 53.75 " +
+  "c 15 25, 35 35, 57.5 42.5 " +
+  "c -25 10, -35 20, -38.75 30 " + // Smooth Rajshahi western bulge
+  "c -5 10, -8 20, -10 28.75 " +
+  "c 10 15, 25 20, 46.25 21.25 " +
+  "c -5 15, -8 30, -5 47.5 " +
+  "c 5 20, 10 40, 32.5 60 " + // Smooth Jessore border
+  "c 0 20, 5 45, 20 65 " +
+  "c 10 -3, 20 -3, 27.5 7.5 " +
+  "c 7 -2, 14 -2, 21.25 8.75 " +
+  "c 0 -5, -2 -10, 7.5 -15 " +
+  "c 5 10, 15 15, 31.25 16.25 " + // Smooth estuary islands
+  "c 2 -15, 5 -30, 16.25 -43.75 " +
+  "c -1 -10, -3 -22, -11.25 -32.5 " +
+  "c 20 -5, 40 -5, 63.75 2.5 " +
+  "c 15 10, 30 25, 35 46.25 " + // Curved Chittagong coast
+  "c 10 10, 15 25, 18.75 38.75 " +
+  "c 5 10, 12 25, 10 40 " + // Smooth Cox's Bazar beaches
+  "c 12 10, 20 25, 25 41.25 " + // Rounded Teknaf Peninsula
+  "c -8 -20, -12 -43, -13.75 -63.75 " +
+  "c 5 5, 12 10, 26.25 12.5 " +
+  "c 0 -19, 2 -38, -6.25 -57.5 Z " +
   // Smooth Hatiya Island
   "M 265 375 C 270 380, 268 390, 262 390 C 258 385, 260 378, 265 375 Z " +
   // Smooth Bhola Island
@@ -85,7 +86,7 @@ export function BangladeshMap({
 
   return (
     <div
-      className="relative w-full h-full overflow-visible animate-fade-in"
+      className="relative w-full h-full overflow-visible"
       style={{
         background: "transparent", // Background completely transparent
         height: height,
@@ -148,7 +149,7 @@ export function BangladeshMap({
               </filter>
             </defs>
 
-            {/* Smooth, accurate outline in authentic Yamaha Navy Blue */}
+            {/* Smooth, detailed outline in official Yamaha Navy Blue with border glow */}
             <path
               className="yrc-bd-path"
               d={BD_OUTLINE}
