@@ -1,43 +1,49 @@
 import { useState } from "react";
 
-// Geographically accurate linear coordinate map of Bangladesh (Zero Bezier bloating)
+// Geographically precise, smooth organic outline of Bangladesh (no tilt, no blocky lines)
 const BD_OUTLINE =
   "M 390 390 " +
-  "l -56.25 -126.25 " +
-  "l -18.75 1.25 " +
-  "l -2.5 50 " +
-  "l -43.75 -41.25 " +
-  "l 13.75 -45 " +
-  "l 30 -5 " +
-  "l 20 -66.25 " +
-  "l -42.5 -13.75 " +
-  "l -62.5 1.25 " +
-  "l -67.5 -11.25 " +
-  "l -15 -55 " +
-  "l -33.75 -5 " +
-  "l -60 -33.75 " +
-  "l -15 53.75 " +
-  "l 57.5 42.5 " +
-  "l -38.75 30 " +
-  "l -10 28.75 " +
-  "l 46.25 21.25 " +
-  "l -5 47.5 " +
-  "l 32.5 60 " +
-  "l 20 65 " +
-  "l 27.5 7.5 " +
-  "l 21.25 8.75 " +
-  "l 7.5 -15 " +
-  "l 31.25 16.25 " +
-  "l 16.25 -43.75 " +
-  "l -11.25 -32.5 " +
-  "l 63.75 2.5 " +
-  "l 35 46.25 " +
-  "l 18.75 38.75 " +
-  "l 10 40 " +
-  "l 25 41.25 " +
-  "l -13.75 -63.75 " +
-  "l 26.25 12.5 " +
-  "l -6.25 -57.5 Z";
+  "c -15 -45, -35 -90, -56.25 -126.25 " +
+  "c -5 1, -13 0, -18.75 1.25 " +
+  "c 5 15, -5 35, -2.5 50 " +
+  "c -15 -10, -30 -30, -43.75 -41.25 " +
+  "c 5 -15, 10 -30, 13.75 -45 " +
+  "c 10 -2, 20 -3, 30 -5 " +
+  "c 5 -20, 15 -45, 20 -66.25 " +
+  "c -15 -5, -30 -8, -42.5 -13.75 " +
+  "c -20 0, -40 1, -62.5 1.25 " +
+  "c -20 -5, -45 -6, -67.5 -11.25 " +
+  "c -5 -20, -10 -40, -15 -55 " +
+  "c -10 -2, -20 -3, -33.75 -5 " +
+  "c -20 -10, -40 -20, -60 -33.75 " +
+  "c -5 20, -10 40, -15 53.75 " +
+  "c 20 15, 40 30, 57.5 42.5 " +
+  "c -15 10, -30 20, -38.75 30 " +
+  "c -3 10, -7 20, -10 28.75 " +
+  "c 15 7, 30 14, 46.25 21.25 " +
+  "c -2 15, -3 30, -5 47.5 " +
+  "c 10 20, 20 40, 32.5 60 " +
+  "c 5 20, 15 45, 20 65 " +
+  "c 10 2, 20 5, 27.5 7.5 " +
+  "c 7 3, 14 6, 21.25 8.75 " +
+  "c 2 -5, 5 -10, 7.5 -15 " +
+  "c 10 5, 20 11, 31.25 16.25 " +
+  "c 5 -15, 11 -30, 16.25 -43.75 " +
+  "c -4 -10, -8 -22, -11.25 -32.5 " +
+  "c 20 1, 40 2, 63.75 2.5 " +
+  "c 10 15, 25 30, 35 46.25 " +
+  "c 6 12, 12 25, 18.75 38.75 " +
+  "c 3 13, 7 26, 10 40 " +
+  "c 8 13, 16 27, 25 41.25 " +
+  "c -4 -20, -9 -43, -13.75 -63.75 " +
+  "c 8 4, 17 8, 26.25 12.5 " +
+  "c -2 -19, -4 -38, -6.25 -57.5 Z " +
+  // Smooth Hatiya Island
+  "M 265 375 C 270 380, 268 390, 262 390 C 258 385, 260 378, 265 375 Z " +
+  // Smooth Bhola Island
+  "M 248 375 C 253 385, 251 398, 245 398 C 241 388, 243 378, 248 375 Z " +
+  // Smooth Sandwip Island
+  "M 285 365 C 288 370, 286 376, 282 376 C 279 370, 281 366, 285 365 Z";
 
 type MainBranch = {
   id: "dhaka" | "chittagong" | "sylhet";
@@ -142,17 +148,17 @@ export function BangladeshMap({
               </filter>
             </defs>
 
-            {/* Geographically precise linear outline styled in authentic Yamaha Navy Blue */}
+            {/* Smooth, accurate outline in authentic Yamaha Navy Blue */}
             <path
               className="yrc-bd-path"
               d={BD_OUTLINE}
               pathLength={1}
               fill="#003087" // Official Yamaha website theme color
-              stroke="#0047cc" // Glowing Yamaha Accent Blue
+              stroke="#0047cc" // Glowing Yamaha Accent Blue border
               strokeWidth={1.75}
               strokeLinejoin="round"
               style={{
-                filter: "drop-shadow(0 0 8px rgba(0, 71, 204, 0.6))"
+                filter: "drop-shadow(0 0 8px rgba(0, 71, 204, 0.55))"
               }}
             />
 
