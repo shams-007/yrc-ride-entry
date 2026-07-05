@@ -2,7 +2,7 @@ import { useCountUp } from "@/hooks/useCountUp";
 import { useSectionReveal } from "@/hooks/useSectionReveal";
 
 const STATS = [
-  { value: 472000, suffix: "+", label: "COMMUNITY MEMBERS" },
+  { value: 479000, suffix: "+", label: "COMMUNITY MEMBERS" },
   { value: 47, suffix: "", label: "REGIONAL BRANCHES" },
   { value: 70000, suffix: "+", label: "ACTIVE ENGAGERS" },
   { value: 200, suffix: "", label: "SPEED BREAKERS PAINTED" },
