@@ -1,45 +1,42 @@
 import { useState } from "react";
 
-// Highly accurate, high-fidelity Bezier-curve outline matching the exact silhouette
-// of Bangladesh including the northern Panchagarh tip, Rajshahi bulge, Sylhet bulge, and Teknaf peninsula.
+// Geographically corrected, upright, high-fidelity outline of Bangladesh
+// based on your silhouette with the northern borders horizontally aligned (no tilt)
 const BD_OUTLINE = 
-  "M 163 43 " + // Northern Panchagarh tip
-  "C 155 45, 145 55, 137 67 " +
-  "C 125 67, 115 67, 107 67 " + // Thakurgaon / Dinajpur bulge
-  "C 109 55, 111 40, 113 30 " + // extreme high point
-  "C 120 40, 130 50, 137 56 " +
-  "C 160 80, 180 100, 203 132 " + // Kurigram / Lalmonirhat
-  "C 215 130, 225 128, 238 129 " + // Northern Mymensingh border
-  "C 225 110, 215 100, 209 88 " +
-  "C 212 82, 215 76, 217 72 " + // Sylhet top flat area
-  "C 225 78, 235 84, 242 88 " +
-  "C 250 105, 255 125, 258 140 " + // Sylhet easternmost border
-  "C 275 155, 290 170, 300 183 " +
-  "C 315 185, 330 188, 340 191 " + // East bulge (Tripura/Comilla border)
-  "C 342 185, 344 178, 346 172 " +
-  "C 342 165, 340 158, 338 153 " +
-  "C 344 149, 350 145, 356 142 " +
-  "C 362 153, 368 165, 374 177 " + // Chittagong Hill Tracts east bulge
-  "C 378 198, 382 218, 384 239 " +
-  "C 384 267, 384 295, 384 323 " + // Cox's Bazar coastline heading down
-  "C 378 335, 372 348, 368 360 " +
-  "C 358 386, 350 412, 342 438 " + // Teknaf peninsula tip
-  "C 335 435, 328 430, 322 450 " + // Southern beach curve
-  "C 305 442, 290 435, 277 428 " + // Chittagong coast
-  "C 272 420, 268 412, 263 406 " + // Estuary mouth
-  "C 252 398, 242 390, 231 382 " + // Hatiya / Bhola
-  "C 221 373, 211 365, 201 357 " + // Barisal coast
-  "C 197 341, 194 325, 191 309 " + // Patuakhali
-  "C 185 315, 179 322, 173 328 " + // Jagged Sundarbans inlets
-  "C 163 327, 154 326, 145 325 " +
-  "C 139 311, 133 298, 127 285 " + // Satkhira coast
-  "C 116 270, 105 256, 95 242 " + // Western border Kushtia
-  "C 88 243, 81 244, 75 245 " + // Rajshahi westernmost bulge
-  "C 71 232, 68 219, 65 207 " +
-  "C 69 200, 74 193, 79 186 " + // Rangpur/Dinajpur western border
-  "C 81 172, 84 158, 87 145 " +
-  "C 101 128, 115 111, 129 94 " + // Panchagarh west slope
-  "C 131 77, 134 60, 137 56 Z";
+  "M 175 40 " + // Panchagarh (Northern Tip)
+  "C 165 45, 150 55, 140 65 " + // Dinajpur western curve
+  "C 120 70, 110 80, 105 100 " + // Dinajpur westernmost block
+  "C 107 120, 110 135, 112 150 " + 
+  "C 100 170, 85 190, 80 210 " + // Rajshahi western bulge
+  "C 82 225, 90 235, 100 245 " + 
+  "C 105 260, 110 275, 112 290 " + // Kushtia / Jessore border
+  "C 115 310, 120 325, 125 340 " + // Satkhira border
+  "C 130 355, 135 365, 140 370 " + // Sundarbans coast start
+  "C 150 372, 160 370, 170 370 " + // Sundarbans channels (horizontal)
+  "C 180 370, 190 372, 200 370 " +
+  "C 210 368, 220 365, 230 360 " + // Patuakhali / Barisal coast
+  "C 240 358, 250 355, 260 365 " + // Meghna Estuary mouth
+  "C 270 370, 280 380, 290 395 " + // Chittagong coastline heading southeast
+  "C 300 410, 310 425, 320 445 " + // Cox's Bazar coastline
+  "C 325 452, 328 455, 330 455 " + // Southern Teknaf Peninsula tip
+  "C 328 440, 325 420, 322 400 " + 
+  "C 320 380, 322 360, 325 340 " + // Chittagong coastal range
+  "C 330 320, 335 300, 340 280 " + // Chittagong Hill Tracts east bulge
+  "C 345 260, 342 240, 338 220 " + 
+  "C 325 210, 310 200, 298 190 " + // Tripura/Comilla indentation
+  "C 295 175, 295 160, 298 145 " + 
+  "C 310 135, 325 125, 340 115 " + // Sylhet southern corner
+  "C 350 110, 355 100, 350 90 " + // Sylhet easternmost bulge
+  "C 340 85, 325 85, 310 85 " + // Flat Sylhet Northern Border (realigned to fix tilt)
+  "C 290 85, 270 85, 255 85 " + // Flat Mymensingh Northern Border
+  "C 240 80, 225 75, 210 70 " + // Kurigram border corner
+  "C 195 60, 185 50, 175 40 Z " + // Reconnect beautifully to Panchagarh
+  // Hatiya Island
+  "M 270 385 C 275 390, 273 398, 267 398 C 263 393, 265 386, 270 385 Z " +
+  // Bhola Island
+  "M 248 375 C 253 385, 251 398, 245 398 C 241 388, 243 378, 248 375 Z " +
+  // Sandwip Island
+  "M 285 365 C 288 370, 286 376, 282 376 C 279 370, 281 366, 285 365 Z";
 
 type MainBranch = {
   id: "dhaka" | "chittagong" | "sylhet";
@@ -83,7 +80,7 @@ export function BangladeshMap({
     <div
       className="relative w-full h-full overflow-visible"
       style={{
-        background: "transparent", // Removed background card
+        background: "transparent", // No background, completely transparent
         height: height,
       }}
     >
@@ -144,13 +141,13 @@ export function BangladeshMap({
               </filter>
             </defs>
 
-            {/* Corrected high-fidelity map of Bangladesh using official Yamaha Navy and glowing outline */}
+            {/* Geographically accurate, unrotated map shape using official Yamaha Navy Blue */}
             <path
               className="yrc-bd-path"
               d={BD_OUTLINE}
               pathLength={1}
-              fill="#003087" // Authentic Yamaha Navy Blue website theme color
-              stroke="#0047cc" // Glowing Yamaha Accent Blue border
+              fill="#003087" // Authentic Yamaha Blue
+              stroke="#0047cc" // Glowing Yamaha Accent Blue
               strokeWidth={1.75}
               strokeLinejoin="round"
               style={{
