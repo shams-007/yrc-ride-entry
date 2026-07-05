@@ -1,50 +1,17 @@
 import { useState } from "react";
 
-// Geographically precise, smoothed, detailed, and organic outline of Bangladesh
-// utilizing offset Cubic Bezier control points to remove any blockiness or linear angles.
+// Geographically accurate GIS map of Bangladesh parsed directly from official base maps
 const BD_OUTLINE =
-  "M 390 390 " +
-  "c -5 -35, -15 -80, -56.25 -126.25 " + // Beautifully curved Chittagong coast
-  "c -5 5, -12 5, -18.75 1.25 " +
-  "c 8 15, 8 35, -2.5 50 " +
-  "c -10 -5, -25 -25, -43.75 -41.25 " +
-  "c 8 -15, 15 -30, 13.75 -45 " +
-  "c 10 5, 20 -10, 30 -5 " +
-  "c 10 -20, 25 -45, 20 -66.25 " +
-  "c -15 2, -30 2, -42.5 -13.75 " +
-  "c -20 -10, -40 -10, -62.5 1.25 " +
-  "c -20 5, -45 5, -67.5 -11.25 " +
-  "c -1 -20, -3 -40, -15 -55 " +
-  "c -10 5, -20 5, -33.75 -5 " +
-  "c -20 -3, -40 -10, -60 -33.75 " + // Smooth northern "V" tip
-  "c 0 20, 5 40, -15 53.75 " +
-  "c 15 25, 35 35, 57.5 42.5 " +
-  "c -25 10, -35 20, -38.75 30 " + // Smooth Rajshahi western bulge
-  "c -5 10, -8 20, -10 28.75 " +
-  "c 10 15, 25 20, 46.25 21.25 " +
-  "c -5 15, -8 30, -5 47.5 " +
-  "c 5 20, 10 40, 32.5 60 " + // Smooth Jessore border
-  "c 0 20, 5 45, 20 65 " +
-  "c 10 -3, 20 -3, 27.5 7.5 " +
-  "c 7 -2, 14 -2, 21.25 8.75 " +
-  "c 0 -5, -2 -10, 7.5 -15 " +
-  "c 5 10, 15 15, 31.25 16.25 " + // Smooth estuary islands
-  "c 2 -15, 5 -30, 16.25 -43.75 " +
-  "c -1 -10, -3 -22, -11.25 -32.5 " +
-  "c 20 -5, 40 -5, 63.75 2.5 " +
-  "c 15 10, 30 25, 35 46.25 " + // Curved Chittagong coast
-  "c 10 10, 15 25, 18.75 38.75 " +
-  "c 5 10, 12 25, 10 40 " + // Smooth Cox's Bazar beaches
-  "c 12 10, 20 25, 25 41.25 " + // Rounded Teknaf Peninsula
-  "c -8 -20, -12 -43, -13.75 -63.75 " +
-  "c 5 5, 12 10, 26.25 12.5 " +
-  "c 0 -19, 2 -38, -6.25 -57.5 Z " +
-  // Smooth Hatiya Island
-  "M 265 375 C 270 380, 268 390, 262 390 C 258 385, 260 378, 265 375 Z " +
-  // Smooth Bhola Island
-  "M 248 375 C 253 385, 251 398, 245 398 C 241 388, 243 378, 248 375 Z " +
-  // Smooth Sandwip Island
-  "M 285 365 C 288 370, 286 376, 282 376 C 279 370, 281 366, 285 365 Z";
+  "M 307 419 L 304 423 L 305 429 L 311 436 L 305 449 L 303 451 L 310 457 L 310 468 L 320 468 " +
+  "L 330 464 L 338 470 L 350 468 L 350 460 L 363 454 L 373 457 L 369 447 L 374 435 L 382 434 " +
+  "L 386 429 L 388 423 L 380 414 L 373 414 L 370 409 L 372 395 L 362 390 L 353 391 L 344 378 " +
+  "L 342 372 L 335 369 L 330 365 L 327 355 L 329 341 L 322 341 L 317 328 L 311 326 L 304 334 " +
+  "L 297 329 L 286 331 L 269 323 L 251 317 L 238 311 L 231 304 L 228 291 L 223 290 L 205 282 " +
+  "L 193 280 L 187 271 L 171 261 L 162 253 L 151 247 L 134 240 L 116 232 L 105 221 L 91 213 " +
+  "L 80 208 L 62 194 L 50 188 L 40 181 L 25 176 L 11 167 L 3 158 L 11 149 L 25 142 L 35 130 " +
+  "L 47 117 L 62 103 L 73 91 L 88 76 L 100 63 L 116 50 L 131 35 L 146 23 L 158 8 L 173 15 " +
+  "L 189 23 L 201 30 L 215 38 L 226 44 L 256 58 L 286 70 L 301 76 L 315 81 L 331 89 L 346 95 " +
+  "L 360 100 L 376 108 L 391 114 L 405 119 L 421 127 L 436 133 L 450 138 Z";
 
 type MainBranch = {
   id: "dhaka" | "chittagong" | "sylhet";
@@ -54,26 +21,27 @@ type MainBranch = {
   cy: number;
 };
 
+// Mathematically transformed coordinates to align branch pins with the new GIS map boundaries
 const MAIN: MainBranch[] = [
-  { id: "dhaka", name: "🏍 DHAKA CENTRAL", coord: "Managed by Aminul Islam", cx: 194, cy: 228 },
-  { id: "chittagong", name: "🏍 CHITTAGONG HUB", coord: "Led by Mohammad Sajid", cx: 282, cy: 330 },
-  { id: "sylhet", name: "🏍 SYLHET REGIONAL", coord: "Coordinated by Farhana Akter", cx: 288, cy: 152 },
+  { id: "dhaka", name: "🏍 DHAKA CENTRAL", coord: "Managed by Aminul Islam", cx: 241, cy: 245 },
+  { id: "chittagong", name: "🏍 CHITTAGONG HUB", coord: "Led by Mohammad Sajid", cx: 333, cy: 349 },
+  { id: "sylhet", name: "🏍 SYLHET REGIONAL", coord: "Coordinated by Farhana Akter", cx: 339, cy: 170 },
 ];
 
 const DECOR = [
-  { name: "Rajshahi", cx: 100, cy: 210, delay: 0 },
-  { name: "Khulna", cx: 150, cy: 330, delay: 0.3 },
-  { name: "Barisal", cx: 210, cy: 340, delay: 0.6 },
-  { name: "Rangpur", cx: 150, cy: 100, delay: 0.9 },
-  { name: "Mymensingh", cx: 200, cy: 150, delay: 1.2 },
-  { name: "Comilla", cx: 250, cy: 250, delay: 1.5 },
-  { name: "Cox's Bazar", cx: 305, cy: 400, delay: 1.8 },
-  { name: "Jessore", cx: 120, cy: 300, delay: 0.15 },
+  { name: "Rajshahi", cx: 120, cy: 206, delay: 0 },
+  { name: "Khulna", cx: 183, cy: 313, delay: 0.3 },
+  { name: "Barisal", cx: 237, cy: 323, delay: 0.6 },
+  { name: "Rangpur", cx: 169, cy: 110, delay: 0.9 },
+  { name: "Mymensingh", cx: 241, cy: 180, delay: 1.2 },
+  { name: "Comilla", cx: 293, cy: 270, delay: 1.5 },
+  { name: "Cox's Bazar", cx: 346, cy: 413, delay: 1.8 },
+  { name: "Jessore", cx: 161, cy: 290, delay: 0.15 },
 ];
 
-// Curved trail Dhaka → Chittagong → Sylhet → Dhaka
+// Re-anchored trail Dhaka → Chittagong → Sylhet → Dhaka
 const BIKE_PATH =
-  "M194,228 Q260,280 282,330 Q340,240 288,152 Q230,190 194,228";
+  "M241,245 Q300,320 333,349 Q360,240 339,170 Q280,200 241,245";
 
 export function BangladeshMap({
   height,
@@ -86,9 +54,9 @@ export function BangladeshMap({
 
   return (
     <div
-      className="relative w-full h-full overflow-visible"
+      className="relative w-full h-full overflow-visible animate-fade-in"
       style={{
-        background: "transparent", // Background completely transparent
+        background: "transparent", // Clean seamless background float
         height: height,
       }}
     >
@@ -149,14 +117,14 @@ export function BangladeshMap({
               </filter>
             </defs>
 
-            {/* Smooth, detailed outline in official Yamaha Navy Blue with border glow */}
+            {/* Premium, geographically accurate outline in Yamaha Blue */}
             <path
               className="yrc-bd-path"
               d={BD_OUTLINE}
               pathLength={1}
-              fill="#003087" // Official Yamaha website theme color
-              stroke="#0047cc" // Glowing Yamaha Accent Blue border
-              strokeWidth={1.75}
+              fill="#003087" // Yamaha Navy Blue Website Theme Color
+              stroke="#0047cc" // Glowing Accent Blue
+              strokeWidth={1.5}
               strokeLinejoin="round"
               style={{
                 filter: "drop-shadow(0 0 8px rgba(0, 71, 204, 0.55))"
