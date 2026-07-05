@@ -90,9 +90,13 @@ export function BangladeshMap({
 
       <div className="relative flex h-full w-full flex-col">
         <div className="relative flex-1">
-          {/* Geographically precise bounds matching your exact SVG file tag */}
+          {/* 
+            Added a clean -40 cushion padding to the viewBox width/height (from 400x500 to 480x560).
+            This automatically scales the map down beautifully to fit the screen and pulls the top 
+            Panchagarh tip down so it is no longer clipped by the top of the container.
+          */}
           <svg
-            viewBox="0.22 -0.456 400 500"
+            viewBox="-40 -40 480 560"
             width="100%"
             height="100%"
             preserveAspectRatio="xMidYMid meet"
@@ -200,7 +204,7 @@ export function BangladeshMap({
             ))}
           </svg>
 
-          {/* Tooltips — positioned dynamically based on 400x500 grid percentages */}
+          {/* Tooltips — positioned dynamically based on cushioned viewBox percentage range */}
           {MAIN.map((m) => {
             const active = hover === m.id;
             return (
@@ -209,8 +213,8 @@ export function BangladeshMap({
                 aria-hidden={!active}
                 className="pointer-events-none absolute"
                 style={{
-                  left: `${(m.cx / 400) * 100}%`,
-                  top: `${(m.cy / 500) * 100}%`,
+                  left: `${((m.cx + 40) / 480) * 100}%`,
+                  top: `${((m.cy + 40) / 560) * 100}%`,
                   transform: `translate(-50%, calc(-100% - 14px)) translateY(${active ? 0 : 5}px)`,
                   opacity: active ? 1 : 0,
                   transition: "opacity 200ms ease, transform 200ms ease",
