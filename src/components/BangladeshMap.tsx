@@ -1,43 +1,45 @@
 import { useState } from "react";
 
-// Highly detailed, geographically accurate Bezier-curve outline of Bangladesh
-// including sub-paths for major southern delta islands (Hatiya, Bhola, Sandwip)
-const BD_OUTLINE =
-  "M 160 40 " +
-  "C 150 50, 140 60, 135 70 " +
-  "C 150 65, 170 60, 190 55 " +
-  "C 200 52, 215 58, 225 65 " +
-  "C 230 80, 245 85, 255 90 " +
-  "C 270 85, 285 80, 295 90 " +
-  "C 305 100, 315 110, 310 120 " +
-  "C 300 135, 290 145, 285 155 " +
-  "C 280 180, 275 200, 275 220 " +
-  "C 285 240, 295 260, 305 280 " +
-  "C 315 295, 325 315, 320 340 " +
-  "C 310 365, 315 390, 320 420 " +
-  "C 322 435, 320 445, 318 450 " +
-  "C 310 440, 300 420, 295 400 " +
-  "C 290 380, 285 365, 280 350 " +
-  "C 270 350, 260 360, 250 365 " +
-  "C 230 365, 220 370, 210 375 " +
-  "C 200 378, 195 385, 190 380 " +
-  "C 185 375, 180 382, 175 380 " +
-  "C 170 378, 165 385, 160 380 " +
-  "C 155 375, 150 382, 145 380 " +
-  "C 140 378, 135 385, 130 380 " +
-  "C 125 365, 120 350, 115 330 " +
-  "C 112 310, 108 290, 105 270 " +
-  "C 95 250, 85 235, 75 220 " +
-  "C 70 210, 75 195, 85 190 " +
-  "C 100 170, 110 150, 115 130 " +
-  "C 120 110, 130 90, 145 70 " +
-  "C 150 55, 155 45, 160 40 Z " +
-  // Hatiya Island
-  "M 265 375 C 270 380, 268 390, 262 390 C 258 385, 260 378, 265 375 Z " +
-  // Bhola Island
-  "M 245 365 C 250 375, 248 390, 242 390 C 238 380, 240 370, 245 365 Z " +
-  // Sandwip Island
-  "M 282 355 C 285 360, 283 368, 279 368 C 276 362, 278 357, 282 355 Z";
+// Highly accurate, high-fidelity Bezier-curve outline matching the exact silhouette
+// of Bangladesh including the northern Panchagarh tip, Rajshahi bulge, Sylhet bulge, and Teknaf peninsula.
+const BD_OUTLINE = 
+  "M 163 43 " + // Northern Panchagarh tip
+  "C 155 45, 145 55, 137 67 " +
+  "C 125 67, 115 67, 107 67 " + // Thakurgaon / Dinajpur bulge
+  "C 109 55, 111 40, 113 30 " + // extreme high point
+  "C 120 40, 130 50, 137 56 " +
+  "C 160 80, 180 100, 203 132 " + // Kurigram / Lalmonirhat
+  "C 215 130, 225 128, 238 129 " + // Northern Mymensingh border
+  "C 225 110, 215 100, 209 88 " +
+  "C 212 82, 215 76, 217 72 " + // Sylhet top flat area
+  "C 225 78, 235 84, 242 88 " +
+  "C 250 105, 255 125, 258 140 " + // Sylhet easternmost border
+  "C 275 155, 290 170, 300 183 " +
+  "C 315 185, 330 188, 340 191 " + // East bulge (Tripura/Comilla border)
+  "C 342 185, 344 178, 346 172 " +
+  "C 342 165, 340 158, 338 153 " +
+  "C 344 149, 350 145, 356 142 " +
+  "C 362 153, 368 165, 374 177 " + // Chittagong Hill Tracts east bulge
+  "C 378 198, 382 218, 384 239 " +
+  "C 384 267, 384 295, 384 323 " + // Cox's Bazar coastline heading down
+  "C 378 335, 372 348, 368 360 " +
+  "C 358 386, 350 412, 342 438 " + // Teknaf peninsula tip
+  "C 335 435, 328 430, 322 450 " + // Southern beach curve
+  "C 305 442, 290 435, 277 428 " + // Chittagong coast
+  "C 272 420, 268 412, 263 406 " + // Estuary mouth
+  "C 252 398, 242 390, 231 382 " + // Hatiya / Bhola
+  "C 221 373, 211 365, 201 357 " + // Barisal coast
+  "C 197 341, 194 325, 191 309 " + // Patuakhali
+  "C 185 315, 179 322, 173 328 " + // Jagged Sundarbans inlets
+  "C 163 327, 154 326, 145 325 " +
+  "C 139 311, 133 298, 127 285 " + // Satkhira coast
+  "C 116 270, 105 256, 95 242 " + // Western border Kushtia
+  "C 88 243, 81 244, 75 245 " + // Rajshahi westernmost bulge
+  "C 71 232, 68 219, 65 207 " +
+  "C 69 200, 74 193, 79 186 " + // Rangpur/Dinajpur western border
+  "C 81 172, 84 158, 87 145 " +
+  "C 101 128, 115 111, 129 94 " + // Panchagarh west slope
+  "C 131 77, 134 60, 137 56 Z";
 
 type MainBranch = {
   id: "dhaka" | "chittagong" | "sylhet";
@@ -79,11 +81,9 @@ export function BangladeshMap({
 
   return (
     <div
-      className="relative w-full overflow-hidden rounded-2xl"
+      className="relative w-full h-full overflow-visible"
       style={{
-        backgroundColor: "#020b18",
-        padding: 24,
-        boxShadow: "0 0 60px rgba(0,48,135,0.3)",
+        background: "transparent", // Removed background card
         height: height,
       }}
     >
@@ -131,30 +131,30 @@ export function BangladeshMap({
             width="100%"
             height="100%"
             preserveAspectRatio="xMidYMid meet"
-            style={{ display: "block", maxHeight: "100%" }}
+            style={{ display: "block", maxHeight: "100%", overflow: "visible" }}
           >
             <defs>
               <path id="yrc-bike-motion-path" d={BIKE_PATH} />
-              <filter id="yrc-red-glow" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation="2" result="b" />
+              <filter id="yrc-blue-glow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="3" result="blur" />
                 <feMerge>
-                  <feMergeNode in="b" />
+                  <feMergeNode in="blur" />
                   <feMergeNode in="SourceGraphic" />
                 </feMerge>
               </filter>
             </defs>
 
-            {/* Country outline with updated detailed path and premium glowing border style */}
+            {/* Corrected high-fidelity map of Bangladesh using official Yamaha Navy and glowing outline */}
             <path
               className="yrc-bd-path"
               d={BD_OUTLINE}
               pathLength={1}
-              fill="#180407" // Premium dark crimson body
-              stroke="#e60012" // Vibrant glowing border line
-              strokeWidth={1.5}
+              fill="#003087" // Authentic Yamaha Navy Blue website theme color
+              stroke="#0047cc" // Glowing Yamaha Accent Blue border
+              strokeWidth={1.75}
               strokeLinejoin="round"
               style={{
-                filter: "drop-shadow(0 0 6px rgba(230, 0, 18, 0.6))"
+                filter: "drop-shadow(0 0 8px rgba(0, 71, 204, 0.75))"
               }}
             />
 
@@ -164,7 +164,7 @@ export function BangladeshMap({
               d={BIKE_PATH}
               fill="none"
               stroke="#0047cc"
-              strokeOpacity={0.4}
+              strokeOpacity={0.5}
               strokeWidth={1.5}
             />
 
@@ -183,7 +183,7 @@ export function BangladeshMap({
                 <circle
                   cx={d.cx}
                   cy={d.cy}
-                  r={3}
+                  r={3.5}
                   fill="#0047cc"
                   style={{ filter: "drop-shadow(0 0 5px rgba(0,71,204,0.7))" }}
                 />
@@ -191,7 +191,7 @@ export function BangladeshMap({
             ))}
 
             {/* Motorcycle traveling the trail */}
-            <g className="yrc-bd-bike" style={{ opacity: 0.5 }}>
+            <g className="yrc-bd-bike" style={{ opacity: 0.75 }}>
               <g transform="translate(-7,-7)">
                 <svg x="0" y="0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <circle cx="5.5" cy="16.5" r="3.5" />
@@ -223,7 +223,7 @@ export function BangladeshMap({
                 <circle
                   cx={m.cx}
                   cy={m.cy}
-                  r={5}
+                  r={5.5}
                   fill="#e60012"
                   stroke="#ffffff"
                   strokeWidth={1.5}
@@ -281,7 +281,7 @@ export function BangladeshMap({
         {label ? (
           <div className="mt-3 flex flex-col items-center">
             <span
-              className="font-display tracking-wider text-white"
+              className="font-display tracking-wider text-white/80"
               style={{ fontSize: 16, lineHeight: 1 }}
             >
               {label}
@@ -289,7 +289,7 @@ export function BangladeshMap({
             <span
               aria-hidden
               className="mt-2 block"
-              style={{ width: 40, height: 2, backgroundColor: "#e60012" }}
+              style={{ width: 40, height: 2, backgroundColor: "#0047cc" }}
             />
           </div>
         ) : null}
