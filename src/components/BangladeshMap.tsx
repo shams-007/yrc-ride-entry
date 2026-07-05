@@ -72,7 +72,7 @@ const DECOR = [
   { name: "Jessore", cx: 135, cy: 290, delay: 0.15 },
 ];
 
-// Re-anchored trail Dhaka → Chittagong → Sylhet → Dhaka
+// Re-anchored trail Dhaka → Chittagong → Sylhet → Dhaka.
 const BIKE_PATH =
   "M215,247 Q280,310 305,370 Q340,250 310,135 Q250,180 215,247";
 
