@@ -101,7 +101,7 @@ export function BangladeshMap({
             perfectly center-top of the hero area and never gets clipped by container limits.
           */}
           <svg
-            viewBox="-60 -10 520 620"
+            viewBox="-20 -20 440 540"
             width="100%"
             height="100%"
             preserveAspectRatio="xMidYMid meet"
