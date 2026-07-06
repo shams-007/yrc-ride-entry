@@ -40,13 +40,24 @@ export function BangladeshMap({
   const [hover, setHover] = useState<MainBranch["id"] | null>(null);
 
   return (
-    <div
-      className="relative w-full overflow-hidden"
-      style={{
-        backgroundColor: "transparent",
-        height: height,
-      }}
-    >
+    <div className="relative w-full h-full overflow-visible" style={{ background: "transparent", height: height }}>
+      
+      {/* 1. PASTE THE STYLE HERE */}
+      <style>{`
+        @keyframes drawMap {
+          0% { stroke-dashoffset: 1; fill-opacity: 0; }
+          70% { stroke-dashoffset: 0; fill-opacity: 0; }
+          100% { stroke-dashoffset: 0; fill-opacity: 1; }
+        }
+        .animate-map {
+          stroke-dasharray: 1;
+          stroke-dashoffset: 1;
+          animation: drawMap 3s ease-in-out forwards;
+        }
+      `}</style>
+
+      <div className="relative flex h-full w-full flex-col">
+        {/* ... your svg tag ... */}
       <style>{`
         @keyframes yrcDotEnter {
           from { opacity: 0; transform: scale(0); }
