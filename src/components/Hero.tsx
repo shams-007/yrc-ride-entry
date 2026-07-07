@@ -62,10 +62,10 @@ export function Hero() {
           {/* exhaust puffs trailing behind the bike (desktop only) */}
           <div className="hidden lg:block">
           {[
-            { size: 8, delay: 0, offset: 0 },
-            { size: 10, delay: 0.3, offset: 4 },
-            { size: 6, delay: 0.6, offset: 8 },
-            { size: 9, delay: 0.9, offset: 12 },
+            { size: 6, delay: 0, offset: 0 },
+            { size: 8, delay: 0.3, offset: 2 },
+            { size: 5, delay: 0.6, offset: 4 },
+            { size: 7, delay: 0.9, offset: 6 },
           ].map((p, i) => (
             <span
               key={i}
@@ -74,7 +74,7 @@ export function Hero() {
                 width: p.size,
                 height: p.size,
                 left: -6 - p.offset,
-                bottom: 20,
+                bottom: 8,
                 animationDelay: `${p.delay}s`,
               }}
             />
@@ -86,7 +86,7 @@ export function Hero() {
             height="100%"
             preserveAspectRatio="xMidYMid meet"
             fill="#003087"
-            style={{ opacity: 0.25 }}
+            style={{ opacity: 0.35 }}
           >
             <path d="M71,48a7.91,7.91,0,0,0-2.08.28l-13-31.66A1,1,0,0,0,55,16H43a1,1,0,0,0,0,2H54.33L67.06,49A8,8,0,1,0,71,48Zm0,14a6,6,0,0,1-3.17-11.09l2.24,5.47A1,1,0,0,0,71,57a.84.84,0,0,0,.38-.08,1,1,0,0,0,.55-1.3l-2.25-5.47A5.81,5.81,0,0,1,71,50a6,6,0,0,1,0,12ZM10.5,46h42a7.5,7.5,0,0,0,0-15h-12a7.48,7.48,0,0,0-3.73,1H12.6A3.61,3.61,0,0,0,9,35.6v1.68A4.49,4.49,0,0,0,10.5,46Zm30-13h12a5.5,5.5,0,0,1,0,11h-12a5.5,5.5,0,0,1,0-11ZM11,35.6A1.6,1.6,0,0,1,12.6,34H34.51a7.6,7.6,0,0,0-1.36,3H11ZM10.5,39H33a7.45,7.45,0,0,0,2.39,5H10.5a2.5,2.5,0,0,1,0-5ZM2,60H7.09a8,8,0,0,0,13.82,0H25a1,1,0,0,0,1-1V57h2.39a3.61,3.61,0,0,0,3.21,2H48.4A3.61,3.61,0,0,0,52,55.4V49a1,1,0,0,0-1-1H29a1,1,0,0,0-1,1v6H26V53a1,1,0,0,0-1-1H20.91A8,8,0,0,0,7.09,52H2a1,1,0,0,0-1,1v6A1,1,0,0,0,2,60ZM49,50h1v5.4a1.59,1.59,0,0,1-1,1.48Zm-4,0h2v7H45Zm-5,0h3v7H40Zm-5,0h3v7H35Zm-5,0h3v7H31.6A1.6,1.6,0,0,1,30,55.4ZM14,62a6,6,0,0,1-4.47-2h8.94A6,6,0,0,1,14,62Zm0-12a6,6,0,0,1,4.47,2H9.53A6,6,0,0,1,14,50ZM3,54H24v4H3Z"/>
           </svg>
