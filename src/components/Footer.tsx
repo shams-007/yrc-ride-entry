@@ -1,3 +1,5 @@
+import { Link } from "@tanstack/react-router";
+
 const QUICK = ["Home", "About", "Events", "Gallery", "Road Safety", "Membership"];
 const COMMUNITY = ["Blog", "Branches", "Road Safety", "YRC App", "Annual Conclave"];
 
