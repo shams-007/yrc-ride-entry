@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 
 type Branch = {
   id: string;
@@ -9,58 +9,58 @@ type Branch = {
   isMain?: boolean;
 };
 
-// All 50+ Branches carefully adjusted to be securely inland
+// All Branches flawlessly locked to the 0 0 400 500 viewBox
 const ALL_BRANCHES: Branch[] = [
   // 8 Main Hubs (Large Red Pins)
   { id: "dhaka", name: "🏍 DHAKA CENTRAL", coord: "Aminul Islam", cx: 195, cy: 240, isMain: true },
-  { id: "chittagong", name: "🏍 CHITTAGONG HUB", coord: "Mohammad Sajid", cx: 270, cy: 365, isMain: true },
-  { id: "sylhet", name: "🏍 SYLHET REGIONAL", coord: "Farhana Akter", cx: 290, cy: 145, isMain: true },
-  { id: "khulna", name: "🏍 KHULNA WING", coord: "Khulna Lead", cx: 135, cy: 340, isMain: true },
+  { id: "chittagong", name: "🏍 CHITTAGONG HUB", coord: "Mohammad Sajid", cx: 285, cy: 350, isMain: true },
+  { id: "sylhet", name: "🏍 SYLHET REGIONAL", coord: "Farhana Akter", cx: 295, cy: 140, isMain: true },
+  { id: "khulna", name: "🏍 KHULNA WING", coord: "Khulna Lead", cx: 135, cy: 330, isMain: true },
   { id: "rajshahi", name: "🏍 RAJSHAHI WING", coord: "Rajshahi Lead", cx: 90, cy: 195, isMain: true },
-  { id: "barishal", name: "🏍 BARISHAL WING", coord: "Barishal Lead", cx: 190, cy: 345, isMain: true },
+  { id: "barishal", name: "🏍 BARISHAL WING", coord: "Barishal Lead", cx: 180, cy: 335, isMain: true },
   { id: "rangpur", name: "🏍 RANGPUR WING", coord: "Rangpur Lead", cx: 115, cy: 95, isMain: true },
-  { id: "mymensingh", name: "🏍 MYMENSINGH", coord: "Mymensingh Lead", cx: 195, cy: 145, isMain: true },
+  { id: "mymensingh", name: "🏍 MYMENSINGH", coord: "Mymensingh Lead", cx: 195, cy: 155, isMain: true },
   
-  // 40+ Sub-Branches (Glowing Cyan Nodes)
-  { id: "narayanganj", name: "YRC Narayanganj", cx: 202, cy: 248 },
-  { id: "brahmanbaria", name: "YRC Brahmanbaria", cx: 240, cy: 220 },
+  // Sub-Branches (Glowing Cyan Nodes) - Pulled safely inland!
+  { id: "narayanganj", name: "YRC Narayanganj", cx: 200, cy: 245 },
+  { id: "brahmanbaria", name: "YRC Brahmanbaria", cx: 235, cy: 215 },
   { id: "naogaon", name: "YRC Naogaon", cx: 105, cy: 170 },
-  { id: "bhairab", name: "YRC Bhairab", cx: 225, cy: 205 },
-  { id: "charfesson", name: "YRC Charfesson", cx: 195, cy: 370 }, // Pulled up from 385
+  { id: "bhairab", name: "YRC Bhairab", cx: 220, cy: 200 },
+  { id: "charfesson", name: "YRC Charfesson", cx: 190, cy: 365 },
   { id: "nazipur", name: "YRC Nazipur", cx: 95, cy: 165 },
-  { id: "kishoreganj", name: "YRC Kishoreganj", cx: 225, cy: 165 },
+  { id: "kishoreganj", name: "YRC Kishoreganj", cx: 220, cy: 165 },
   { id: "chirirbondor", name: "YRC Chirirbondor", cx: 85, cy: 80 },
   { id: "dhunat", name: "YRC Dhunat", cx: 145, cy: 165 },
-  { id: "sadardakshin", name: "YRC Sadar Dakshin", cx: 245, cy: 280 },
-  { id: "chhagalnaiya", name: "YRC Chhagalnaiya", cx: 260, cy: 300 }, // Pulled left
-  { id: "chandpur", name: "YRC Chandpur", cx: 225, cy: 285 },
-  { id: "muradpur", name: "YRC Muradpur", cx: 268, cy: 360 }, // Pulled left
+  { id: "sadardakshin", name: "YRC Sadar Dakshin", cx: 240, cy: 275 },
+  { id: "chhagalnaiya", name: "YRC Chhagalnaiya", cx: 260, cy: 295 },
+  { id: "chandpur", name: "YRC Chandpur", cx: 215, cy: 285 },
+  { id: "muradpur", name: "YRC Muradpur", cx: 280, cy: 355 },
   { id: "mirpur", name: "Mirpur Branch", cx: 190, cy: 236 },
-  { id: "rangamati", name: "YRC Rangamati", cx: 285, cy: 345 }, // Pulled left
-  { id: "coxsbazar", name: "YRC Cox's Bazar", cx: 280, cy: 420 }, // Pulled left
-  { id: "chakaria", name: "YRC Chakaria", cx: 275, cy: 395 }, // Pulled left
+  { id: "rangamati", name: "YRC Rangamati", cx: 310, cy: 340 },
+  { id: "coxsbazar", name: "YRC Cox's Bazar", cx: 310, cy: 420 },
+  { id: "chakaria", name: "YRC Chakaria", cx: 300, cy: 395 },
   { id: "paltan", name: "Paltan Branch", cx: 195, cy: 242 },
   { id: "madaripur", name: "YRC Madaripur", cx: 175, cy: 295 },
   { id: "khilgaon", name: "Khilgaon Branch", cx: 198, cy: 240 },
   { id: "jashore", name: "YRC Jashore", cx: 110, cy: 300 },
-  { id: "fulgazi", name: "YRC Fulgazi", cx: 265, cy: 305 }, // Pulled left
+  { id: "fulgazi", name: "YRC Fulgazi", cx: 265, cy: 290 },
   { id: "singair", name: "YRC Singair", cx: 175, cy: 240 },
-  { id: "eidgaon", name: "YRC Eidgaon", cx: 280, cy: 410 }, // Pulled left
-  { id: "laksham", name: "YRC Laksham", cx: 250, cy: 280 }, // Pulled left
-  { id: "shariatpur", name: "YRC Shariatpur", cx: 195, cy: 295 },
-  { id: "patiya", name: "YRC Patiya", cx: 275, cy: 375 }, // Pulled left
+  { id: "eidgaon", name: "YRC Eidgaon", cx: 308, cy: 410 },
+  { id: "laksham", name: "YRC Laksham", cx: 250, cy: 280 },
+  { id: "shariatpur", name: "YRC Shariatpur", cx: 190, cy: 290 },
+  { id: "patiya", name: "YRC Patiya", cx: 285, cy: 360 },
   { id: "domar", name: "YRC Domar", cx: 95, cy: 65 },
   { id: "natore", name: "YRC Natore", cx: 120, cy: 195 },
-  { id: "anowara", name: "YRC Anowara", cx: 270, cy: 375 }, // Pulled left
+  { id: "anowara", name: "YRC Anowara", cx: 285, cy: 365 },
   { id: "debiganj", name: "YRC Debiganj", cx: 90, cy: 50 },
   { id: "saidpur", name: "YRC Saidpur", cx: 95, cy: 80 },
   { id: "kushtia", name: "YRC Kushtia", cx: 110, cy: 245 },
-  { id: "fatikchari", name: "YRC Fatikchari", cx: 275, cy: 345 }, // Pulled left
+  { id: "fatikchari", name: "YRC Fatikchari", cx: 285, cy: 330 },
   { id: "sakhipur", name: "YRC Sakhipur", cx: 180, cy: 190 },
   { id: "bogura", name: "YRC Bogura", cx: 145, cy: 155 },
-  { id: "boalkhali", name: "YRC Boalkhali", cx: 275, cy: 365 }, // Pulled left
-  { id: "barguna", name: "YRC Barguna", cx: 165, cy: 365 }, // Pulled up
-  { id: "satkhira", name: "YRC Satkhira", cx: 105, cy: 335 }, // Pulled up/right
+  { id: "boalkhali", name: "YRC Boalkhali", cx: 290, cy: 355 },
+  { id: "barguna", name: "YRC Barguna", cx: 160, cy: 365 },
+  { id: "satkhira", name: "YRC Satkhira", cx: 115, cy: 335 },
   { id: "dinajpur", name: "YRC Dinajpur", cx: 85, cy: 75 },
   { id: "badda", name: "Badda Branch", cx: 197, cy: 238 },
   { id: "faridpur", name: "YRC Faridpur", cx: 155, cy: 265 },
@@ -71,15 +71,15 @@ const ALL_BRANCHES: Branch[] = [
   { id: "jatrabari", name: "Jatrabari Branch", cx: 196, cy: 245 },
   { id: "kalkini", name: "Kalkini Branch", cx: 175, cy: 305 },
   { id: "gaibandha", name: "YRC Gaibandha", cx: 135, cy: 125 },
-  { id: "jhalokati", name: "YRC Jhalokati", cx: 170, cy: 340 }, // Pulled up
-  { id: "pekua", name: "YRC Pekua", cx: 275, cy: 405 }, // Pulled left
+  { id: "jhalokati", name: "YRC Jhalokati", cx: 170, cy: 335 },
+  { id: "pekua", name: "YRC Pekua", cx: 305, cy: 405 },
   { id: "sherpurbogura", name: "YRC Sherpur Bogura", cx: 145, cy: 165 },
   { id: "birganj", name: "YRC Birganj", cx: 85, cy: 70 },
   { id: "tangail", name: "YRC Tangail", cx: 165, cy: 195 },
   { id: "shathibari", name: "YRC Shathibari", cx: 120, cy: 105 },
   { id: "nilphamari", name: "YRC Nilphamari", cx: 100, cy: 70 },
   { id: "pabna", name: "YRC Pabna", cx: 130, cy: 220 },
-  { id: "hathazari", name: "YRC Hathazari", cx: 272, cy: 355 }, // Pulled left
+  { id: "hathazari", name: "YRC Hathazari", cx: 285, cy: 345 },
   { id: "gournadi", name: "YRC Gournadi", cx: 185, cy: 320 },
   { id: "tejgaon", name: "Tejgaon Branch", cx: 194, cy: 239 },
   { id: "gopalganj", name: "YRC Gopalganj", cx: 150, cy: 305 },
@@ -90,8 +90,8 @@ const ALL_BRANCHES: Branch[] = [
   { id: "panchagarh", name: "YRC Panchagarh", cx: 85, cy: 35 },
   { id: "purandhaka", name: "YRC Puran Dhaka", cx: 194, cy: 243 },
   { id: "jhenaidah", name: "YRC Jhenaidah", cx: 110, cy: 275 },
-  { id: "habiganj", name: "YRC Habiganj", cx: 260, cy: 160 }, // Pulled left
-  { id: "pirojpur", name: "YRC Pirojpur", cx: 155, cy: 345 }, // Pulled up
+  { id: "habiganj", name: "YRC Habiganj", cx: 260, cy: 160 },
+  { id: "pirojpur", name: "YRC Pirojpur", cx: 155, cy: 335 },
   { id: "bhaluka", name: "YRC Bhaluka", cx: 190, cy: 175 },
   { id: "katiadi", name: "YRC Katiadi", cx: 225, cy: 175 },
   { id: "ashulia", name: "YRC Ashulia", cx: 188, cy: 228 },
@@ -100,7 +100,7 @@ const ALL_BRANCHES: Branch[] = [
   { id: "meherpur", name: "YRC Meherpur", cx: 80, cy: 255 },
   { id: "muradnagar", name: "YRC Muradnagar", cx: 250, cy: 245 },
   { id: "savar", name: "Savar Branch", cx: 185, cy: 230 },
-  { id: "baniyachong", name: "Baniyachong Wing", cx: 255, cy: 165 }, // Pulled left
+  { id: "baniyachong", name: "Baniyachong Wing", cx: 255, cy: 165 },
   { id: "joypurhat", name: "YRC Joypurhat", cx: 105, cy: 140 },
   { id: "boda", name: "YRC Boda", cx: 85, cy: 45 },
   { id: "kurigram", name: "YRC Kurigram", cx: 145, cy: 95 },
@@ -111,19 +111,9 @@ const ALL_BRANCHES: Branch[] = [
   { id: "manirampur", name: "YRC Manirampur", cx: 115, cy: 305 },
 ];
 
-// Completely upgraded nationwide trail covering almost all main branches
+// Expanded trail covering major hubs nationwide
 const BIKE_PATH =
-  "M 195,240 " + // Dhaka
-  "L 115,95 " +  // Rangpur
-  "L 90,195 " +  // Rajshahi
-  "L 135,340 " + // Khulna
-  "L 190,345 " + // Barishal
-  "L 270,365 " + // Chittagong
-  "L 280,420 " + // Cox's Bazar
-  "L 250,270 " + // Comilla
-  "L 290,145 " + // Sylhet
-  "L 195,145 " + // Mymensingh
-  "Z";           // Back to Dhaka
+  "M 195,240 L 115,95 L 90,195 L 135,330 L 180,335 L 285,350 L 310,420 L 250,280 L 295,140 L 195,155 Z";
 
 export function BangladeshMap({
   height = 500,
@@ -133,7 +123,22 @@ export function BangladeshMap({
   label?: string;
 }) {
   const [hover, setHover] = useState<string | null>(null);
+  const [svgContent, setSvgContent] = useState<string>("");
   const timerRef = useRef<NodeJS.Timeout>();
+
+  useEffect(() => {
+    fetch("/bangladesh.svg")
+      .then((res) => res.text())
+      .then((text) => {
+        // Force the fetched SVG to use our exact 0 0 400 500 coordinate space
+        let fixedSVG = text.replace(/viewBox="[^"]+"/, 'viewBox="0 0 400 500" preserveAspectRatio="xMidYMid meet"');
+        
+        // Inject the animation class and pathLength=1 so it draws itself
+        fixedSVG = fixedSVG.replace('id="path4968"', 'id="path4968" class="animate-map" pathLength="1"');
+        setSvgContent(fixedSVG);
+      })
+      .catch((err) => console.error("Failed to load map SVG:", err));
+  }, []);
 
   const handleMouseEnter = (id: string) => {
     if (timerRef.current) clearTimeout(timerRef.current);
@@ -149,19 +154,38 @@ export function BangladeshMap({
   return (
     <div
       className="relative w-full overflow-hidden"
-      style={{
-        backgroundColor: "transparent",
-        height: height,
-      }}
+      style={{ backgroundColor: "transparent", height: height }}
     >
       <style>{`
+        /* Map Glow and Animation */
+        .yrc-inlined-svg svg {
+          width: 100%;
+          height: 100%;
+          display: block;
+          filter: drop-shadow(0 0 12px rgba(0, 71, 204, 0.6));
+        }
+        .animate-map {
+          fill: #003087 !important;
+          stroke: #0047cc !important;
+          stroke-width: 1.5px !important;
+          stroke-dasharray: 1;
+          stroke-dashoffset: 1;
+          animation: yrcDrawMap 3s ease-in-out forwards;
+        }
+        @keyframes yrcDrawMap {
+          0% { stroke-dashoffset: 1; fill-opacity: 0; }
+          70% { stroke-dashoffset: 0; fill-opacity: 0; }
+          100% { stroke-dashoffset: 0; fill-opacity: 1; }
+        }
+
+        /* Dots and Lines Animation */
         @keyframes yrcDotEnter {
           from { opacity: 0; transform: scale(0); }
           to { opacity: 1; transform: scale(1); }
         }
         @keyframes yrcDotPulse {
           0%, 100% { transform: scale(1); opacity: 1; }
-          50% { transform: scale(1.4); opacity: 0.8; }
+          50% { transform: scale(1.3); opacity: 0.7; }
         }
         .yrc-bd-dot {
           opacity: 0;
@@ -185,14 +209,15 @@ export function BangladeshMap({
       <div className="relative flex h-full w-full flex-col items-center">
         <div className="relative w-full flex-1 max-w-[800px] flex items-center justify-center">
           
-          <img 
-            src="/bangladesh.svg" 
-            alt="Map of Bangladesh" 
-            className="absolute inset-0 w-full h-full object-contain opacity-90 drop-shadow-xl"
+          {/* THE MAP: Injected directly with animation logic */}
+          <div 
+            className="absolute inset-0 w-full h-full opacity-90 yrc-inlined-svg"
+            dangerouslySetInnerHTML={{ __html: svgContent }}
           />
 
+          {/* THE OVERLAY: Uses the exact same 0 0 400 500 viewBox! */}
           <svg
-            viewBox="5 5 390 490"
+            viewBox="0 0 400 500"
             className="absolute inset-0 w-full h-full"
             preserveAspectRatio="xMidYMid meet"
             style={{ overflow: "visible" }}
@@ -201,19 +226,18 @@ export function BangladeshMap({
               <path id="yrc-bike-motion-path" d={BIKE_PATH} />
             </defs>
 
-            {/* Nationwide Connecting Trail - Upgraded to Bright Neon Cyan and thicker */}
+            {/* Trail connecting main branches - Changed to Yamaha Blue */}
             <path
               className="yrc-bd-trail"
               d={BIKE_PATH}
               fill="none"
-              stroke="#00e5ff" // Bright Neon Cyan for better visibility
-              strokeOpacity={0.8}
-              strokeWidth={2.5} // Increased thickness
-              strokeLinejoin="round" // Smooth out the corners of the path
-              style={{ filter: "drop-shadow(0 0 4px rgba(0, 229, 255, 0.8))" }}
+              stroke="#0047cc" // Original Yamaha Accent Blue
+              strokeOpacity={0.6}
+              strokeWidth={1.5}
+              strokeLinejoin="round"
             />
 
-            {/* Render all 60+ Branches */}
+            {/* Render all Branches */}
             {ALL_BRANCHES.map((branch, i) => (
               <g
                 key={branch.id}
@@ -231,10 +255,10 @@ export function BangladeshMap({
                 <circle
                   cx={branch.cx}
                   cy={branch.cy}
-                  r={branch.isMain ? 2.5 : 1.5}
+                  r={branch.isMain ? 2.5 : 1.2}
                   fill={branch.isMain ? "#e60012" : "#00e5ff"}
                   stroke={branch.isMain ? "#ffffff" : "#ffffff"}
-                  strokeWidth={branch.isMain ? 0.8 : 0.4}
+                  strokeWidth={branch.isMain ? 0.8 : 0.3}
                   style={{
                     filter: branch.isMain
                       ? "drop-shadow(0 0 4px rgba(230,0,18,0.9))"
@@ -245,10 +269,11 @@ export function BangladeshMap({
               </g>
             ))}
 
-            {/* Motorcycle traveling the trail */}
-            <g className="yrc-bd-bike" style={{ opacity: 0.9 }}>
-              <g transform="translate(-5,-5)">
-                <svg x="0" y="0" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#003087" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ background: "white", borderRadius: "50%" }}>
+            {/* BIGGER, MORE VISIBLE MOTORCYCLE */}
+            <g className="yrc-bd-bike" style={{ opacity: 1 }}>
+              {/* Translate exactly half of width/height to center it on the line */}
+              <g transform="translate(-12,-12)">
+                <svg x="0" y="0" width="24" height="24" viewBox="0 0 24 24" fill="#ffffff" stroke="#e60012" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ borderRadius: "50%", filter: "drop-shadow(0 0 4px rgba(230,0,18,0.6))" }}>
                   <circle cx="5.5" cy="16.5" r="3.5" />
                   <circle cx="18.5" cy="16.5" r="3.5" />
                   <path d="M5.5 16.5h6l3-6h-4" />
@@ -270,8 +295,8 @@ export function BangladeshMap({
                 aria-hidden={!active}
                 className="absolute"
                 style={{
-                  left: `${((m.cx - 5) / 390) * 100}%`,
-                  top: `${((m.cy - 5) / 490) * 100}%`,
+                  left: `${(m.cx / 400) * 100}%`,
+                  top: `${(m.cy / 500) * 100}%`,
                   transform: `translate(-50%, calc(-100% - 10px)) translateY(${active ? 0 : 5}px)`,
                   opacity: active ? 1 : 0,
                   transition: "opacity 200ms ease, transform 200ms ease",
