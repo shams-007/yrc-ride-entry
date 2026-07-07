@@ -73,7 +73,7 @@ export function Hero() {
               style={{
                 width: p.size,
                 height: p.size,
-                left: -6 - p.offset,
+                left: -2 - p.offset,
                 bottom: 8,
                 animationDelay: `${p.delay}s`,
               }}
