@@ -46,7 +46,7 @@ const ALL_BRANCHES: Branch[] = [
   { id: "fulgazi", name: "YRC Fulgazi", cx: 305, cy: 320 },
   { id: "singair", name: "YRC Singair", cx: 190, cy: 250 },
   { id: "eidgaon", name: "YRC Eidgaon", cx: 335, cy: 455 }, 
-  { id: "laksham", name: "YRC Laksham", cx: 285, cy: 315 },
+  { id: "laksham", name: "YRC Laksham", cx: 285, cy: 322 },
   { id: "shariatpur", name: "YRC Shariatpur", cx: 210, cy: 315 },
   { id: "patiya", name: "YRC Patiya", cx: 320, cy: 400 },
   { id: "domar", name: "YRC Domar", cx: 135, cy: 65 },
