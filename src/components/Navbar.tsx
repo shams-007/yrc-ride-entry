@@ -56,12 +56,13 @@ export function Navbar() {
         <Link
           to="/"
           className="inline-flex items-center"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
           <img
             src="https://i.imgur.com/y37rOgL.png"
             alt="Yamaha Riders Club Bangladesh"
-            height={48}
-            className="h-12 w-auto object-contain"
+            height={56}
+            className="h-14 w-auto object-contain"
           />
         </Link>
 
