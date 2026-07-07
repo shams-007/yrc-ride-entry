@@ -124,7 +124,7 @@ export function BangladeshMap({
 }) {
   const [hover, setHover] = useState<string | null>(null);
   const [mapPaths, setMapPaths] = useState<string[]>([]);
-  const timerRef = useRef<NodeJS.Timeout>();
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   // Extract the map path natively from your local SVG so it never crashes React
   useEffect(() => {
