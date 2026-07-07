@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
 const links = [
   { label: "Home", href: "#home" },
@@ -52,13 +53,17 @@ export function Navbar() {
       }`}
     >
       <div className="mx-auto flex h-16 w-full items-center justify-between px-6 lg:px-10">
-        <a
-          href="#home"
-          className="font-display text-[28px] leading-none tracking-wide"
-          style={{ color: "#003087" }}
+        <Link
+          to="/"
+          className="inline-flex items-center"
         >
-          YRC.BD
-        </a>
+          <img
+            src="https://i.imgur.com/y37rOgL.png"
+            alt="Yamaha Riders Club Bangladesh"
+            height={48}
+            className="h-12 w-auto object-contain"
+          />
+        </Link>
 
         <nav className="hidden lg:flex items-center gap-8">
           {links.map((l) => (
