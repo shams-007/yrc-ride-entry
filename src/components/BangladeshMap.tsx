@@ -20,6 +20,7 @@ const ALL_BRANCHES: Branch[] = [
   { id: "barishal", name: "🏍 BARISHAL WING", coord: "Barishal Lead", cx: 200, cy: 380, isMain: true },
   { id: "rangpur", name: "🏍 RANGPUR WING", coord: "Rangpur Lead", cx: 140, cy: 95, isMain: true },
   { id: "mymensingh", name: "🏍 MYMENSINGH", coord: "Mymensingh Lead", cx: 220, cy: 140, isMain: true },
+  { id: "comilla", name: "🏍 COMILLA HUB", coord: "Comilla Lead", cx: 265, cy: 260, isMain: true },
   
   // Sub-Branches (Glowing Cyan Nodes)
   { id: "narayanganj", name: "YRC Narayanganj", cx: 220, cy: 270 },
@@ -113,7 +114,7 @@ const ALL_BRANCHES: Branch[] = [
 
 // Beautifully curved, logical nationwide bike loop
 const BIKE_PATH =
-  "M 210,260 Q 250,150 340,150 Q 300,300 310,390 L 340,470 Q 200,420 140,350 Q 60,280 60,210 Q 100,100 140,95 Q 180,180 210,260";
+  "M 310,390 Q 265,260 210,260 Q 250,150 340,150 Q 280,175 220,140 Q 160,160 60,210 Q 100,320 140,350 Q 200,420 310,390";
 
 export function BangladeshMap({
   height = 500,
@@ -231,12 +232,12 @@ export function BangladeshMap({
               d={BIKE_PATH}
               fill="none"
               stroke="#00e5ff"
-              strokeOpacity={0.75}
+              strokeOpacity={0.30}
               strokeWidth={2}
               strokeDasharray="6 6"
               strokeLinecap="round"
               strokeLinejoin="round"
-              style={{ filter: "drop-shadow(0 0 6px rgba(0, 229, 255, 0.8))" }}
+              style={{ filter: "drop-shadow(0 0 3px rgba(0, 229, 255, 0.3))" }}
             />
 
             {/* Render all Branches natively onto the exact same grid */}
