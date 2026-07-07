@@ -117,7 +117,7 @@ const BIKE_PATH =
 
 export function BangladeshMap({
   height = 500,
-  label = "OVER 60 BRANCHES NATIONWIDE",
+  label = "47+ BRANCHES NATIONWIDE",
 }: {
   height?: number | string;
   label?: string;
