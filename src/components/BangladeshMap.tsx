@@ -1,98 +1,90 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-type MainBranch = {
+type Branch = {
   id: string;
   name: string;
-  coord: string;
+  coord?: string;
   cx: number;
   cy: number;
+  isMain?: boolean;
 };
 
-// The 8 Major Regional Hubs (Large Red Pins with Hover Tooltips)
-const MAIN: MainBranch[] = [
-  { id: "dhaka", name: "🏍 DHAKA CENTRAL", coord: "Aminul Islam", cx: 1610, cy: 1668 },
-  { id: "chittagong", name: "🏍 CHITTAGONG HUB", coord: "Mohammad Sajid", cx: 1850, cy: 1920 },
-  { id: "sylhet", name: "🏍 SYLHET REGIONAL", coord: "Farhana Akter", cx: 1880, cy: 1375 },
-  { id: "khulna", name: "🏍 KHULNA WING", coord: "Khulna Lead", cx: 1480, cy: 1830 },
-  { id: "rajshahi", name: "🏍 RAJSHAHI WING", coord: "Rajshahi Lead", cx: 1320, cy: 1530 },
-  { id: "barishal", name: "🏍 BARISHAL WING", coord: "Barishal Lead", cx: 1710, cy: 1850 },
-  { id: "rangpur", name: "🏍 RANGPUR WING", coord: "Rangpur Lead", cx: 1500, cy: 1300 },
-  { id: "mymensingh", name: "🏍 MYMENSINGH", coord: "Mymensingh Lead", cx: 1720, cy: 1450 },
+// All 50+ Branches mapped precisely to the viewBox="5 5 390 490" grid!
+const ALL_BRANCHES: Branch[] = [
+  // 8 Main Hubs (Large Red Pins)
+  { id: "dhaka", name: "🏍 DHAKA CENTRAL", coord: "Aminul Islam", cx: 195, cy: 240, isMain: true },
+  { id: "chittagong", name: "🏍 CHITTAGONG HUB", coord: "Mohammad Sajid", cx: 295, cy: 360, isMain: true },
+  { id: "sylhet", name: "🏍 SYLHET REGIONAL", coord: "Farhana Akter", cx: 310, cy: 140, isMain: true },
+  { id: "khulna", name: "🏍 KHULNA WING", coord: "Khulna Lead", cx: 135, cy: 340, isMain: true },
+  { id: "rajshahi", name: "🏍 RAJSHAHI WING", coord: "Rajshahi Lead", cx: 90, cy: 195, isMain: true },
+  { id: "barishal", name: "🏍 BARISHAL WING", coord: "Barishal Lead", cx: 190, cy: 345, isMain: true },
+  { id: "rangpur", name: "🏍 RANGPUR WING", coord: "Rangpur Lead", cx: 115, cy: 95, isMain: true },
+  { id: "mymensingh", name: "🏍 MYMENSINGH", coord: "Mymensingh Lead", cx: 195, cy: 145, isMain: true },
+  
+  // 40+ Sub-Branches (Glowing Cyan Nodes)
+  { id: "narayanganj", name: "YRC Narayanganj", cx: 205, cy: 250 },
+  { id: "brahmanbaria", name: "YRC Brahmanbaria", cx: 250, cy: 220 },
+  { id: "naogaon", name: "YRC Naogaon", cx: 100, cy: 165 },
+  { id: "bhairab", name: "YRC Bhairab", cx: 235, cy: 200 },
+  { id: "charfesson", name: "YRC Charfesson", cx: 195, cy: 385 },
+  { id: "kishoreganj", name: "YRC Kishoreganj", cx: 230, cy: 170 },
+  { id: "chirirbondor", name: "YRC Chirirbondor", cx: 85, cy: 80 },
+  { id: "dhunat", name: "YRC Dhunat", cx: 145, cy: 160 },
+  { id: "chhagalnaiya", name: "YRC Chhagalnaiya", cx: 285, cy: 295 },
+  { id: "chandpur", name: "YRC Chandpur", cx: 220, cy: 280 },
+  { id: "coxsbazar", name: "YRC Cox's Bazar", cx: 315, cy: 420 },
+  { id: "chakaria", name: "YRC Chakaria", cx: 310, cy: 395 },
+  { id: "madaripur", name: "YRC Madaripur", cx: 175, cy: 285 },
+  { id: "jashore", name: "YRC Jashore", cx: 115, cy: 285 },
+  { id: "singair", name: "YRC Singair", cx: 180, cy: 235 },
+  { id: "laksham", name: "YRC Laksham", cx: 265, cy: 275 },
+  { id: "shariatpur", name: "YRC Shariatpur", cx: 195, cy: 285 },
+  { id: "patiya", name: "YRC Patiya", cx: 300, cy: 370 },
+  { id: "domar", name: "YRC Domar", cx: 100, cy: 55 },
+  { id: "natore", name: "YRC Natore", cx: 120, cy: 180 },
+  { id: "saidpur", name: "YRC Saidpur", cx: 105, cy: 65 },
+  { id: "kushtia", name: "YRC Kushtia", cx: 100, cy: 240 },
+  { id: "fatikchari", name: "YRC Fatikchari", cx: 295, cy: 335 },
+  { id: "bogura", name: "YRC Bogura", cx: 135, cy: 155 },
+  { id: "barguna", name: "YRC Barguna", cx: 165, cy: 380 },
+  { id: "satkhira", name: "YRC Satkhira", cx: 100, cy: 345 },
+  { id: "dinajpur", name: "YRC Dinajpur", cx: 80, cy: 70 },
+  { id: "faridpur", name: "YRC Faridpur", cx: 160, cy: 260 },
+  { id: "manikganj", name: "YRC Manikganj", cx: 170, cy: 230 },
+  { id: "gaibandha", name: "YRC Gaibandha", cx: 135, cy: 115 },
+  { id: "jhalokati", name: "YRC Jhalokati", cx: 170, cy: 350 },
+  { id: "tangail", name: "YRC Tangail", cx: 165, cy: 190 },
+  { id: "pabna", name: "YRC Pabna", cx: 125, cy: 215 },
+  { id: "gopalganj", name: "YRC Gopalganj", cx: 150, cy: 305 },
+  { id: "panchagarh", name: "YRC Panchagarh", cx: 80, cy: 30 },
+  { id: "jhenaidah", name: "YRC Jhenaidah", cx: 110, cy: 260 },
+  { id: "habiganj", name: "YRC Habiganj", cx: 275, cy: 160 },
+  { id: "pirojpur", name: "YRC Pirojpur", cx: 155, cy: 355 },
+  { id: "bhaluka", name: "YRC Bhaluka", cx: 190, cy: 175 },
+  { id: "katiadi", name: "YRC Katiadi", cx: 220, cy: 180 },
+  { id: "ashulia", name: "YRC Ashulia", cx: 185, cy: 225 },
+  { id: "meherpur", name: "YRC Meherpur", cx: 80, cy: 240 },
+  { id: "joypurhat", name: "YRC Joypurhat", cx: 105, cy: 140 },
+  { id: "kurigram", name: "YRC Kurigram", cx: 145, cy: 85 },
+  { id: "phulpur", name: "YRC Phulpur", cx: 195, cy: 125 },
+  { id: "sapahar", name: "YRC Sapahar", cx: 85, cy: 150 },
+  { id: "babuganj", name: "YRC Babuganj", cx: 190, cy: 340 },
+  { id: "dhanbari", name: "YRC Dhanbari", cx: 165, cy: 170 },
+  { id: "manirampur", name: "YRC Manirampur", cx: 115, cy: 295 },
 ];
 
-// The 40+ Sub-Branches mapped from your exact list (Glowing Blue Network Dots)
-const NETWORK_NODES = [
-  { name: "Narayanganj", cx: 1630, cy: 1690 },
-  { name: "Brahmanbaria", cx: 1780, cy: 1610 },
-  { name: "Naogaon", cx: 1330, cy: 1450 },
-  { name: "Bhairab", cx: 1730, cy: 1580 },
-  { name: "Charfesson", cx: 1740, cy: 1950 },
-  { name: "Kishoreganj", cx: 1730, cy: 1520 },
-  { name: "Chirirbondor", cx: 1400, cy: 1220 },
-  { name: "Dhunat", cx: 1500, cy: 1450 },
-  { name: "Chhagalnaiya", cx: 1870, cy: 1780 },
-  { name: "Chandpur", cx: 1750, cy: 1750 },
-  { name: "Cox's Bazar", cx: 1910, cy: 2020 },
-  { name: "Chakaria", cx: 1930, cy: 1980 },
-  { name: "Madaripur", cx: 1600, cy: 1780 },
-  { name: "Jashore", cx: 1430, cy: 1730 },
-  { name: "Singair", cx: 1580, cy: 1660 },
-  { name: "Laksham", cx: 1830, cy: 1740 },
-  { name: "Shariatpur", cx: 1650, cy: 1780 },
-  { name: "Patiya", cx: 1870, cy: 1940 },
-  { name: "Domar", cx: 1400, cy: 1150 },
-  { name: "Natore", cx: 1380, cy: 1480 },
-  { name: "Saidpur", cx: 1420, cy: 1180 },
-  { name: "Kushtia", cx: 1350, cy: 1620 },
-  { name: "Fatikchari", cx: 1870, cy: 1850 },
-  { name: "Bogura", cx: 1460, cy: 1420 },
-  { name: "Barguna", cx: 1650, cy: 1920 },
-  { name: "Satkhira", cx: 1400, cy: 1850 },
-  { name: "Dinajpur", cx: 1350, cy: 1200 },
-  { name: "Faridpur", cx: 1530, cy: 1710 },
-  { name: "Manikganj", cx: 1550, cy: 1650 },
-  { name: "Gaibandha", cx: 1520, cy: 1350 },
-  { name: "Jhalokati", cx: 1650, cy: 1850 },
-  { name: "Tangail", cx: 1580, cy: 1550 },
-  { name: "Pabna", cx: 1400, cy: 1550 },
-  { name: "Gopalganj", cx: 1530, cy: 1800 },
-  { name: "Panchagarh", cx: 1350, cy: 1050 },
-  { name: "Jhenaidah", cx: 1380, cy: 1680 },
-  { name: "Habiganj", cx: 1820, cy: 1480 },
-  { name: "Pirojpur", cx: 1550, cy: 1860 },
-  { name: "Bhaluka", cx: 1680, cy: 1500 },
-  { name: "Katiadi", cx: 1720, cy: 1540 },
-  { name: "Ashulia", cx: 1590, cy: 1650 },
-  { name: "Meherpur", cx: 1320, cy: 1650 },
-  { name: "Joypurhat", cx: 1380, cy: 1400 },
-  { name: "Kurigram", cx: 1530, cy: 1200 },
-  { name: "Phulpur", cx: 1680, cy: 1400 },
-  { name: "Sapahar", cx: 1300, cy: 1420 },
-  { name: "Babuganj", cx: 1710, cy: 1820 },
-  { name: "Dhanbari", cx: 1620, cy: 1480 },
-  { name: "Manirampur", cx: 1430, cy: 1780 },
-];
-
-// Expanded trail to traverse the entire country
+// Trail connecting main cities dynamically placed in the 5 5 390 490 grid
 const BIKE_PATH =
-  "M1610,1668 Q1750,1800 1850,1920 Q1900,1600 1880,1375 Q1600,1400 1320,1530 Q1300,1700 1480,1830 Q1550,1750 1610,1668";
+  "M195,240 Q250,300 295,360 Q320,250 310,140 Q240,160 195,240";
 
 export function BangladeshMap({
   height = 500,
-  label = "OVER 60 BRANCHES NATIONWIDE",
+  label = "OVER 50 BRANCHES NATIONWIDE",
 }: {
   height?: number | string;
   label?: string;
 }) {
-  const [hover, setHover] = useState<MainBranch["id"] | null>(null);
-  const [svgContent, setSvgContent] = useState<string>("");
-
-  useEffect(() => {
-    fetch("/bangladesh.svg")
-      .then((res) => res.text())
-      .then((text) => setSvgContent(text))
-      .catch((err) => console.error("Failed to load map SVG:", err));
-  }, []);
+  const [hover, setHover] = useState<string | null>(null);
 
   return (
     <div
@@ -103,34 +95,13 @@ export function BangladeshMap({
       }}
     >
       <style>{`
-        .yrc-inlined-svg svg {
-          width: 100%;
-          height: 100%;
-          display: block;
-          filter: drop-shadow(0 0 12px rgba(0, 71, 204, 0.6));
-        }
-        .yrc-inlined-svg svg path {
-          fill: #003087 !important;
-          stroke: #0047cc !important;
-          stroke-width: 1.5px !important;
-          stroke-dasharray: 15000;
-          stroke-dashoffset: 15000;
-          animation: yrcDrawMap 3s ease-in-out forwards;
-        }
-        
-        @keyframes yrcDrawMap {
-          0% { stroke-dashoffset: 15000; fill-opacity: 0; }
-          70% { stroke-dashoffset: 0; fill-opacity: 0; }
-          100% { stroke-dashoffset: 0; fill-opacity: 1; }
-        }
-
         @keyframes yrcDotEnter {
           from { opacity: 0; transform: scale(0); }
           to { opacity: 1; transform: scale(1); }
         }
         @keyframes yrcDotPulse {
           0%, 100% { transform: scale(1); opacity: 1; }
-          50% { transform: scale(1.3); opacity: 0.6; }
+          50% { transform: scale(1.3); opacity: 0.7; }
         }
         .yrc-bd-dot {
           opacity: 0;
@@ -154,16 +125,16 @@ export function BangladeshMap({
       <div className="relative flex h-full w-full flex-col items-center">
         <div className="relative w-full flex-1 max-w-[800px] flex items-center justify-center">
           
-          {/* THE MAP: Injected directly into the DOM so it glows and animates! */}
-          {/* ViewBox matches exactly to crop out empty space (Width: 1300, Height: 1350) */}
-          <div 
-            className="absolute inset-0 w-full h-full opacity-90 yrc-inlined-svg"
-            dangerouslySetInnerHTML={{ __html: svgContent.replace('viewBox="0.22 -0.456 400 500"', 'viewBox="750 950 1300 1350"') }}
+          {/* THE SVG BACKGROUND MAP - Loading from your local file */}
+          <img 
+            src="/bangladesh.svg" 
+            alt="Map of Bangladesh" 
+            className="absolute inset-0 w-full h-full object-contain opacity-90 drop-shadow-xl"
           />
 
-          {/* THE OVERLAY: Dots, Trails, and Motorcycles */}
+          {/* OVERLAY SVG - Perfectly matches your bangladesh.svg viewBox! */}
           <svg
-            viewBox="750 950 1300 1350"
+            viewBox="5 5 390 490"
             className="absolute inset-0 w-full h-full"
             preserveAspectRatio="xMidYMid meet"
             style={{ overflow: "visible" }}
@@ -179,79 +150,65 @@ export function BangladeshMap({
               fill="none"
               stroke="#0047cc"
               strokeOpacity={0.6}
-              strokeWidth={4}
-              strokeDasharray="15 15"
+              strokeWidth={1}
+              strokeDasharray="4 4"
             />
 
-            {/* The 50+ Blue Network Sub-Branches */}
-            {NETWORK_NODES.map((d, i) => (
+            {/* Render all 50+ Branches */}
+            {ALL_BRANCHES.map((branch, i) => (
               <g
-                key={d.name}
+                key={branch.id}
                 className="yrc-bd-dot"
                 style={
                   {
-                    ["--enter-delay" as string]: `${2 + (i % 5) * 0.2}s`,
-                    ["--pulse-delay" as string]: `${2.4 + (i % 3) * 0.4}s`,
+                    ["--enter-delay" as string]: `${2 + (i % 8) * 0.15}s`,
+                    ["--pulse-delay" as string]: `${2.4 + (i % 4) * 0.3}s`,
+                    cursor: "pointer",
                   } as React.CSSProperties
                 }
+                onMouseEnter={() => setHover(branch.id)}
+                onMouseLeave={() => setHover((h) => (h === branch.id ? null : h))}
               >
+                {/* 
+                  If it's a Main Branch, render Large Red Dot.
+                  If it's a Sub Branch, render Bright Glowing Cyan Dot. 
+                */}
                 <circle
-                  cx={d.cx}
-                  cy={d.cy}
-                  r={7}
-                  fill="#0047cc"
-                  style={{ filter: "drop-shadow(0 0 6px rgba(0,71,204,0.9))" }}
+                  cx={branch.cx}
+                  cy={branch.cy}
+                  r={branch.isMain ? 2.5 : 1.2}
+                  fill={branch.isMain ? "#e60012" : "#00e5ff"}
+                  stroke={branch.isMain ? "#ffffff" : "transparent"}
+                  strokeWidth={branch.isMain ? 0.8 : 0}
+                  style={{
+                    filter: branch.isMain
+                      ? "drop-shadow(0 0 4px rgba(230,0,18,0.9))"
+                      : "drop-shadow(0 0 3px rgba(0,229,255,1))",
+                  }}
                 />
+                {/* Invisible hit area to make hovering easier on small dots */}
+                <circle cx={branch.cx} cy={branch.cy} r={8} fill="transparent" />
               </g>
             ))}
 
             {/* Motorcycle traveling the trail */}
             <g className="yrc-bd-bike" style={{ opacity: 0.9 }}>
-              <g transform="translate(-20,-20)">
-                <svg x="0" y="0" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#003087" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ background: "white", borderRadius: "50%" }}>
+              <g transform="translate(-4,-4)">
+                <svg x="0" y="0" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#003087" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ background: "white", borderRadius: "50%" }}>
                   <circle cx="5.5" cy="16.5" r="3.5" />
                   <circle cx="18.5" cy="16.5" r="3.5" />
                   <path d="M5.5 16.5h6l3-6h-4" />
                   <path d="M14.5 10.5l4 6" />
                 </svg>
-                <animateMotion dur="12s" repeatCount="indefinite" rotate="auto">
+                <animateMotion dur="10s" repeatCount="indefinite" rotate="auto">
                   <mpath href="#yrc-bike-motion-path" />
                 </animateMotion>
               </g>
             </g>
-
-            {/* The 8 Main Hubs (rendered last so on top) */}
-            {MAIN.map((m, i) => (
-              <g
-                key={m.id}
-                className="yrc-bd-dot"
-                style={
-                  {
-                    ["--enter-delay" as string]: `${2 + i * 0.1}s`,
-                    ["--pulse-delay" as string]: `${2.4 + i * 0.3}s`,
-                    cursor: "pointer",
-                  } as React.CSSProperties
-                }
-                onMouseEnter={() => setHover(m.id)}
-                onMouseLeave={() => setHover((h) => (h === m.id ? null : h))}
-              >
-                <circle
-                  cx={m.cx}
-                  cy={m.cy}
-                  r={15}
-                  fill="#e60012"
-                  stroke="#ffffff"
-                  strokeWidth={4}
-                  style={{ filter: "drop-shadow(0 0 15px rgba(230,0,18,0.9))" }}
-                />
-                {/* Larger invisible hit area */}
-                <circle cx={m.cx} cy={m.cy} r={50} fill="transparent" />
-              </g>
-            ))}
           </svg>
 
-          {/* Dynamic Tooltips (Math perfectly accounts for the viewBox 750/950 offset and 1300/1350 scale) */}
-          {MAIN.map((m) => {
+          {/* Dynamic Tooltips for EVERY branch */}
+          {ALL_BRANCHES.map((m) => {
             const active = hover === m.id;
             return (
               <div
@@ -259,33 +216,42 @@ export function BangladeshMap({
                 aria-hidden={!active}
                 className="pointer-events-none absolute"
                 style={{
-                  left: `${((m.cx - 750) / 1300) * 100}%`,
-                  top: `${((m.cy - 950) / 1350) * 100}%`,
-                  transform: `translate(-50%, calc(-100% - 16px)) translateY(${active ? 0 : 5}px)`,
+                  // Math is (Coordinate - MinX) / Width
+                  left: `${((m.cx - 5) / 390) * 100}%`,
+                  top: `${((m.cy - 5) / 490) * 100}%`,
+                  transform: `translate(-50%, calc(-100% - 10px)) translateY(${active ? 0 : 5}px)`,
                   opacity: active ? 1 : 0,
                   transition: "opacity 200ms ease, transform 200ms ease",
-                  zIndex: 50,
+                  zIndex: active ? 100 : 50, // Active tooltip jumps to front
                 }}
               >
                 <div
-                  className="rounded-lg bg-white font-sans"
+                  className="rounded-lg bg-white font-sans pointer-events-auto"
                   style={{
-                    padding: "10px 16px",
-                    boxShadow: "0 8px 24px rgba(0,0,0,0.25)",
+                    padding: "8px 12px",
+                    boxShadow: "0 8px 24px rgba(0,0,0,0.3)",
                     color: "#003087",
                     whiteSpace: "nowrap",
-                    fontSize: 13,
+                    fontSize: 12,
                     lineHeight: 1.35,
+                    border: m.isMain ? "2px solid #e60012" : "1px solid #00e5ff",
                   }}
+                  onMouseEnter={() => setHover(m.id)}
+                  onMouseLeave={() => setHover(null)}
                 >
-                  <div style={{ fontWeight: 700, fontSize: 14 }}>{m.name}</div>
-                  <div style={{ fontSize: 12, color: "#555", marginTop: 2 }}>{m.coord}</div>
+                  <div style={{ fontWeight: 800, fontSize: 13 }}>{m.name}</div>
+                  {m.coord && <div style={{ fontSize: 11, color: "#666", marginTop: 2 }}>{m.coord}</div>}
+                  
+                  {/* Generic Facebook Link for all branches */}
                   <a
-                    href="/branches"
-                    className="mt-1 inline-block font-semibold pointer-events-auto"
-                    style={{ color: "#0047cc", fontSize: 12 }}
+                    href="https://www.facebook.com/groups/YamahaRidersClubBD"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-2 inline-flex items-center gap-1 font-semibold hover:underline"
+                    style={{ color: "#0047cc", fontSize: 11 }}
                   >
-                    Visit Branch →
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h3l1-4h-4V7.5c0-1.1.3-2 2-2h2V2.2C16.6 2.1 15.4 2 14 2c-3 0-5 1.8-5 5.2V10H6v4h3v8h4z"/></svg>
+                    Visit Facebook Page
                   </a>
                 </div>
               </div>
