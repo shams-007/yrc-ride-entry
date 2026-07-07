@@ -23,7 +23,14 @@ export function Footer() {
     <footer className="w-full px-6 lg:px-10" style={{ backgroundColor: "#003087", paddingTop: 80, paddingBottom: 32 }}>
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <div className="font-display text-white" style={{ fontSize: 32, lineHeight: 1 }}>YRC.BD</div>
+          <Link to="/" className="inline-flex items-center">
+            <img
+              src="https://i.imgur.com/y37rOgL.png"
+              alt="Yamaha Riders Club Bangladesh"
+              height={56}
+              className="h-14 w-auto object-contain"
+            />
+          </Link>
           <p className="mt-3 font-sans" style={{ fontSize: 14, color: "rgba(255,255,255,0.6)" }}>
             Connection. Passion. Pride.
           </p>
