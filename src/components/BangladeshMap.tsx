@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 type Branch = {
   id: string;
@@ -9,7 +9,7 @@ type Branch = {
   isMain?: boolean;
 };
 
-// All 60 branches meticulously recalibrated to sit perfectly inland
+// All 60 branches locked to the 5 5 390 490 coordinate system
 const ALL_BRANCHES: Branch[] = [
   // 8 Main Hubs (Large Red Pins)
   { id: "dhaka", name: "🏍 DHAKA CENTRAL", coord: "Aminul Islam", cx: 215, cy: 220, isMain: true },
@@ -36,16 +36,16 @@ const ALL_BRANCHES: Branch[] = [
   { id: "chandpur", name: "YRC Chandpur", cx: 235, cy: 280 },
   { id: "muradpur", name: "YRC Muradpur", cx: 295, cy: 380 },
   { id: "mirpur", name: "Mirpur Branch", cx: 210, cy: 215 },
-  { id: "rangamati", name: "YRC Rangamati", cx: 330, cy: 345 }, // Safely inland
-  { id: "coxsbazar", name: "YRC Cox's Bazar", cx: 320, cy: 445 }, // Adjusted securely onto the peninsula
-  { id: "chakaria", name: "YRC Chakaria", cx: 315, cy: 415 }, // Shifted inland
+  { id: "rangamati", name: "YRC Rangamati", cx: 330, cy: 345 }, 
+  { id: "coxsbazar", name: "YRC Cox's Bazar", cx: 320, cy: 445 },
+  { id: "chakaria", name: "YRC Chakaria", cx: 315, cy: 415 }, 
   { id: "paltan", name: "Paltan Branch", cx: 215, cy: 222 },
   { id: "madaripur", name: "YRC Madaripur", cx: 195, cy: 290 },
   { id: "khilgaon", name: "Khilgaon Branch", cx: 218, cy: 220 },
   { id: "jashore", name: "YRC Jashore", cx: 130, cy: 295 },
   { id: "fulgazi", name: "YRC Fulgazi", cx: 305, cy: 280 },
   { id: "singair", name: "YRC Singair", cx: 200, cy: 220 },
-  { id: "eidgaon", name: "YRC Eidgaon", cx: 318, cy: 430 }, // Inland
+  { id: "eidgaon", name: "YRC Eidgaon", cx: 318, cy: 430 }, 
   { id: "laksham", name: "YRC Laksham", cx: 285, cy: 265 },
   { id: "shariatpur", name: "YRC Shariatpur", cx: 205, cy: 290 },
   { id: "patiya", name: "YRC Patiya", cx: 305, cy: 385 },
@@ -72,7 +72,7 @@ const ALL_BRANCHES: Branch[] = [
   { id: "kalkini", name: "Kalkini Branch", cx: 198, cy: 295 },
   { id: "gaibandha", name: "YRC Gaibandha", cx: 155, cy: 120 },
   { id: "jhalokati", name: "YRC Jhalokati", cx: 195, cy: 340 },
-  { id: "pekua", name: "YRC Pekua", cx: 310, cy: 410 }, // Inland
+  { id: "pekua", name: "YRC Pekua", cx: 310, cy: 410 }, 
   { id: "sherpurbogura", name: "YRC Sherpur Bogura", cx: 165, cy: 165 },
   { id: "birganj", name: "YRC Birganj", cx: 105, cy: 80 },
   { id: "tangail", name: "YRC Tangail", cx: 190, cy: 185 },
@@ -111,63 +111,9 @@ const ALL_BRANCHES: Branch[] = [
   { id: "manirampur", name: "YRC Manirampur", cx: 135, cy: 305 },
 ];
 
-// A deeply curved nationwide route traveling to major regions
+// A deeply curved nationwide route traveling smoothly through major regions
 const BIKE_PATH =
   "M215,220 Q140,100 95,200 Q150,315 205,345 Q300,375 320,445 Q330,250 325,155 Q210,150 215,220";
-
-// --- GLITCH FIX PART 1: STYLES ARE NOW OUTSIDE THE COMPONENT ---
-// This ensures that React NEVER re-evaluates the keyframes on hover
-const GlobalStyles = React.memo(() => (
-  <style>{`
-    .yrc-inlined-svg svg {
-      width: 100%;
-      height: 100%;
-      display: block;
-      filter: drop-shadow(0 0 12px rgba(0, 71, 204, 0.6));
-    }
-    .animate-map {
-      fill: #003087 !important;
-      stroke: #0047cc !important;
-      stroke-width: 1.5px !important;
-      stroke-dasharray: 1;
-      stroke-dashoffset: 1;
-      animation: yrcDrawMap 2.5s ease-in-out forwards;
-    }
-    @keyframes yrcDrawMap {
-      0% { stroke-dashoffset: 1; fill-opacity: 0; }
-      70% { stroke-dashoffset: 0; fill-opacity: 0; }
-      100% { stroke-dashoffset: 0; fill-opacity: 1; }
-    }
-    @keyframes yrcDotEnter {
-      from { opacity: 0; transform: scale(0); }
-      to { opacity: 1; transform: scale(1); }
-    }
-    @keyframes yrcDotPulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.4); opacity: 0.8; }
-    }
-    .yrc-bd-dot {
-      opacity: 0;
-      transform-box: fill-box;
-      transform-origin: center;
-      animation:
-        yrcDotEnter 400ms ease forwards var(--enter-delay, 2s),
-        yrcDotPulse 2s ease-in-out infinite var(--pulse-delay, 2.4s);
-    }
-  `}</style>
-));
-
-// --- GLITCH FIX PART 2: THE MAP BACKGROUND IS NOW ITS OWN COMPONENT ---
-// This guarantees the map HTML string is only injected once.
-const MapBackground = React.memo(({ content }: { content: string }) => {
-  if (!content) return null;
-  return (
-    <div
-      className="absolute inset-0 w-full h-full opacity-90 yrc-inlined-svg"
-      dangerouslySetInnerHTML={{ __html: content }}
-    />
-  );
-});
 
 export function BangladeshMap({
   height = 500,
@@ -177,17 +123,22 @@ export function BangladeshMap({
   label?: string;
 }) {
   const [hover, setHover] = useState<string | null>(null);
-  const [svgContent, setSvgContent] = useState<string>("");
-  const timerRef = React.useRef<NodeJS.Timeout>();
+  const [mapPaths, setMapPaths] = useState<string[]>([]);
+  const timerRef = useRef<NodeJS.Timeout>();
 
+  // 1. Fetch and Parse the SVG mathematically into React
   useEffect(() => {
     fetch("/bangladesh.svg")
       .then((res) => res.text())
       .then((text) => {
-        // Enforce the viewBox, inject the animation class so it draws itself
-        let fixedSVG = text.replace(/viewBox="[^"]+"/, 'viewBox="0 0 400 500" preserveAspectRatio="xMidYMid meet"');
-        fixedSVG = fixedSVG.replace('id="path4968"', 'id="path4968" class="animate-map" pathLength="1"');
-        setSvgContent(fixedSVG);
+        // Use the browser's safe native DOM parser to extract the paths
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, "image/svg+xml");
+        const paths = Array.from(doc.querySelectorAll("path"))
+          .map((p) => p.getAttribute("d"))
+          .filter(Boolean) as string[];
+        
+        setMapPaths(paths);
       })
       .catch((err) => console.error("Failed to load map SVG:", err));
   }, []);
@@ -204,20 +155,63 @@ export function BangladeshMap({
   };
 
   return (
-    <div className="relative w-full overflow-hidden" style={{ backgroundColor: "transparent", height }}>
-      {/* Renders global animation definitions once */}
-      <GlobalStyles />
+    <div
+      className="relative w-full overflow-hidden"
+      style={{
+        backgroundColor: "transparent",
+        height: height,
+      }}
+    >
+      <style>{`
+        .yrc-animate-map {
+          fill: #003087;
+          stroke: #0047cc;
+          stroke-width: 1.5px;
+          stroke-dasharray: 1;
+          stroke-dashoffset: 1;
+          filter: drop-shadow(0 0 12px rgba(0, 71, 204, 0.6));
+          /* This runs EXACTLY once when mounted */
+          animation: yrcDrawMap 2.5s ease-in-out forwards;
+        }
+        @keyframes yrcDrawMap {
+          0% { stroke-dashoffset: 1; fill-opacity: 0; }
+          70% { stroke-dashoffset: 0; fill-opacity: 0; }
+          100% { stroke-dashoffset: 0; fill-opacity: 1; }
+        }
+        @keyframes yrcDotEnter {
+          from { opacity: 0; transform: scale(0); }
+          to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes yrcDotPulse {
+          0%, 100% { transform: scale(1); opacity: 1; }
+          50% { transform: scale(1.4); opacity: 0.8; }
+        }
+        .yrc-bd-dot {
+          opacity: 0;
+          transform-box: fill-box;
+          transform-origin: center;
+          animation:
+            yrcDotEnter 400ms ease forwards var(--enter-delay, 2s),
+            yrcDotPulse 2s ease-in-out infinite var(--pulse-delay, 2.4s);
+        }
+        .yrc-bd-trail {
+          stroke-dasharray: 6 6;
+          opacity: 0;
+          animation: yrcDotEnter 400ms ease forwards 2s;
+        }
+        .yrc-bd-bike {
+          opacity: 0;
+          animation: yrcDotEnter 400ms ease forwards 2.2s;
+        }
+      `}</style>
 
       <div className="relative flex h-full w-full flex-col items-center">
         <div className="relative w-full flex-1 max-w-[800px] flex items-center justify-center">
           
-          {/* Renders the map drawing exactly once so it never restarts on hover */}
-          <MapBackground content={svgContent} />
-
-          {/* OVERLAY SVG - Perfectly matches 0 0 400 500 */}
+          {/* THE MASTER SVG: Map, Dots, and Bike all share the EXACT same locked grid */}
           <svg
-            viewBox="0 0 400 500"
-            className="absolute inset-0 w-full h-full pointer-events-none"
+            viewBox="5 5 390 490"
+            className="absolute inset-0 w-full h-full"
             preserveAspectRatio="xMidYMid meet"
             style={{ overflow: "visible" }}
           >
@@ -225,23 +219,33 @@ export function BangladeshMap({
               <path id="yrc-bike-motion-path" d={BIKE_PATH} />
             </defs>
 
-            {/* A beautiful curved, highly visible cyan bike lane */}
+            {/* Render the extracted map paths dynamically */}
+            {mapPaths.map((d, idx) => (
+              <path
+                key={idx}
+                d={d}
+                className="yrc-animate-map"
+                pathLength="1"
+              />
+            ))}
+
+            {/* Highly visible, smooth, semi-transparent white bike lane */}
             <path
+              className="yrc-bd-trail"
               d={BIKE_PATH}
               fill="none"
-              stroke="#00e5ff" 
-              strokeOpacity={0.7}
+              stroke="#ffffff"
+              strokeOpacity={0.4}
               strokeWidth={2}
-              strokeDasharray="6 6"
+              strokeDasharray="4 4"
               strokeLinejoin="round"
-              style={{ filter: "drop-shadow(0 0 4px rgba(0, 229, 255, 0.8))" }}
             />
 
-            {/* Render all 60 Branches securely inside the borders */}
+            {/* Render all 60+ Branches */}
             {ALL_BRANCHES.map((branch, i) => (
               <g
                 key={branch.id}
-                className="yrc-bd-dot pointer-events-auto"
+                className="yrc-bd-dot"
                 style={
                   {
                     ["--enter-delay" as string]: `${2 + (i % 8) * 0.15}s`,
@@ -255,30 +259,29 @@ export function BangladeshMap({
                 <circle
                   cx={branch.cx}
                   cy={branch.cy}
-                  r={branch.isMain ? 3 : 1.5}
+                  r={branch.isMain ? 2.5 : 1.5}
                   fill={branch.isMain ? "#e60012" : "#00e5ff"}
                   stroke="#ffffff"
-                  strokeWidth={branch.isMain ? 1 : 0.5}
+                  strokeWidth={branch.isMain ? 0.8 : 0.4}
                   style={{
                     filter: branch.isMain
                       ? "drop-shadow(0 0 4px rgba(230,0,18,0.9))"
                       : "drop-shadow(0 0 4px rgba(0,229,255,1))",
                   }}
                 />
-                <circle cx={branch.cx} cy={branch.cy} r={branch.isMain ? 12 : 8} fill="transparent" />
+                <circle cx={branch.cx} cy={branch.cy} r={branch.isMain ? 10 : 7} fill="transparent" />
               </g>
             ))}
 
-            {/* BIGGER, highly visible white and red motorcycle */}
-            <g style={{ opacity: 1 }}>
+            {/* Bolder, Bigger Motorcycle */}
+            <g className="yrc-bd-bike" style={{ opacity: 1 }}>
               <g transform="translate(-10,-10)">
-                <svg x="0" y="0" width="20" height="20" viewBox="0 0 24 24" fill="#ffffff" stroke="#e60012" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ background: "white", borderRadius: "50%", filter: "drop-shadow(0 0 6px rgba(255,255,255,0.8))" }}>
+                <svg x="0" y="0" width="20" height="20" viewBox="0 0 24 24" fill="#ffffff" stroke="#e60012" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ borderRadius: "50%", filter: "drop-shadow(0 0 4px rgba(255,255,255,0.6))" }}>
                   <circle cx="5.5" cy="16.5" r="3.5" />
                   <circle cx="18.5" cy="16.5" r="3.5" />
                   <path d="M5.5 16.5h6l3-6h-4" />
                   <path d="M14.5 10.5l4 6" />
                 </svg>
-                {/* 15 second continuous loop across the curved path */}
                 <animateMotion dur="15s" repeatCount="indefinite" rotate="auto">
                   <mpath href="#yrc-bike-motion-path" />
                 </animateMotion>
@@ -295,8 +298,8 @@ export function BangladeshMap({
                 aria-hidden={!active}
                 className="absolute"
                 style={{
-                  left: `${(m.cx / 400) * 100}%`,
-                  top: `${(m.cy / 500) * 100}%`,
+                  left: `${((m.cx - 5) / 390) * 100}%`,
+                  top: `${((m.cy - 5) / 490) * 100}%`,
                   transform: `translate(-50%, calc(-100% - 10px)) translateY(${active ? 0 : 5}px)`,
                   opacity: active ? 1 : 0,
                   transition: "opacity 200ms ease, transform 200ms ease",
