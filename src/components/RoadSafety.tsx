@@ -1,3 +1,4 @@
+// src/components/RoadSafety.tsx
 import { useCountUp } from "@/hooks/useCountUp";
 import { useSectionReveal } from "@/hooks/useSectionReveal";
 
@@ -5,6 +6,11 @@ const STATS: Array<{ value: number; suffix: string; label: string }> = [
   { value: 200, suffix: "", label: "Speed Breakers" },
   { value: 17, suffix: "", label: "Locations" },
   { value: 10, suffix: "+", label: "Campaigns" },
+];
+
+const SAFETY_IMAGES = [
+  "https://images.unsplash.com/photo-1515569067071-ec3b51335dd0?w=600&q=80",
+  "https://images.unsplash.com/photo-1463453091185-61582044d556?w=600&q=80"
 ];
 
 function SafetyNumber({ value, suffix }: { value: number; suffix: string }) {
@@ -74,16 +80,18 @@ export function RoadSafety() {
         {[0, 1].map((i) => (
           <div
             key={i}
-            className="flex items-center justify-center rounded-xl"
+            className="flex items-center justify-center rounded-xl overflow-hidden"
             style={{
               height: 280,
               border: "1px solid rgba(255,255,255,0.2)",
               backgroundColor: "rgba(255,255,255,0.04)",
             }}
           >
-            <span className="font-display tracking-widest text-white" style={{ fontSize: 18, opacity: 0.7 }}>
-              PHOTO
-            </span>
+            <img 
+              src={SAFETY_IMAGES[i]} 
+              alt="Road Safety Campaign" 
+              className="h-full w-full object-cover" 
+            />
           </div>
         ))}
       </div>
