@@ -204,15 +204,85 @@ function BranchesPage() {
         </div>
       </section>
 
-      {/* Map Section with Legend & Quick Stats */}
-      <section className="w-full px-6 py-12 lg:px-10" style={{ backgroundColor: "#f8f9ff" }}>
-        <div className="mx-auto max-w-7xl flex flex-col items-center">
+      {/* Map Section with Legend, Stats, and Textured Background */}
+      <section className="yrc-branches-grid relative w-full overflow-hidden px-6 py-16 lg:px-10" style={{ backgroundColor: "#f8f9ff" }}>
+        
+        {/* --- BACKGROUND DECORATIONS --- */}
+        {/* 1. Left Ambient Blue Glow */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute"
+          style={{
+            top: "5%",
+            left: "-10%",
+            width: "50vw",
+            height: "50vw",
+            background: "radial-gradient(circle, rgba(0,48,135,0.06) 0%, rgba(0,48,135,0) 70%)",
+            filter: "blur(100px)",
+            zIndex: 0,
+          }}
+        />
+        
+        {/* 2. Right Ambient Red Glow */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute"
+          style={{
+            bottom: "-10%",
+            right: "-10%",
+            width: "50vw",
+            height: "50vw",
+            background: "radial-gradient(circle, rgba(230,0,18,0.04) 0%, rgba(230,0,18,0) 70%)",
+            filter: "blur(100px)",
+            zIndex: 0,
+          }}
+        />
+
+        {/* 3. Left Watermark Text (Hidden on mobile) */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute font-display select-none hidden lg:block"
+          style={{
+            top: "50%",
+            left: 20,
+            transform: "translateY(-50%) rotate(-90deg)",
+            fontSize: "140px",
+            color: "rgba(0,48,135,0.03)",
+            lineHeight: 1,
+            zIndex: 0,
+            letterSpacing: "0.05em",
+          }}
+        >
+          YRC.BD
+        </span>
+
+        {/* 4. Right Watermark Text (Hidden on mobile) */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute font-display select-none hidden lg:block"
+          style={{
+            top: "50%",
+            right: 0,
+            transform: "translateY(-50%) rotate(90deg)",
+            fontSize: "140px",
+            color: "rgba(0,48,135,0.03)",
+            lineHeight: 1,
+            zIndex: 0,
+            letterSpacing: "0.05em",
+          }}
+        >
+          NATIONWIDE
+        </span>
+        {/* --- END DECORATIONS --- */}
+
+        {/* Main Content (Wrapped in relative z-10 so it sits above the decorations) */}
+        <div className="relative z-10 mx-auto max-w-7xl flex flex-col items-center">
           
           <BangladeshMap height={500} />
 
-          {/* Legend & Stats Bar to fill empty space */}
+          {/* Legend & Stats Bar */}
           <div 
-            className="mt-8 flex flex-col md:flex-row items-center justify-between w-full max-w-4xl bg-white rounded-2xl md:rounded-full px-8 py-5 gap-6 md:gap-0"
+            className="mt-12 flex flex-col md:flex-row items-center justify-between w-full max-w-4xl bg-white/90 backdrop-blur-md rounded-2xl md:rounded-full px-8 py-5 gap-6 md:gap-0"
             style={{ 
               boxShadow: "0 8px 30px rgba(0,48,135,0.06)", 
               border: "1px solid rgba(0,48,135,0.1)" 
