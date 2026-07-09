@@ -1,3 +1,4 @@
+// src/components/Conclave.tsx
 import { useCountUp } from "@/hooks/useCountUp";
 import { useSectionReveal } from "@/hooks/useSectionReveal";
 
@@ -18,12 +19,14 @@ export function Conclave() {
     <section ref={ref} className="w-full bg-[#eef2ff] px-6 lg:px-10" style={{ paddingTop: 100, paddingBottom: 100 }}>
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-2">
         <div
-          className="flex w-full items-center justify-center rounded-2xl"
-          style={{ backgroundColor: "#003087", height: 480, boxShadow: "0 20px 60px rgba(0,48,135,0.2)" }}
+          className="w-full overflow-hidden rounded-2xl"
+          style={{ height: 480, boxShadow: "0 20px 60px rgba(0,48,135,0.2)" }}
         >
-          <span className="font-display tracking-widest text-white" style={{ fontSize: 20, opacity: 0.7 }}>
-            CONCLAVE PHOTO
-          </span>
+          <img 
+            src="https://images.unsplash.com/photo-1568772585407-9361f9bf3c87?w=800&q=80" 
+            alt="YRC Annual Conclave" 
+            className="h-full w-full object-cover" 
+          />
         </div>
 
         <div>
