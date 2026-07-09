@@ -1,3 +1,4 @@
+// src/routes/events.tsx
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
 import anime from "animejs";
@@ -18,12 +19,12 @@ export const Route = createFileRoute("/events")({
 });
 
 const EVENTS = [
-  { date: "DEC 15, 2025", name: "TOUR DE CHITTAGONG", loc: "📍 Pahartali, Chittagong" },
-  { date: "JAN 8, 2026", name: "SYLHET WINTER RIDE", loc: "📍 Sylhet City" },
-  { date: "FEB 2, 2026", name: "DHAKA CONCLAVE 2026", loc: "📍 Dhaka Central" },
-  { date: "MAR 15, 2026", name: "BANDARBAN HILL RIDE", loc: "📍 Bandarban" },
-  { date: "APR 5, 2026", name: "CHITTAGONG COASTAL CRUISE", loc: "📍 Cox's Bazar Road" },
-  { date: "MAY 20, 2026", name: "YRC BIRTHDAY BASH", loc: "📍 Dhaka" },
+  { date: "DEC 15, 2025", name: "TOUR DE CHITTAGONG", loc: "📍 Pahartali, Chittagong", image: "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=600&q=80", fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { date: "JAN 8, 2026", name: "SYLHET WINTER RIDE", loc: "📍 Sylhet City", image: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=600&q=80", fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { date: "FEB 2, 2026", name: "DHAKA CONCLAVE 2026", loc: "📍 Dhaka Central", image: "https://images.unsplash.com/photo-1558981359-219d6364c9c8?w=600&q=80", fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { date: "MAR 15, 2026", name: "BANDARBAN HILL RIDE", loc: "📍 Bandarban", image: "https://images.unsplash.com/photo-1615172282427-9a57ef2d142e?w=600&q=80", fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { date: "APR 5, 2026", name: "CHITTAGONG COASTAL CRUISE", loc: "📍 Cox's Bazar Road", image: "https://images.unsplash.com/photo-1591334800366-41ee1e6e02eb?w=600&q=80", fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { date: "MAY 20, 2026", name: "YRC BIRTHDAY BASH", loc: "📍 Dhaka", image: "https://images.unsplash.com/photo-1502744688674-c619d1586c9e?w=600&q=80", fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
 ];
 
 function TiltCard({ children }: { children: React.ReactNode }) {
@@ -103,7 +104,6 @@ function EventsPage() {
               `}
             </style>
           </defs>
-          {/* 6 evenly spaced diagonal lines */}
           <line x1="50" y1="-200" x2="50" y2="650" />
           <line x1="233" y1="-200" x2="233" y2="650" />
           <line x1="417" y1="-200" x2="417" y2="650" />
@@ -185,17 +185,26 @@ function EventsPage() {
                 className="overflow-hidden rounded-2xl bg-white"
                 style={{ boxShadow: "0 4px 20px rgba(0,48,135,0.1)" }}
               >
-                <div className="relative flex items-center justify-center" style={{ height: 220, backgroundColor: "#003087" }}>
+                <a 
+                  href={e.fbLink} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="relative block group overflow-hidden" 
+                  style={{ height: 220, backgroundColor: "#003087" }}
+                >
+                  <img 
+                    src={e.image} 
+                    alt={e.name} 
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                  />
                   <span
-                    className="absolute left-4 top-4 rounded-full bg-[#e60012] px-4 py-1.5 font-sans text-white"
+                    className="absolute left-4 top-4 rounded-full bg-[#e60012] px-4 py-1.5 font-sans text-white z-10 shadow-md"
                     style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.05em" }}
                   >
                     {e.date}
                   </span>
-                  <span className="font-display tracking-widest text-white" style={{ fontSize: 18, opacity: 0.7 }}>
-                    EVENT PHOTO
-                  </span>
-                </div>
+                </a>
+                
                 <div style={{ padding: 24 }}>
                   <h3 className="font-display" style={{ color: "#003087", fontSize: 28, lineHeight: 1.05 }}>
                     {e.name}
@@ -204,12 +213,12 @@ function EventsPage() {
                     {e.loc}
                   </p>
                   <a
-                    href="https://www.facebook.com/groups/YamahaRidersClubBD"
+                    href={e.fbLink}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-4 block w-full rounded-full border-2 border-[#003087] py-2.5 text-center font-sans text-sm font-semibold text-[#003087] transition-colors hover:bg-[#003087] hover:text-white"
                   >
-                    RSVP
+                    RSVP ON FACEBOOK
                   </a>
                 </div>
               </div>
