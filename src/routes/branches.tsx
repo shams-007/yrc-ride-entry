@@ -1,3 +1,4 @@
+// src/routes/branches.tsx
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
 import anime from "animejs";
@@ -18,20 +19,74 @@ export const Route = createFileRoute("/branches")({
   component: BranchesPage,
 });
 
-const FB_URL = "https://www.facebook.com/groups/YamahaRidersClubBD";
-
+// Easily add new branches here. The grid will automatically adjust.
 const ALL_BRANCHES = [
-  { name: "DHAKA CENTRAL", coord: "Managed by Aminul Islam", desc: "The flagship hub for capital riders, weekly meets and city tours." },
-  { name: "CHITTAGONG HUB", coord: "Led by Mohammad Sajid", desc: "Coastal cruises, hill rides, and the largest port-city chapter." },
-  { name: "SYLHET REGIONAL", coord: "Coordinated by Farhana Akter", desc: "Tea-country trails and monsoon expeditions across the northeast." },
-  { name: "RAJSHAHI", coord: "Managed by Tanvir Hossain", desc: "Northwest riders exploring silk city and Padma riverside routes." },
-  { name: "KHULNA", coord: "Led by Rakibul Karim", desc: "Sundarbans gateway rides and southwest coastal expeditions." },
-  { name: "BARISAL", coord: "Coordinated by Shahriar Alam", desc: "River-delta rides and southern belt community meets." },
-  { name: "RANGPUR", coord: "Managed by Nazmul Haque", desc: "Northernmost chapter, Tista bridge runs and border rides." },
-  { name: "MYMENSINGH", coord: "Led by Sadia Rahman", desc: "Brahmaputra riverside meets and central-north group rides." },
-  { name: "COMILLA", coord: "Coordinated by Rezaul Bhuiyan", desc: "Historic city rides and eastern-central weekend expeditions." },
-  { name: "COX'S BAZAR", coord: "Managed by Imran Khaled", desc: "World's longest beach cruises and southeast coastal tours." },
-  { name: "JESSORE", coord: "Led by Habibur Rahman", desc: "Western-belt community rides and cross-district meetups." },
+  { 
+    name: "DHAKA CENTRAL", 
+    coord: "Managed by Aminul Islam", 
+    desc: "The flagship hub for capital riders, weekly meets and city tours.",
+    fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD"
+  },
+  { 
+    name: "CHITTAGONG HUB", 
+    coord: "Led by Mohammad Sajid", 
+    desc: "Coastal cruises, hill rides, and the largest port-city chapter.",
+    fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD"
+  },
+  { 
+    name: "SYLHET REGIONAL", 
+    coord: "Coordinated by Farhana Akter", 
+    desc: "Tea-country trails and monsoon expeditions across the northeast.",
+    fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD"
+  },
+  { 
+    name: "RAJSHAHI", 
+    coord: "Managed by Tanvir Hossain", 
+    desc: "Northwest riders exploring silk city and Padma riverside routes.",
+    fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD"
+  },
+  { 
+    name: "KHULNA", 
+    coord: "Led by Rakibul Karim", 
+    desc: "Sundarbans gateway rides and southwest coastal expeditions.",
+    fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD"
+  },
+  { 
+    name: "BARISAL", 
+    coord: "Coordinated by Shahriar Alam", 
+    desc: "River-delta rides and southern belt community meets.",
+    fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD"
+  },
+  { 
+    name: "RANGPUR", 
+    coord: "Managed by Nazmul Haque", 
+    desc: "Northernmost chapter, Tista bridge runs and border rides.",
+    fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD"
+  },
+  { 
+    name: "MYMENSINGH", 
+    coord: "Led by Sadia Rahman", 
+    desc: "Brahmaputra riverside meets and central-north group rides.",
+    fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD"
+  },
+  { 
+    name: "COMILLA", 
+    coord: "Coordinated by Rezaul Bhuiyan", 
+    desc: "Historic city rides and eastern-central weekend expeditions.",
+    fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD"
+  },
+  { 
+    name: "COX'S BAZAR", 
+    coord: "Managed by Imran Khaled", 
+    desc: "World's longest beach cruises and southeast coastal tours.",
+    fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD"
+  },
+  { 
+    name: "JESSORE", 
+    coord: "Led by Habibur Rahman", 
+    desc: "Western-belt community rides and cross-district meetups.",
+    fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD"
+  },
 ];
 
 function BranchCard({ b }: { b: (typeof ALL_BRANCHES)[number] }) {
@@ -61,12 +116,12 @@ function BranchCard({ b }: { b: (typeof ALL_BRANCHES)[number] }) {
           {b.desc}
         </p>
         <a
-          href={FB_URL}
+          href={b.fbLink}
           target="_blank"
           rel="noopener noreferrer"
           className="mt-5 inline-block font-sans text-sm font-semibold text-[#003087] hover:underline"
         >
-          Visit Facebook →
+          Visit Facebook Page →
         </a>
       </div>
     </div>
@@ -149,9 +204,49 @@ function BranchesPage() {
         </div>
       </section>
 
-      <section className="w-full px-6 py-16 lg:px-10" style={{ backgroundColor: "#f8f9ff" }}>
-        <div className="mx-auto max-w-7xl">
+      {/* Map Section with Legend & Quick Stats */}
+      <section className="w-full px-6 py-12 lg:px-10" style={{ backgroundColor: "#f8f9ff" }}>
+        <div className="mx-auto max-w-7xl flex flex-col items-center">
+          
           <BangladeshMap height={500} />
+
+          {/* Legend & Stats Bar to fill empty space */}
+          <div 
+            className="mt-8 flex flex-col md:flex-row items-center justify-between w-full max-w-4xl bg-white rounded-2xl md:rounded-full px-8 py-5 gap-6 md:gap-0"
+            style={{ 
+              boxShadow: "0 8px 30px rgba(0,48,135,0.06)", 
+              border: "1px solid rgba(0,48,135,0.1)" 
+            }}
+          >
+            {/* Legend */}
+            <div className="flex flex-wrap items-center justify-center gap-6">
+              <span className="font-display text-[#003087] text-xl leading-none">MAP KEY:</span>
+              <div className="flex items-center gap-2">
+                <span className="w-3 h-3 rounded-full bg-[#e60012]" style={{ boxShadow: "0 0 8px rgba(230,0,18,0.8)" }}></span>
+                <span className="font-sans text-sm font-semibold text-[#0d0d0d]">Main Hub</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#00e5ff]" style={{ boxShadow: "0 0 8px rgba(0,229,255,0.8)" }}></span>
+                <span className="font-sans text-sm font-medium text-[#666]">Sub-Branch</span>
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="hidden md:block w-px h-10 bg-[rgba(0,48,135,0.1)]"></div>
+
+            {/* Quick Stats */}
+            <div className="flex items-center gap-8">
+               <div className="text-center">
+                 <div className="font-display text-[#003087] text-3xl leading-none">64</div>
+                 <div className="font-sans text-[10px] font-bold text-[#666] tracking-wider uppercase mt-1">Districts</div>
+               </div>
+               <div className="text-center">
+                 <div className="font-display text-[#003087] text-3xl leading-none">472K+</div>
+                 <div className="font-sans text-[10px] font-bold text-[#666] tracking-wider uppercase mt-1">Members</div>
+               </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
