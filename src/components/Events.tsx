@@ -1,12 +1,31 @@
+// src/components/Events.tsx
 import { useEffect, useRef } from "react";
 import anime from "animejs";
 import { useSectionReveal } from "@/hooks/useSectionReveal";
 import { useTilt } from "@/hooks/useTilt";
 
 const EVENTS = [
-  { date: "DEC 15, 2025", name: "TOUR DE CHITTAGONG", loc: "📍 Pahartali, Chittagong" },
-  { date: "JAN 8, 2026", name: "SYLHET WINTER RIDE", loc: "📍 Sylhet City" },
-  { date: "FEB 2, 2026", name: "DHAKA CONCLAVE 2026", loc: "📍 Dhaka Central" },
+  { 
+    date: "JUN 5, 2026", 
+    name: "World ENVIROMENT DAY", 
+    loc: "📍 YRC Barishal",
+    image: "https://imgur.com/a/vYhGS5O",
+    fbLink: "https://www.facebook.com/share/p/1BRRZw7UUm/" 
+  },
+  { 
+    date: "JAN 8, 2026", 
+    name: "SYLHET WINTER RIDE", 
+    loc: "📍 Sylhet City",
+    image: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=600&q=80",
+    fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" 
+  },
+  { 
+    date: "FEB 2, 2026", 
+    name: "DHAKA CONCLAVE 2026", 
+    loc: "📍 Dhaka Central",
+    image: "https://images.unsplash.com/photo-1558981359-219d6364c9c8?w=600&q=80",
+    fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" 
+  },
 ];
 
 function TiltCard({ children }: { children: React.ReactNode }) {
@@ -67,17 +86,27 @@ export function Events() {
         {EVENTS.map((e) => (
           <TiltCard key={e.name}>
             <div className="overflow-hidden rounded-2xl bg-white" style={{ boxShadow: "0 4px 20px rgba(0,48,135,0.1)" }}>
-              <div className="relative flex items-center justify-center" style={{ height: 220, backgroundColor: "#003087" }}>
+              
+              <a 
+                href={e.fbLink} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="relative block group overflow-hidden" 
+                style={{ height: 220, backgroundColor: "#003087" }}
+              >
+                <img 
+                  src={e.image} 
+                  alt={e.name} 
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                />
                 <span
-                  className="absolute left-4 top-4 rounded-full bg-[#e60012] px-4 py-1.5 font-sans text-white"
+                  className="absolute left-4 top-4 rounded-full bg-[#e60012] px-4 py-1.5 font-sans text-white z-10 shadow-md"
                   style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.05em" }}
                 >
                   {e.date}
                 </span>
-                <span className="font-display tracking-widest text-white" style={{ fontSize: 18, opacity: 0.7 }}>
-                  EVENT PHOTO
-                </span>
-              </div>
+              </a>
+
               <div style={{ padding: 24 }}>
                 <h3 className="font-display" style={{ color: "#003087", fontSize: 28, lineHeight: 1.05 }}>
                   {e.name}
@@ -86,12 +115,12 @@ export function Events() {
                   {e.loc}
                 </p>
                 <a
-                  href="https://www.facebook.com/groups/YamahaRidersClubBD"
+                  href={e.fbLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-4 block w-full rounded-full border-2 border-[#003087] py-2.5 text-center font-sans text-sm font-semibold text-[#003087] transition-colors hover:bg-[#003087] hover:text-white"
                 >
-                  RSVP
+                  RSVP ON FACEBOOK
                 </a>
               </div>
             </div>
