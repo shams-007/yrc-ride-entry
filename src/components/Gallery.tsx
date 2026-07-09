@@ -1,6 +1,13 @@
+// src/components/Gallery.tsx
 const ITEMS = [
-  { h: 240 }, { h: 280 }, { h: 220 }, { h: 260 },
-  { h: 200 }, { h: 280 }, { h: 240 }, { h: 220 },
+  { h: 240, img: "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=400&q=80" },
+  { h: 280, img: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=400&q=80" },
+  { h: 220, img: "https://images.unsplash.com/photo-1558981359-219d6364c9c8?w=400&q=80" },
+  { h: 260, img: "https://images.unsplash.com/photo-1615172282427-9a57ef2d142e?w=400&q=80" },
+  { h: 200, img: "https://images.unsplash.com/photo-1591334800366-41ee1e6e02eb?w=400&q=80" },
+  { h: 280, img: "https://images.unsplash.com/photo-1502744688674-c619d1586c9e?w=400&q=80" },
+  { h: 240, img: "https://images.unsplash.com/photo-1558980394-4c7c9299fe96?w=400&q=80" },
+  { h: 220, img: "https://images.unsplash.com/photo-1558980663-3685c1d673c4?w=400&q=80" },
 ];
 
 export function Gallery() {
@@ -21,12 +28,10 @@ export function Gallery() {
           {loop.map((it, i) => (
             <div
               key={i}
-              className="yrc-marquee-item flex shrink-0 items-center justify-center rounded-xl"
+              className="yrc-marquee-item flex shrink-0 items-center justify-center rounded-xl overflow-hidden"
               style={{ width: 320, height: it.h, backgroundColor: "#003087", marginRight: 20 }}
             >
-              <span className="font-display tracking-widest text-white" style={{ fontSize: 16, opacity: 0.7 }}>
-                RIDE PHOTO
-              </span>
+              <img src={it.img} alt="YRC Gallery" className="w-full h-full object-cover" />
             </div>
           ))}
         </div>
