@@ -1,3 +1,4 @@
+// src/components/About.tsx
 import { motion } from "framer-motion";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -21,16 +22,17 @@ export function About() {
           style={{ transform: "rotate(-2deg)" }}
         >
           <div
-            className="flex w-full items-center justify-center rounded-2xl"
+            className="w-full overflow-hidden rounded-2xl"
             style={{
-              backgroundColor: "#003087",
               height: 520,
               boxShadow: "0 20px 60px rgba(0,48,135,0.2)",
             }}
           >
-            <span className="font-display tracking-widest text-white" style={{ fontSize: 20, opacity: 0.7 }}>
-              PHOTO COMING SOON
-            </span>
+            <img 
+              src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=800&q=80" 
+              alt="YRC Brotherhood" 
+              className="h-full w-full object-cover" 
+            />
           </div>
         </motion.div>
 
