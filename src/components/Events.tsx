@@ -6,10 +6,10 @@ import { useTilt } from "@/hooks/useTilt";
 
 const EVENTS = [
   { 
-    date: "JUN 5, 202", 
+    date: "JUN 5, 2026", 
     name: "WORLD ENVIROMENT DAY", 
     loc: "📍 YRC Barishal",
-    image: "https://imgur.com/a/vYhGS5O",
+    image: "https://i.imgur.com/yBaCQpl.jpeg",
     fbLink: "https://www.facebook.com/share/p/1Jz47U2uTm/" 
   },
   { 
