@@ -1,3 +1,4 @@
+// src/components/Hero.tsx
 import { motion } from "framer-motion";
 import { BangladeshMap } from "./BangladeshMap";
 
@@ -52,15 +53,15 @@ export function Hero() {
         ))}
       </div>
 
-      {/* motorcycle easter egg */}
+      {/* motorcycle easter egg - SIZES INCREASED FOR MOBILE */}
       <div
         aria-hidden
-        className="pointer-events-none absolute left-0 bottom-5 w-[24px] lg:bottom-10 lg:w-[120px]"
+        className="pointer-events-none absolute left-0 bottom-8 w-[80px] lg:bottom-10 lg:w-[120px]"
         style={{ zIndex: 1 }}
       >
-        <div className="yrc-motorcycle relative h-[12px] w-[24px] lg:h-[60px] lg:w-[120px]">
-          {/* exhaust puffs trailing behind the bike (desktop only) */}
-          <div className="hidden lg:block">
+        <div className="yrc-motorcycle relative h-[40px] w-[80px] lg:h-[60px] lg:w-[120px]">
+          {/* exhaust puffs trailing behind the bike - UNHIDDEN FOR MOBILE */}
+          <div className="block">
           {[
             { size: 6, delay: 0, offset: 0 },
             { size: 8, delay: 0.3, offset: 2 },
@@ -74,7 +75,7 @@ export function Hero() {
                 width: p.size,
                 height: p.size,
                 left: -2 - p.offset,
-                bottom: 8,
+                bottom: "20%",
                 animationDelay: `${p.delay}s`,
               }}
             />
@@ -93,7 +94,7 @@ export function Hero() {
         </div>
       </div>
 
-      {/* large soft radial glows */}
+      {/* large soft radial glows - BLUR REMOVED TO FIX LAG */}
       <div
         aria-hidden
         className="pointer-events-none absolute"
@@ -102,9 +103,7 @@ export function Hero() {
           right: "-150px",
           width: "600px",
           height: "600px",
-          background:
-            "radial-gradient(circle, rgba(0,48,135,0.06) 0%, rgba(0,48,135,0) 70%)",
-          filter: "blur(120px)",
+          background: "radial-gradient(circle, rgba(0,48,135,0.06) 0%, rgba(0,48,135,0) 70%)",
         }}
       />
       <div
@@ -115,9 +114,7 @@ export function Hero() {
           left: "-100px",
           width: "300px",
           height: "300px",
-          background:
-            "radial-gradient(circle, rgba(0,71,204,0.04) 0%, rgba(0,71,204,0) 70%)",
-          filter: "blur(120px)",
+          background: "radial-gradient(circle, rgba(0,71,204,0.04) 0%, rgba(0,71,204,0) 70%)",
         }}
       />
 
@@ -169,7 +166,6 @@ export function Hero() {
             <span className="yrc-line-shimmer" aria-hidden />
           </motion.div>
 
-          {/* Padding is pushed to the inner div so it safely clears the absolute red line */}
           <div className="pl-8 sm:pl-10 lg:pl-16">
             <span aria-hidden className="mb-4 block h-[2px] w-20 bg-[#e60012] lg:hidden" />
             <motion.span
@@ -232,23 +228,22 @@ export function Hero() {
         </div>
 
         {/* RIGHT COLUMN (Map) */}
-        <div className="relative order-1 flex w-full items-center justify-center pt-8 lg:order-2 lg:h-full lg:pt-0">
-          {/* soft navy radial glow behind whole column */}
+        <div className="relative order-1 flex w-full items-center justify-center pt-8 pb-4 lg:order-2 lg:h-full lg:py-0">
+          {/* soft navy radial glow behind whole column - BLUR REMOVED */}
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0"
             style={{
               background: "radial-gradient(circle at 50% 50%, rgba(0,48,135,0.10) 0%, rgba(0,48,135,0) 70%)",
-              filter: "blur(80px)",
             }}
           />
           
-          <div className="relative w-full max-w-[400px] aspect-square lg:max-w-none lg:h-auto lg:max-h-[520px] lg:aspect-[560/480]">
+          <div className="relative w-full max-w-[400px] min-h-[420px] lg:min-h-0 lg:max-w-none lg:h-auto lg:max-h-[520px] lg:aspect-[560/480]">
             {/* rotating ring */}
             <motion.svg
               aria-hidden
               viewBox="0 0 600 600"
-              className="absolute inset-0 h-full w-full"
+              className="absolute inset-0 h-full w-full pointer-events-none"
               animate={{ rotate: 360 }}
               transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
             >
@@ -268,10 +263,9 @@ export function Hero() {
               initial={{ opacity: 0, x: 60, scale: 1.05 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ duration: 1, ease: EASE, delay: 0.3 }}
-              className="relative h-full w-full"
+              className="relative h-full w-full flex flex-col justify-center"
             >
-              {/* Passed explicit height and cleared label so it fits perfectly */}
-              <BangladeshMap height="100%" label="" />
+              <BangladeshMap height="100%" />
             </motion.div>
           </div>
         </div>
