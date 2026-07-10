@@ -23,7 +23,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative w-full overflow-hidden lg:min-h-screen"
+      className="relative w-full overflow-hidden pt-20 lg:pt-0 lg:min-h-screen"
       style={{
         background:
           "linear-gradient(135deg, #f0f4ff 0%, #f8f9ff 50%, #eef2ff 100%)",
@@ -143,7 +143,8 @@ export function Hero() {
         />
       ))}
 
-      <div className="relative z-[1] mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-6 px-6 py-0 lg:min-h-screen lg:grid-rows-1 lg:items-stretch lg:grid-cols-[55fr_45fr] lg:gap-10 lg:px-10">
+      <div className="relative z-[1] mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-8 px-6 lg:min-h-screen lg:grid-rows-1 lg:items-stretch lg:grid-cols-[55fr_45fr] lg:gap-10 lg:px-10">
+        
         {/* dashed divider between columns */}
         <div
           aria-hidden
@@ -154,20 +155,22 @@ export function Hero() {
             borderLeft: "1px dashed rgba(0,48,135,0.15)",
           }}
         />
-        {/* LEFT */}
-        <div className="relative order-2 flex h-full flex-col justify-center pt-6 lg:order-1 lg:pl-16 lg:pt-0">
+
+        {/* LEFT COLUMN (Text) */}
+        <div className="relative order-2 flex h-full w-full flex-col justify-center py-12 lg:order-1 lg:py-0">
           {/* red vertical line */}
           <motion.div
             initial={{ scaleY: 0 }}
             animate={{ scaleY: 1 }}
             transition={{ duration: 0.8, ease: EASE, delay: 0.2 }}
             style={{ transformOrigin: "top" }}
-            className="absolute left-0 top-0 h-full w-[3px] overflow-hidden bg-[#e60012] lg:left-16"
+            className="absolute left-0 top-12 bottom-12 w-[3px] overflow-hidden bg-[#e60012] lg:top-0 lg:bottom-0 lg:left-0"
           >
             <span className="yrc-line-shimmer" aria-hidden />
           </motion.div>
 
-          <div className="pl-6 pt-0">
+          {/* Padding is pushed to the inner div so it safely clears the absolute red line */}
+          <div className="pl-8 sm:pl-10 lg:pl-16">
             <span aria-hidden className="mb-4 block h-[2px] w-20 bg-[#e60012] lg:hidden" />
             <motion.span
               {...fadeUp(0.1)}
@@ -228,19 +231,19 @@ export function Hero() {
           </div>
         </div>
 
-        {/* RIGHT */}
-        <div className="relative order-1 flex w-full items-stretch justify-center self-stretch lg:order-2 lg:h-full lg:items-center">
-          {/* soft navy radial glow behind whole column (no clip-path) */}
+        {/* RIGHT COLUMN (Map) */}
+        <div className="relative order-1 flex w-full items-center justify-center pt-8 lg:order-2 lg:h-full lg:pt-0">
+          {/* soft navy radial glow behind whole column */}
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0"
             style={{
-              background:
-                "radial-gradient(circle at 50% 50%, rgba(0,48,135,0.10) 0%, rgba(0,48,135,0) 70%)",
+              background: "radial-gradient(circle at 50% 50%, rgba(0,48,135,0.10) 0%, rgba(0,48,135,0) 70%)",
               filter: "blur(80px)",
             }}
           />
-          <div className="relative h-full max-h-[240px] min-h-[200px] w-full self-stretch lg:h-auto lg:max-h-[520px] lg:min-h-0 lg:self-center" style={{ aspectRatio: "560 / 480" }}>
+          
+          <div className="relative w-full max-w-[400px] aspect-square lg:max-w-none lg:h-auto lg:max-h-[520px] lg:aspect-[560/480]">
             {/* rotating ring */}
             <motion.svg
               aria-hidden
@@ -267,7 +270,8 @@ export function Hero() {
               transition={{ duration: 1, ease: EASE, delay: 0.3 }}
               className="relative h-full w-full"
             >
-              <BangladeshMap />
+              {/* Passed explicit height and cleared label so it fits perfectly */}
+              <BangladeshMap height="100%" label="" />
             </motion.div>
           </div>
         </div>
