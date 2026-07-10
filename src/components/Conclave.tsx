@@ -23,7 +23,7 @@ export function Conclave() {
           style={{ height: 480, boxShadow: "0 20px 60px rgba(0,48,135,0.2)" }}
         >
           <img 
-            src="https://images.unsplash.com/photo-1568772585407-9361f9bf3c87?w=800&q=80" 
+            src="https://i.imgur.com/JoyY7pK.jpeg" 
             alt="YRC Annual Conclave" 
             className="h-full w-full object-cover" 
           />
@@ -55,7 +55,7 @@ export function Conclave() {
             ))}
           </div>
           <a
-            href="https://www.facebook.com/YamahaRidersClubBD"
+            href="https://www.facebook.com/share/p/194JrcgG8M/"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-8 inline-flex items-center justify-center rounded-full px-8 py-3 font-sans text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
