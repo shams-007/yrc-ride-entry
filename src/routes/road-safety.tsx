@@ -7,7 +7,7 @@ export const Route = createFileRoute("/road-safety")({
   head: () => ({
     meta: [
       { title: "Road Safety — YRC.BD" },
-      { name: "description", content: "How Yamaha Riders Club Bangladesh saves lives on every road — 200 speed breakers, 17 locations, 10+ campaigns." },
+      { name: "description", content: "How Yamaha Riders Club Bangladesh saves lives on every road — 200+ speed breakers, 17 locations, 10+ campaigns." },
       { property: "og:title", content: "Road Safety — YRC.BD" },
       { property: "og:description", content: "Saving lives on every road." },
     ],
@@ -18,8 +18,8 @@ export const Route = createFileRoute("/road-safety")({
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 const STATS = [
-  { num: "200", label: "Speed Breakers" },
-  { num: "17", label: "Locations" },
+  { num: "200+", label: "Speed Breakers" },
+  { num: "17+", label: "Locations" },
   { num: "10+", label: "Campaigns" },
 ];
 
