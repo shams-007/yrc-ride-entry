@@ -13,18 +13,18 @@ const EVENTS = [
     fbLink: "https://www.facebook.com/share/p/1Jz47U2uTm/" 
   },
   { 
-    date: "JAN 8, 2026", 
-    name: "Football Tournament ⚽", 
+    date: "JUN 10, 2026", 
+    name: "FOOTBALL TOURNAMENT ⚽", 
     loc: "📍 YRC DHAKA",
     image: "https://i.imgur.com/oaVMRra.png",
     fbLink: "https://www.facebook.com/share/v/1CodWyVC69/" 
   },
   { 
     date: "FEB 2, 2026", 
-    name: "DHAKA CONCLAVE 2026", 
-    loc: "📍 Dhaka Central",
-    image: "https://images.unsplash.com/photo-1558981359-219d6364c9c8?w=600&q=80",
-    fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" 
+    name: "FLOOD RELIEFS", 
+    loc: "📍 YRC CHATTOGRAM & MURADPUR",
+    image: "https://i.imgur.com/UpumFGc.jpeg",
+    fbLink: "https://www.facebook.com/share/p/1EbTu8vdZN/" 
   },
 ];
 
