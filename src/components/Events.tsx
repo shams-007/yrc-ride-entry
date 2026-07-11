@@ -14,10 +14,10 @@ const EVENTS = [
   },
   { 
     date: "JAN 8, 2026", 
-    name: "SYLHET WINTER RIDE", 
-    loc: "📍 Sylhet City",
-    image: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=600&q=80",
-    fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" 
+    name: "Football Tournament ⚽", 
+    loc: "📍 YRC DHAKA",
+    image: "https://i.imgur.com/oaVMRra.png",
+    fbLink: "https://www.facebook.com/share/v/1CodWyVC69/" 
   },
   { 
     date: "FEB 2, 2026", 
