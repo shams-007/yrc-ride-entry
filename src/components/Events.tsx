@@ -16,11 +16,11 @@ const EVENTS = [
     date: "JUN 10, 2026", 
     name: "FOOTBALL TOURNAMENT ⚽", 
     loc: "📍 YRC DHAKA",
-    image: "https://i.imgur.com/oaVMRra.png",
+    image: "https://i.imgur.com/emAHICc.jpeg",
     fbLink: "https://www.facebook.com/share/v/1CodWyVC69/" 
   },
   { 
-    date: "FEB 2, 2026", 
+    date: "JUN 10, 2026", 
     name: "FLOOD RELIEFS", 
     loc: "📍 YRC CHATTOGRAM & MURADPUR",
     image: "https://i.imgur.com/UpumFGc.jpeg",
