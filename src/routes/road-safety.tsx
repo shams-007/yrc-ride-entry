@@ -7,9 +7,7 @@ export const Route = createFileRoute("/road-safety")({
   head: () => ({
     meta: [
       { title: "Road Safety — YRC.BD" },
-      { name: "description", content: "How Yamaha Riders Club Bangladesh saves lives on every road — 200+ speed breakers, 17 locations, 10+ campaigns." },
-      { property: "og:title", content: "Road Safety — YRC.BD" },
-      { property: "og:description", content: "Saving lives on every road." },
+      { name: "description", content: "How Yamaha Riders Club Bangladesh saves lives on every road." },
     ],
   }),
   component: RoadSafetyPage,
@@ -18,8 +16,8 @@ export const Route = createFileRoute("/road-safety")({
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 const STATS = [
-  { num: "200+", label: "Speed Breakers" },
-  { num: "17+", label: "Locations" },
+  { num: "200", label: "Speed Breakers" },
+  { num: "17", label: "Locations" },
   { num: "10+", label: "Campaigns" },
 ];
 
@@ -28,6 +26,16 @@ const MILESTONES = [
   { year: "2020", title: "50 speed breakers painted" },
   { year: "2022", title: "100 speed breakers milestone" },
   { year: "2024", title: "200 speed breakers across Bangladesh" },
+];
+
+// Add as many photos here as you like (4 or 6 looks best!)
+const SAFETY_GALLERY = [
+  "/images/safety-1.jpg",
+  "/images/safety-2.jpg",
+  "/images/safety-3.jpg",
+  "/images/safety-4.jpg",
+  "/images/safety-5.jpg",
+  "/images/safety-6.jpg",
 ];
 
 function RoadSafetyPage() {
@@ -86,18 +94,33 @@ function RoadSafetyPage() {
           ))}
         </div>
 
-        <div className="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2">
-          {[0, 1].map((i) => (
+        {/* DYNAMIC PHOTO GRID */}
+        <div className="mx-auto mt-16 grid max-w-6xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {SAFETY_GALLERY.map((src, i) => (
             <div
               key={i}
-              className="flex items-center justify-center rounded-2xl"
-              style={{ height: 300, backgroundColor: "#003087" }}
+              className="group relative flex items-center justify-center rounded-2xl overflow-hidden bg-[#001f5e]"
+              style={{ height: 260 }}
             >
-              <span className="font-display tracking-widest text-white" style={{ fontSize: 18, opacity: 0.7 }}>
-                CAMPAIGN PHOTO
-              </span>
+              <img 
+                src={src} 
+                alt="Campaign" 
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" 
+              />
             </div>
           ))}
+        </div>
+        
+        {/* BUTTON TO VIEW MORE ON FACEBOOK */}
+        <div className="mx-auto mt-10 flex justify-center">
+          <a
+            href="https://www.facebook.com/YamahaRidersClubBD"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center rounded-full border-2 border-[#003087] px-8 py-3 font-sans text-sm font-semibold text-[#003087] transition-colors hover:bg-[#003087] hover:text-white"
+          >
+            VIEW ALL PHOTOS ON FACEBOOK
+          </a>
         </div>
       </section>
 
