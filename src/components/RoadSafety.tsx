@@ -1,4 +1,3 @@
-// src/components/RoadSafety.tsx
 import { useCountUp } from "@/hooks/useCountUp";
 import { useSectionReveal } from "@/hooks/useSectionReveal";
 
@@ -8,9 +7,10 @@ const STATS: Array<{ value: number; suffix: string; label: string }> = [
   { value: 10, suffix: "+", label: "Campaigns" },
 ];
 
+// Add exactly 2 photos for the homepage layout
 const SAFETY_IMAGES = [
-  "https://images.unsplash.com/photo-1515569067071-ec3b51335dd0?w=600&q=80",
-  "https://images.unsplash.com/photo-1463453091185-61582044d556?w=600&q=80"
+  "/images/safety-1.jpg",
+  "/images/safety-2.jpg"
 ];
 
 function SafetyNumber({ value, suffix }: { value: number; suffix: string }) {
@@ -27,7 +27,6 @@ export function RoadSafety() {
       className="relative w-full overflow-hidden px-6 lg:px-10"
       style={{ backgroundColor: "#003087", paddingTop: 100, paddingBottom: 100 }}
     >
-      {/* headlight beam sweep */}
       <svg
         aria-hidden
         className="yrc-beam pointer-events-none absolute"
@@ -36,11 +35,7 @@ export function RoadSafety() {
         height="300"
         viewBox="0 0 600 300"
       >
-        <polygon
-          points="0,150 600,0 600,300"
-          fill="#ffffff"
-          fillOpacity="0.04"
-        />
+        <polygon points="0,150 600,0 600,300" fill="#ffffff" fillOpacity="0.04" />
       </svg>
       <div className="relative z-[1] mx-auto max-w-4xl text-center">
         <p
@@ -77,20 +72,16 @@ export function RoadSafety() {
       </div>
 
       <div className="relative z-[1] mx-auto mt-14 grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2">
-        {[0, 1].map((i) => (
+        {SAFETY_IMAGES.map((src, i) => (
           <div
             key={i}
-            className="flex items-center justify-center rounded-xl overflow-hidden"
-            style={{
-              height: 280,
-              border: "1px solid rgba(255,255,255,0.2)",
-              backgroundColor: "rgba(255,255,255,0.04)",
-            }}
+            className="flex items-center justify-center rounded-xl overflow-hidden bg-[#001f5e]"
+            style={{ height: 280, border: "1px solid rgba(255,255,255,0.2)" }}
           >
             <img 
-              src={SAFETY_IMAGES[i]} 
+              src={src} 
               alt="Road Safety Campaign" 
-              className="h-full w-full object-cover" 
+              className="h-full w-full object-cover transition-transform duration-500 hover:scale-105" 
             />
           </div>
         ))}
