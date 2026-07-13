@@ -20,11 +20,11 @@ const EVENTS = [
     fbLink: "https://www.facebook.com/share/v/1CodWyVC69/" 
   },
   { 
-    date: "JUN 10, 2026", 
-    name: "FLOOD RELIEFS", 
-    loc: "📍 YRC CHATTOGRAM & MURADPUR",
-    image: "https://i.imgur.com/UpumFGc.jpeg",
-    fbLink: "https://www.facebook.com/share/p/1EbTu8vdZN/" 
+    date: "JUN 24, 2026", 
+    name: "FLASH MOB CELEBRATES WORLD CUP", 
+    loc: "📍 YRC OFFICIAL",
+    image: "https://i.imgur.com/35YxPFN.jpeg",
+    fbLink: "https://www.facebook.com/share/v/1974jPjYzQ/" 
   },
 ];
 
