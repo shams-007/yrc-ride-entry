@@ -19,11 +19,11 @@ export const Route = createFileRoute("/events")({
 });
 
 const EVENTS = [
-  { date: "DEC 15, 2025", name: "TOUR DE CHITTAGONG", loc: "📍 Pahartali, Chittagong", image: "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=600&q=80", fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { date: "DEC 15, 2025", name: "FLASH MOB CELEBRATES ARGENTINA.", loc: "📍 YRC Official", image: "", fbLink: "https://www.facebook.com/share/v/1BLGgaABKQ/" },
   
   { date: "JAN 8, 2026", name: "SYLHET WINTER RIDE", loc: "📍 Sylhet City", image: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=600&q=80", fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
   
-  { date: "FEB 2, 2026", name: "DHAKA CONCLAVE 2026", loc: "📍 Dhaka Central", image: "https://images.unsplash.com/photo-1558981359-219d6364c9c8?w=600&q=80", fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { date: "JULY 11, 2026", name: "RELIEFS FOR FLOODED FAMILIES", loc: "📍 YRC Chattogram & Muradpur", image: "https://i.imgur.com/2tHzzNT.jpeg", fbLink: "https://www.facebook.com/share/p/1EQW3U5Lj4/" },
   
   { date: "MAR 15, 2026", name: "BANDARBAN HILL RIDE", loc: "📍 Bandarban", image: "https://images.unsplash.com/photo-1615172282427-9a57ef2d142e?w=600&q=80", fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
   
