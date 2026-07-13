@@ -19,7 +19,7 @@ export const Route = createFileRoute("/events")({
 });
 
 const EVENTS = [
-  { date: "DEC 15, 2025", name: "FLASH MOB CELEBRATES ARGENTINA.", loc: "📍 YRC Official", image: "", fbLink: "https://www.facebook.com/share/v/1BLGgaABKQ/" },
+  { date: "DEC 15, 2025", name: "FLASH MOB CELEBRATES ARGENTINA.", loc: "📍 YRC Official", image: "https://i.imgur.com/6odgq4M.jpeg", fbLink: "https://www.facebook.com/share/v/1BLGgaABKQ/" },
   
   { date: "JAN 8, 2026", name: "SYLHET WINTER RIDE", loc: "📍 Sylhet City", image: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=600&q=80", fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
   
