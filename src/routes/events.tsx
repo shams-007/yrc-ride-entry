@@ -20,10 +20,15 @@ export const Route = createFileRoute("/events")({
 
 const EVENTS = [
   { date: "DEC 15, 2025", name: "TOUR DE CHITTAGONG", loc: "📍 Pahartali, Chittagong", image: "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=600&q=80", fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  
   { date: "JAN 8, 2026", name: "SYLHET WINTER RIDE", loc: "📍 Sylhet City", image: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=600&q=80", fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  
   { date: "FEB 2, 2026", name: "DHAKA CONCLAVE 2026", loc: "📍 Dhaka Central", image: "https://images.unsplash.com/photo-1558981359-219d6364c9c8?w=600&q=80", fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  
   { date: "MAR 15, 2026", name: "BANDARBAN HILL RIDE", loc: "📍 Bandarban", image: "https://images.unsplash.com/photo-1615172282427-9a57ef2d142e?w=600&q=80", fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  
   { date: "APR 5, 2026", name: "CHITTAGONG COASTAL CRUISE", loc: "📍 Cox's Bazar Road", image: "https://images.unsplash.com/photo-1591334800366-41ee1e6e02eb?w=600&q=80", fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  
   { date: "MAY 20, 2026", name: "YRC BIRTHDAY BASH", loc: "📍 Dhaka", image: "https://images.unsplash.com/photo-1502744688674-c619d1586c9e?w=600&q=80", fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
 ];
 
