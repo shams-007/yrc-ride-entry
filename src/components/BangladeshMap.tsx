@@ -7,112 +7,113 @@ type Branch = {
   cx: number;
   cy: number;
   isMain?: boolean;
+  fbLink?: string; // This allows each coordinate to have its own link
 };
 
 // All 60 branches meticulously calibrated to the 0 0 400 500 viewBox
+// Just replace the fbLink URLs below with the specific group links!
 const ALL_BRANCHES: Branch[] = [
   // 8 Main Hubs (Large Red Pins)
-  { id: "dhaka", name: "🏍 DHAKA CENTRAL", coord: "Aminul Islam", cx: 210, cy: 260, isMain: true },
-  { id: "chittagong", name: "🏍 CHITTAGONG HUB", coord: "Mohammad Sajid", cx: 320, cy: 390, isMain: true },
-  { id: "sylhet", name: "🏍 SYLHET REGIONAL", coord: "Farhana Akter", cx: 340, cy: 150, isMain: true },
-  { id: "khulna", name: "🏍 KHULNA WING", coord: "Khulna Lead", cx: 140, cy: 350, isMain: true },
-  { id: "rajshahi", name: "🏍 RAJSHAHI WING", coord: "Rajshahi Lead", cx: 60, cy: 210, isMain: true },
-  { id: "barishal", name: "🏍 BARISHAL WING", coord: "Barishal Lead", cx: 200, cy: 380, isMain: true },
-  { id: "rangpur", name: "🏍 RANGPUR WING", coord: "Rangpur Lead", cx: 140, cy: 95, isMain: true },
-  { id: "mymensingh", name: "🏍 MYMENSINGH", coord: "Mymensingh Lead", cx: 220, cy: 140, isMain: true },
-  { id: "comilla", name: "🏍 COMILLA HUB", coord: "Comilla Lead", cx: 265, cy: 260, isMain: true },
+  { id: "dhaka", name: "🏍 DHAKA CENTRAL", coord: "Aminul Islam", cx: 210, cy: 260, isMain: true, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "chittagong", name: "🏍 CHITTAGONG HUB", coord: "Mohammad Sajid", cx: 320, cy: 390, isMain: true, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "sylhet", name: "🏍 SYLHET REGIONAL", coord: "Farhana Akter", cx: 340, cy: 150, isMain: true, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "khulna", name: "🏍 KHULNA WING", coord: "Khulna Lead", cx: 140, cy: 350, isMain: true, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "rajshahi", name: "🏍 RAJSHAHI WING", coord: "Rajshahi Lead", cx: 60, cy: 210, isMain: true, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "barishal", name: "🏍 BARISHAL WING", coord: "Barishal Lead", cx: 200, cy: 380, isMain: true, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "rangpur", name: "🏍 RANGPUR WING", coord: "Rangpur Lead", cx: 140, cy: 95, isMain: true, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "mymensingh", name: "🏍 MYMENSINGH", coord: "Mymensingh Lead", cx: 220, cy: 140, isMain: true, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "comilla", name: "🏍 COMILLA HUB", coord: "Comilla Lead", cx: 265, cy: 260, isMain: true, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
   
   // Sub-Branches (Glowing Cyan Nodes)
-  { id: "narayanganj", name: "YRC Narayanganj", cx: 220, cy: 270 },
-  { id: "brahmanbaria", name: "YRC Brahmanbaria", cx: 270, cy: 240 },
-  { id: "naogaon", name: "YRC Naogaon", cx: 110, cy: 170 },
-  { id: "bhairab", name: "YRC Bhairab", cx: 250, cy: 210 },
-  { id: "charfesson", name: "YRC Charfesson", cx: 225, cy: 410 },
-  { id: "nazipur", name: "YRC Nazipur", cx: 100, cy: 150 },
-  { id: "kishoreganj", name: "YRC Kishoreganj", cx: 250, cy: 180 },
-  { id: "chirirbondor", name: "YRC Chirirbondor", cx: 125, cy: 85 },
-  { id: "dhunat", name: "YRC Dhunat", cx: 170, cy: 165 },
-  { id: "sadardakshin", name: "YRC Sadar Dakshin", cx: 275, cy: 305 },
-  { id: "chhagalnaiya", name: "YRC Chhagalnaiya", cx: 300, cy: 330 },
-  { id: "chandpur", name: "YRC Chandpur", cx: 250, cy: 320 },
-  { id: "muradpur", name: "YRC Muradpur", cx: 315, cy: 395 },
-  { id: "mirpur", name: "Mirpur Branch", cx: 205, cy: 255 },
-  { id: "rangamati", name: "YRC Rangamati", cx: 365, cy: 360 }, 
-  { id: "coxsbazar", name: "YRC Cox's Bazar", cx: 357, cy: 460 }, 
-  { id: "chakaria", name: "YRC Chakaria", cx: 330, cy: 440 }, 
-  { id: "paltan", name: "Paltan Branch", cx: 212, cy: 262 },
-  { id: "madaripur", name: "YRC Madaripur", cx: 190, cy: 310 },
-  { id: "khilgaon", name: "Khilgaon Branch", cx: 215, cy: 258 },
-  { id: "jashore", name: "YRC Jashore", cx: 110, cy: 300 },
-  { id: "fulgazi", name: "YRC Fulgazi", cx: 305, cy: 320 },
-  { id: "singair", name: "YRC Singair", cx: 190, cy: 250 },
-  { id: "eidgaon", name: "YRC Eidgaon", cx: 335, cy: 455 }, 
-  { id: "laksham", name: "YRC Laksham", cx: 285, cy: 322 },
-  { id: "shariatpur", name: "YRC Shariatpur", cx: 210, cy: 315 },
-  { id: "patiya", name: "YRC Patiya", cx: 320, cy: 400 },
-  { id: "domar", name: "YRC Domar", cx: 135, cy: 65 },
-  { id: "natore", name: "YRC Natore", cx: 110, cy: 200 },
-  { id: "anowara", name: "YRC Anowara", cx: 355, cy: 410 },
-  { id: "debiganj", name: "YRC Debiganj", cx: 130, cy: 50 },
-  { id: "saidpur", name: "YRC Saidpur", cx: 120, cy: 75 },
-  { id: "kushtia", name: "YRC Kushtia", cx: 100, cy: 250 },
-  { id: "fatikchari", name: "YRC Fatikchari", cx: 332, cy: 375 },
-  { id: "sakhipur", name: "YRC Sakhipur", cx: 215, cy: 200 },
-  { id: "bogura", name: "YRC Bogura", cx: 160, cy: 160 },
-  { id: "boalkhali", name: "YRC Boalkhali", cx: 335, cy: 385 },
-  { id: "barguna", name: "YRC Barguna", cx: 170, cy: 410 },
-  { id: "satkhira", name: "YRC Satkhira", cx: 100, cy: 360 },
-  { id: "dinajpur", name: "YRC Dinajpur", cx: 100, cy: 80 },
-  { id: "badda", name: "Badda Branch", cx: 215, cy: 250 },
-  { id: "faridpur", name: "YRC Faridpur", cx: 170, cy: 280 },
-  { id: "keraniganj", name: "Keraniganj Branch", cx: 205, cy: 265 },
-  { id: "gafargaon", name: "YRC Gafargaon", cx: 230, cy: 165 },
-  { id: "pirganj", name: "YRC Pirganj", cx: 145, cy: 125 },
-  { id: "manikganj", name: "YRC Manikganj", cx: 180, cy: 250 },
-  { id: "jatrabari", name: "Jatrabari Branch", cx: 215, cy: 265 },
-  { id: "kalkini", name: "Kalkini Branch", cx: 195, cy: 320 },
-  { id: "gaibandha", name: "YRC Gaibandha", cx: 160, cy: 120 },
-  { id: "jhalokati", name: "YRC Jhalokati", cx: 180, cy: 380 },
-  { id: "pekua", name: "YRC Pekua", cx: 325, cy: 450 }, 
-  { id: "sherpurbogura", name: "YRC Sherpur Bogura", cx: 165, cy: 170 },
-  { id: "birganj", name: "YRC Birganj", cx: 110, cy: 75 },
-  { id: "tangail", name: "YRC Tangail", cx: 180, cy: 200 },
-  { id: "shathibari", name: "YRC Shathibari", cx: 150, cy: 110 },
-  { id: "nilphamari", name: "YRC Nilphamari", cx: 130, cy: 70 },
-  { id: "pabna", name: "YRC Pabna", cx: 140, cy: 230 },
-  { id: "hathazari", name: "YRC Hathazari", cx: 322, cy: 375 },
-  { id: "gournadi", name: "YRC Gournadi", cx: 195, cy: 360 },
-  { id: "tejgaon", name: "Tejgaon Branch", cx: 210, cy: 255 },
-  { id: "gopalganj", name: "YRC Gopalganj", cx: 165, cy: 320 },
-  { id: "uttara", name: "Uttara Branch", cx: 210, cy: 245 },
-  { id: "dohar", name: "YRC Dohar", cx: 190, cy: 280 },
-  { id: "sadarpur", name: "YRC Sadarpur", cx: 185, cy: 295 },
-  { id: "nawabganj", name: "YRC Nawabganj", cx: 200, cy: 275 },
-  { id: "panchagarh", name: "YRC Panchagarh", cx: 130, cy: 30 },
-  { id: "purandhaka", name: "YRC Puran Dhaka", cx: 212, cy: 265 },
-  { id: "jhenaidah", name: "YRC Jhenaidah", cx: 110, cy: 275 },
-  { id: "habiganj", name: "YRC Habiganj", cx: 300, cy: 190 },
-  { id: "pirojpur", name: "YRC Pirojpur", cx: 170, cy: 360 },
-  { id: "bhaluka", name: "YRC Bhaluka", cx: 210, cy: 180 },
-  { id: "katiadi", name: "YRC Katiadi", cx: 240, cy: 185 },
-  { id: "ashulia", name: "YRC Ashulia", cx: 205, cy: 235 },
-  { id: "ghatail", name: "YRC Ghatail", cx: 195, cy: 190 },
-  { id: "daulatpur", name: "Khulna - Daulatpur", cx: 145, cy: 345 },
-  { id: "meherpur", name: "YRC Meherpur", cx: 60, cy: 250 },
-  { id: "muradnagar", name: "YRC Muradnagar", cx: 265, cy: 260 },
-  { id: "savar", name: "Savar Branch", cx: 200, cy: 245 },
-  { id: "baniyachong", name: "Baniyachong Wing", cx: 290, cy: 180 },
-  { id: "joypurhat", name: "YRC Joypurhat", cx: 125, cy: 160 },
-  { id: "boda", name: "YRC Boda", cx: 125, cy: 40 },
-  { id: "kurigram", name: "YRC Kurigram", cx: 180, cy: 95 },
-  { id: "phulpur", name: "YRC Phulpur", cx: 220, cy: 155 },
-  { id: "sapahar", name: "YRC Sapahar", cx: 100, cy: 160 },
-  { id: "babuganj", name: "YRC Babuganj", cx: 205, cy: 370 },
-  { id: "dhanbari", name: "YRC Dhanbari", cx: 185, cy: 180 },
-  { id: "manirampur", name: "YRC Manirampur", cx: 125, cy: 315 },
+  { id: "narayanganj", name: "YRC Narayanganj", cx: 220, cy: 270, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "brahmanbaria", name: "YRC Brahmanbaria", cx: 270, cy: 240, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "naogaon", name: "YRC Naogaon", cx: 110, cy: 170, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "bhairab", name: "YRC Bhairab", cx: 250, cy: 210, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "charfesson", name: "YRC Charfesson", cx: 225, cy: 410, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "nazipur", name: "YRC Nazipur", cx: 100, cy: 150, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "kishoreganj", name: "YRC Kishoreganj", cx: 250, cy: 180, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "chirirbondor", name: "YRC Chirirbondor", cx: 125, cy: 85, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "dhunat", name: "YRC Dhunat", cx: 170, cy: 165, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "sadardakshin", name: "YRC Sadar Dakshin", cx: 275, cy: 305, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "chhagalnaiya", name: "YRC Chhagalnaiya", cx: 300, cy: 330, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "chandpur", name: "YRC Chandpur", cx: 250, cy: 320, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "muradpur", name: "YRC Muradpur", cx: 315, cy: 395, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "mirpur", name: "Mirpur Branch", cx: 205, cy: 255, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "rangamati", name: "YRC Rangamati", cx: 365, cy: 360, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" }, 
+  { id: "coxsbazar", name: "YRC Cox's Bazar", cx: 357, cy: 460, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" }, 
+  { id: "chakaria", name: "YRC Chakaria", cx: 330, cy: 440, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" }, 
+  { id: "paltan", name: "Paltan Branch", cx: 212, cy: 262, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "madaripur", name: "YRC Madaripur", cx: 190, cy: 310, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "khilgaon", name: "Khilgaon Branch", cx: 215, cy: 258, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "jashore", name: "YRC Jashore", cx: 110, cy: 300, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "fulgazi", name: "YRC Fulgazi", cx: 305, cy: 320, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "singair", name: "YRC Singair", cx: 190, cy: 250, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "eidgaon", name: "YRC Eidgaon", cx: 335, cy: 455, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" }, 
+  { id: "laksham", name: "YRC Laksham", cx: 285, cy: 322, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "shariatpur", name: "YRC Shariatpur", cx: 210, cy: 315, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "patiya", name: "YRC Patiya", cx: 320, cy: 400, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "domar", name: "YRC Domar", cx: 135, cy: 65, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "natore", name: "YRC Natore", cx: 110, cy: 200, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "anowara", name: "YRC Anowara", cx: 355, cy: 410, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "debiganj", name: "YRC Debiganj", cx: 130, cy: 50, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "saidpur", name: "YRC Saidpur", cx: 120, cy: 75, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "kushtia", name: "YRC Kushtia", cx: 100, cy: 250, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "fatikchari", name: "YRC Fatikchari", cx: 332, cy: 375, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "sakhipur", name: "YRC Sakhipur", cx: 215, cy: 200, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "bogura", name: "YRC Bogura", cx: 160, cy: 160, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "boalkhali", name: "YRC Boalkhali", cx: 335, cy: 385, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "barguna", name: "YRC Barguna", cx: 170, cy: 410, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "satkhira", name: "YRC Satkhira", cx: 100, cy: 360, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "dinajpur", name: "YRC Dinajpur", cx: 100, cy: 80, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "badda", name: "Badda Branch", cx: 215, cy: 250, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "faridpur", name: "YRC Faridpur", cx: 170, cy: 280, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "keraniganj", name: "Keraniganj Branch", cx: 205, cy: 265, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "gafargaon", name: "YRC Gafargaon", cx: 230, cy: 165, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "pirganj", name: "YRC Pirganj", cx: 145, cy: 125, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "manikganj", name: "YRC Manikganj", cx: 180, cy: 250, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "jatrabari", name: "Jatrabari Branch", cx: 215, cy: 265, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "kalkini", name: "Kalkini Branch", cx: 195, cy: 320, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "gaibandha", name: "YRC Gaibandha", cx: 160, cy: 120, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "jhalokati", name: "YRC Jhalokati", cx: 180, cy: 380, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "pekua", name: "YRC Pekua", cx: 325, cy: 450, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" }, 
+  { id: "sherpurbogura", name: "YRC Sherpur Bogura", cx: 165, cy: 170, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "birganj", name: "YRC Birganj", cx: 110, cy: 75, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "tangail", name: "YRC Tangail", cx: 180, cy: 200, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "shathibari", name: "YRC Shathibari", cx: 150, cy: 110, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "nilphamari", name: "YRC Nilphamari", cx: 130, cy: 70, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "pabna", name: "YRC Pabna", cx: 140, cy: 230, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "hathazari", name: "YRC Hathazari", cx: 322, cy: 375, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "gournadi", name: "YRC Gournadi", cx: 195, cy: 360, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "tejgaon", name: "Tejgaon Branch", cx: 210, cy: 255, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "gopalganj", name: "YRC Gopalganj", cx: 165, cy: 320, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "uttara", name: "Uttara Branch", cx: 210, cy: 245, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "dohar", name: "YRC Dohar", cx: 190, cy: 280, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "sadarpur", name: "YRC Sadarpur", cx: 185, cy: 295, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "nawabganj", name: "YRC Nawabganj", cx: 200, cy: 275, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "panchagarh", name: "YRC Panchagarh", cx: 130, cy: 30, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "purandhaka", name: "YRC Puran Dhaka", cx: 212, cy: 265, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "jhenaidah", name: "YRC Jhenaidah", cx: 110, cy: 275, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "habiganj", name: "YRC Habiganj", cx: 300, cy: 190, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "pirojpur", name: "YRC Pirojpur", cx: 170, cy: 360, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "bhaluka", name: "YRC Bhaluka", cx: 210, cy: 180, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "katiadi", name: "YRC Katiadi", cx: 240, cy: 185, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "ashulia", name: "YRC Ashulia", cx: 205, cy: 235, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "ghatail", name: "YRC Ghatail", cx: 195, cy: 190, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "daulatpur", name: "Khulna - Daulatpur", cx: 145, cy: 345, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "meherpur", name: "YRC Meherpur", cx: 60, cy: 250, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "muradnagar", name: "YRC Muradnagar", cx: 265, cy: 260, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "savar", name: "Savar Branch", cx: 200, cy: 245, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "baniyachong", name: "Baniyachong Wing", cx: 290, cy: 180, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "joypurhat", name: "YRC Joypurhat", cx: 125, cy: 160, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "boda", name: "YRC Boda", cx: 125, cy: 40, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "kurigram", name: "YRC Kurigram", cx: 180, cy: 95, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "phulpur", name: "YRC Phulpur", cx: 220, cy: 155, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "sapahar", name: "YRC Sapahar", cx: 100, cy: 160, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "babuganj", name: "YRC Babuganj", cx: 205, cy: 370, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "dhanbari", name: "YRC Dhanbari", cx: 185, cy: 180, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { id: "manirampur", name: "YRC Manirampur", cx: 125, cy: 315, fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
 ];
 
-// Beautifully curved, logical nationwide bike loop
 const BIKE_PATH =
   "M 310,390 Q 265,260 210,260 Q 250,150 340,150 Q 280,175 220,140 Q 160,160 60,210 Q 100,320 140,350 Q 200,420 310,390";
 
@@ -127,7 +128,6 @@ export function BangladeshMap({
   const [mapPaths, setMapPaths] = useState<string[]>([]);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Extract the map path natively from your local SVG so it never crashes React
   useEffect(() => {
     fetch("/bangladesh.svg")
       .then((res) => res.text())
@@ -159,7 +159,6 @@ export function BangladeshMap({
       style={{ backgroundColor: "transparent", height: height }}
     >
       <style>{`
-        /* Map drawing animation running natively in CSS */
         .yrc-animate-map {
           fill: #003087;
           stroke: #0047cc;
@@ -174,8 +173,6 @@ export function BangladeshMap({
           70% { stroke-dashoffset: 0; fill-opacity: 0; }
           100% { stroke-dashoffset: 0; fill-opacity: 1; }
         }
-
-        /* Pulsing dot animations */
         @keyframes yrcDotEnter {
           from { opacity: 0; transform: scale(0); }
           to { opacity: 1; transform: scale(1); }
@@ -216,17 +213,10 @@ export function BangladeshMap({
               <path id="yrc-bike-motion-path" d={BIKE_PATH} />
             </defs>
 
-            {/* Safely mapped, native React SVG path. Does not restart on hover! */}
             {mapPaths.map((d, idx) => (
-              <path
-                key={idx}
-                d={d}
-                className="yrc-animate-map"
-                pathLength="1"
-              />
+              <path key={idx} d={d} className="yrc-animate-map" pathLength="1" />
             ))}
 
-            {/* Glowing, curved, semi-transparent white Nationwide Bike Lane */}
             <path
               className="yrc-bd-trail"
               d={BIKE_PATH}
@@ -240,7 +230,6 @@ export function BangladeshMap({
               style={{ filter: "drop-shadow(0 0 3px rgba(0, 229, 255, 0.3))" }}
             />
 
-            {/* Render all Branches natively onto the exact same grid */}
             {ALL_BRANCHES.map((branch, i) => (
               <g
                 key={branch.id}
@@ -272,7 +261,6 @@ export function BangladeshMap({
               </g>
             ))}
 
-            {/* Big, bold motorcycle icon tracing the nationwide lane */}
             <g className="yrc-bd-bike" style={{ opacity: 1 }}>
               <g transform="translate(-10,-10)">
                 <svg x="0" y="0" width="20" height="20" viewBox="0 0 24 24" fill="#ffffff" stroke="#e60012" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ borderRadius: "50%", filter: "drop-shadow(0 0 6px rgba(255,255,255,0.7))" }}>
@@ -288,7 +276,6 @@ export function BangladeshMap({
             </g>
           </svg>
 
-          {/* Dynamic Tooltips safely layered on top */}
           {ALL_BRANCHES.map((m) => {
             const active = hover === m.id;
             return (
@@ -323,8 +310,9 @@ export function BangladeshMap({
                   <div style={{ fontWeight: 800, fontSize: 13 }}>{m.name}</div>
                   {m.coord && <div style={{ fontSize: 11, color: "#666", marginTop: 2 }}>{m.coord}</div>}
                   
+                  {/* Link now pulls directly from the fbLink property we added to the array! */}
                   <a
-                    href="https://www.facebook.com/groups/YamahaRidersClubBD"
+                    href={m.fbLink || "https://www.facebook.com/groups/YamahaRidersClubBD"}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-2 inline-flex items-center gap-1.5 font-bold transition-transform hover:scale-105"
