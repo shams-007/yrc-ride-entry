@@ -14,6 +14,7 @@ import { PressStrip } from "@/components/PressStrip";
 import { Testimonials } from "@/components/Testimonials";
 import { Conclave } from "@/components/Conclave";
 import { FAQ } from "@/components/FAQ";
+import { Merch, SHOW_SHOP } from "@/components/Merch";
 
 export const Route = createFileRoute("/")({
   head: () => ({
