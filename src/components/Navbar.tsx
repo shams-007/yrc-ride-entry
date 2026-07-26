@@ -2,6 +2,23 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import { SHOW_SHOP } from "./Merch";
+
+// Start with standard links
+const baseLinks = [
+  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
+  { label: "Events", href: "#events" },
+  { label: "Gallery", href: "#gallery" },
+  { label: "Road Safety", href: "#road-safety" },
+];
+
+// Add Shop conditionally, then Membership
+const links = [
+  ...baseLinks,
+  ...(SHOW_SHOP ? [{ label: "Shop", href: "#shop" }] : []),
+  { label: "Membership", href: "#membership" },
+];
 
 const links = [
   { label: "Home", href: "#home" },
