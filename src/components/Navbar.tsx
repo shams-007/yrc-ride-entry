@@ -32,17 +32,6 @@ export function Navbar() {
     const top = el.getBoundingClientRect().top + window.scrollY - 64;
     window.scrollTo({ top, behavior: "smooth" });
   };
-export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
-
-  const smoothScrollTo = (href: string) => {
-    if (!href.startsWith("#")) return;
-    const el = document.getElementById(href.slice(1));
-    if (!el) return;
-    const top = el.getBoundingClientRect().top + window.scrollY - 64;
-    window.scrollTo({ top, behavior: "smooth" });
-  };
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (!href.startsWith("#")) return;
