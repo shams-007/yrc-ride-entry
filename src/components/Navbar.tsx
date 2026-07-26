@@ -1,14 +1,15 @@
+// src/components/Navbar.tsx
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { SHOW_SHOP } from "./Merch";
 
-// Start with standard links
 const baseLinks = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Events", href: "#events" },
+  { label: "Branches", href: "#branches" },
   { label: "Gallery", href: "#gallery" },
   { label: "Road Safety", href: "#road-safety" },
 ];
@@ -20,16 +21,17 @@ const links = [
   { label: "Membership", href: "#membership" },
 ];
 
-const links = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Events", href: "#events" },
-  { label: "Branches", href: "#branches" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Road Safety", href: "#road-safety" },
-  { label: "Membership", href: "#membership" },
-];
+export function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
 
+  const smoothScrollTo = (href: string) => {
+    if (!href.startsWith("#")) return;
+    const el = document.getElementById(href.slice(1));
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY - 64;
+    window.scrollTo({ top, behavior: "smooth" });
+  };
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
