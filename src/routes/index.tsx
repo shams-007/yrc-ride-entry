@@ -1,3 +1,4 @@
+// src/routes/index.tsx
 import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
@@ -7,13 +8,14 @@ import { Events } from "@/components/Events";
 import { Branches } from "@/components/Branches";
 import { RoadSafety } from "@/components/RoadSafety";
 import { Gallery } from "@/components/Gallery";
+import { FAQ } from "@/components/FAQ";
 import { Membership } from "@/components/Membership";
 import { CTABanner } from "@/components/CTABanner";
 import { Footer } from "@/components/Footer";
 import { PressStrip } from "@/components/PressStrip";
 import { Testimonials } from "@/components/Testimonials";
 import { Conclave } from "@/components/Conclave";
-import { FAQ } from "@/components/FAQ";
+// 1. IMPORT MERCH HERE:
 import { Merch, SHOW_SHOP } from "@/components/Merch";
 
 export const Route = createFileRoute("/")({
@@ -52,6 +54,15 @@ function Index() {
       <hr className="yrc-divider" />
       <Gallery />
       <hr className="yrc-divider" />
+      
+      {/* 2. PLACE MERCH HERE: */}
+      {SHOW_SHOP && (
+        <>
+          <Merch />
+          <hr className="yrc-divider" />
+        </>
+      )}
+
       <FAQ />
       <hr className="yrc-divider" />
       <Membership />
