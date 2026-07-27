@@ -33,7 +33,7 @@ const EVENTS = [
     fbLink: "https://www.facebook.com/share/v/1974jPjYzQ/" 
   },
   
-  { date: "APR 5, 2026", name: "CHITTAGONG COASTAL CRUISE", loc: "📍 Cox's Bazar Road", image: "https://images.unsplash.com/photo-1591334800366-41ee1e6e02eb?w=600&q=80", fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { date: "APR 14, 2026", name: "PAHELA BAISHAKH CELEBRATION", loc: "📍 YRC OFFICIAL", image: "", fbLink: "https://www.facebook.com/share/p/19EsqoDxSo/" },
   
   { date: "MAY 20, 2026", name: "YRC BIRTHDAY BASH", loc: "📍 Dhaka", image: "https://images.unsplash.com/photo-1502744688674-c619d1586c9e?w=600&q=80", fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
 ];
