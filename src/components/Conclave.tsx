@@ -25,7 +25,7 @@ export function Conclave() {
           style={{ height: 480, boxShadow: "0 20px 60px rgba(0,48,135,0.2)" }}
         >
           <img 
-            src="/images/conclave.jpg" 
+            src="https://i.imgur.com/gbXkj0N.jpeg"
             alt="YRC Annual Conclave" 
             className="h-full w-full object-cover" 
           />
