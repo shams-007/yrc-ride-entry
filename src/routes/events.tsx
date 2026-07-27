@@ -21,11 +21,17 @@ export const Route = createFileRoute("/events")({
 const EVENTS = [
   { date: "JUN 5, 2026", name: "WORLD ENVIROMENT DAY", loc: "📍 YRC Barishal", image: "https://i.imgur.com/yBaCQpl.jpeg", fbLink: "https://www.facebook.com/share/p/1Jz47U2uTm/" },
   
-  { date: "JAN 8, 2026", name: "SYLHET WINTER RIDE", loc: "📍 Sylhet City", image: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=600&q=80", fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+  { date: "JULY 13, 2026", name: "HOBIGANJ UPAZILA VLOG", loc: "📍 YRC HOBIGANJ", image: "https://i.imgur.com/HMYO4IK.jpeg", fbLink: "https://www.facebook.com/share/v/1DPn3mDDvr/" },
   
   { date: "JULY 11, 2026", name: "RELIEFS FOR FLOODED FAMILIES", loc: "📍 YRC Chattogram & Muradpur", image: "https://i.imgur.com/2tHzzNT.jpeg", fbLink: "https://www.facebook.com/share/p/1EQW3U5Lj4/" },
   
-  { date: "MAR 15, 2026", name: "BANDARBAN HILL RIDE", loc: "📍 Bandarban", image: "https://images.unsplash.com/photo-1615172282427-9a57ef2d142e?w=600&q=80", fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
+    { 
+    date: "JUN 24, 2026", 
+    name: "FLASH MOB CELEBRATES WORLD CUP", 
+    loc: "📍 YRC OFFICIAL",
+    image: "https://i.imgur.com/35YxPFN.jpeg",
+    fbLink: "https://www.facebook.com/share/v/1974jPjYzQ/" 
+  },
   
   { date: "APR 5, 2026", name: "CHITTAGONG COASTAL CRUISE", loc: "📍 Cox's Bazar Road", image: "https://images.unsplash.com/photo-1591334800366-41ee1e6e02eb?w=600&q=80", fbLink: "https://www.facebook.com/groups/YamahaRidersClubBD" },
   
