@@ -1,3 +1,4 @@
+import { Preloader } from "../components/Preloader";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
