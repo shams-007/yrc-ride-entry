@@ -20,8 +20,10 @@ const EVENTS = [
     fbLink: "https://www.facebook.com/share/v/1CodWyVC69/" 
   },
   
-  { date: "JULY 11, 2026", name: "RELIEFS FOR FLOODED FAMILIES", loc: "📍 YRC Chattogram & Muradpur",
-   image: "https://i.imgur.com/2tHzzNT.jpeg", fbLink: "https://www.facebook.com/share/p/1EQW3U5Lj4/" },
+  { date: "JULY 11, 2026", name: "RELIEFS FOR FLOODED FAMILIES",
+   loc: "📍 YRC Chattogram & Muradpur",
+   image: "https://i.imgur.com/jXqVgvm.jpeg",
+   fbLink: "https://www.facebook.com/share/v/1DGtmYywj9/" },
 ];
 
 function TiltCard({ children }: { children: React.ReactNode }) {
