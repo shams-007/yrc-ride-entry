@@ -19,13 +19,9 @@ const EVENTS = [
     image: "https://i.imgur.com/emAHICc.jpeg",
     fbLink: "https://www.facebook.com/share/v/1CodWyVC69/" 
   },
-  { 
-    date: "JUN 24, 2026", 
-    name: "FLASH MOB CELEBRATES WORLD CUP", 
-    loc: "📍 YRC OFFICIAL",
-    image: "https://i.imgur.com/35YxPFN.jpeg",
-    fbLink: "https://www.facebook.com/share/v/1974jPjYzQ/" 
-  },
+  
+  { date: "JULY 11, 2026", name: "RELIEFS FOR FLOODED FAMILIES", loc: "📍 YRC Chattogram & Muradpur",
+   image: "https://i.imgur.com/2tHzzNT.jpeg", fbLink: "https://www.facebook.com/share/p/1EQW3U5Lj4/" },
 ];
 
 function TiltCard({ children }: { children: React.ReactNode }) {
