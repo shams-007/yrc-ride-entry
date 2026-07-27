@@ -410,3 +410,49 @@ html {
   background: linear-gradient(90deg, transparent, rgba(0,48,135,0.15), transparent);
   border: 0;
 }
+
+/* ========================================= */
+/* AGGRESSIVE FEATURES (IDLE & GLITCH)       */
+/* ========================================= */
+
+/* 1. Engine Idle Button Hover */
+@keyframes yrcEngineIdle {
+  0% { transform: translate(0px, 0px) rotate(0deg); }
+  20% { transform: translate(-1.5px, 1.5px) rotate(-1deg); }
+  40% { transform: translate(1.5px, -1.5px) rotate(1deg); }
+  60% { transform: translate(-1.5px, -1.5px) rotate(-1deg); }
+  80% { transform: translate(1.5px, 1.5px) rotate(1deg); }
+  100% { transform: translate(0px, 0px) rotate(0deg); }
+}
+
+.yrc-idle-btn {
+  position: relative;
+  transition: all 0.2s ease !important;
+}
+
+.yrc-idle-btn:hover {
+  animation: yrcEngineIdle 0.08s infinite !important; /* Extremely fast vibration */
+  box-shadow: 0 0 25px rgba(230, 0, 18, 0.8) !important;
+  background-color: #e60012 !important;
+  color: #fff !important;
+  border-color: #e60012 !important;
+  z-index: 10;
+}
+
+/* 2. Glitch Hover for Text */
+@keyframes yrcGlitch {
+  0% { transform: translate(0) skew(0deg); text-shadow: none; }
+  20% { transform: translate(-2px, 1px) skew(-10deg); text-shadow: 3px 0 #00e5ff, -3px 0 #e60012; }
+  40% { transform: translate(2px, -1px) skew(10deg); text-shadow: -3px 0 #00e5ff, 3px 0 #e60012; }
+  60% { transform: translate(-1px, -2px) skew(-5deg); text-shadow: 3px 0 #00e5ff, -3px 0 #e60012; }
+  80% { transform: translate(1px, 2px) skew(5deg); text-shadow: -3px 0 #00e5ff, 3px 0 #e60012; }
+  100% { transform: translate(0) skew(0deg); text-shadow: none; }
+}
+
+.yrc-glitch-hover {
+  display: inline-block;
+}
+.yrc-glitch-hover:hover {
+  animation: yrcGlitch 0.2s infinite;
+  color: #e60012 !important;
+}
