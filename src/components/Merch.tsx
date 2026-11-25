@@ -29,7 +29,7 @@ const PRODUCTS = [
     id: 2,
     name: "YRC Premium Edition Helmet",
     price: "৳ 4,500",
-    image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=500&q=80",
+    image: "helmet.png",
     hasSizes: true,
   },
   {
