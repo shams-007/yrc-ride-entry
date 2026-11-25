@@ -29,7 +29,7 @@ const PRODUCTS = [
     id: 2,
     name: "YRC Premium Edition Helmet",
     price: "৳ 4,500",
-    image: "helmet.png",
+    image: helmet.png,
     hasSizes: true,
   },
   {
